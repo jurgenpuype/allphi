@@ -1,11 +1,11 @@
 {
   "voertuig": [
     {
-      "voeId": 1,
+      "id": 1,
       "voeMerk": "Volkswagen",
       "voeModel": "Passat",
       "voeChassisNummer" : "WVWZZZ3CZCE130023",
-      "voeNummerplaar" : "1-GFA-235",
+      "voeNummerplaat" : "1-GFA-235",
       "voeBrandstoftype" : 2,
       "voeTypeWagen" : 1,
       "voeKleur" : "Wit",
@@ -14,11 +14,11 @@
       "voeVerwijderd" : 0
     },
     {
-      "voeId": 2,
+      "id": 2,
       "voeMerk": "BMW",
       "voeModel": "335i",
       "voeChassisNummer" : "WBAKG7C55BE262507",
-      "voeNummerplaar" : "1-VFC-854",
+      "voeNummerplaat" : "1-VFC-854",
       "voeBrandstoftype" : 1,
       "voeTypeWagen" : 1,
       "voeKleur" : "Blauw",
@@ -29,7 +29,7 @@
   ],  
   "bestuurder": [
     {
-      "besId": 1,
+      "id": 1,
       "besNaam": "Wouters",
       "besVoornaam": "Diane",
       "besStraatNr" : "Veldstraat 12",
@@ -44,7 +44,7 @@
       "besVerwijderd": 0 
     },
     {
-      "besId": 2,
+      "id": 2,
       "besNaam": "Lambert",
       "besVoornaam": "Rebecca",
       "besStraatNr" : "Rue Archiméde 14",
@@ -59,7 +59,7 @@
       "besVerwijderd": 0 
     },
     {
-      "besId": 3,
+      "id": 3,
       "besNaam": "Clarkson",
       "besVoornaam": "Jeremy",
       "besStraatNr" : "Parkland Court, Addison Road",
@@ -76,25 +76,25 @@
   ],
   "gebruiker": [
     {
-      "gebId": 1,
+      "id": 1,
       "gebNaam": "Snowden",
       "gebVoornaam": "Edward",
       "gebLogin": "esnowden",
       "gebPassword": "admin123",
-      "gebGebruiker": null,
+      "gebGebruiker": -1,
       "gebRol": 1
     },
     {
-      "gebId": 2,
+      "id": 2,
       "GebNaam": "Moneypenny",
       "GebVoornaam": "Eve",
       "gebLogin": "esmoneypenny",
       "gebPassword": "assistant123",
-      "gebGebruiker": null,
+      "gebGebruiker": -1,
       "gebRol": 2
     },
     {
-      "gebId": 3,
+      "id": 3,
       "gebNaam": "Clarkson",
       "gebVoornaam": "Jeremy",
       "gebLogin": "jclarkson",
@@ -105,24 +105,24 @@
   ],
   "rolGebruiker": [
     {
-      "rolId": 1,
+      "id": 1,
       "rolNaam": "Admin",
       "rolOmschrijving": "Administrator (Alle rechten)"
     },
     {
-      "rolId": 2,
+      "id": 2,
       "rolNaam": "Assistant",
       "rolOmschrijving": "Administrative Assistant (Leesrechten op alle gegevens)"
     },
     {
-      "rolId": 3,
+      "id": 3,
       "rolNaam": "Bestuurder",
       "rolOmschrijving": "Bestuurder (Leesrechten op eigen gegevens, eventueel beperkte self-service)"
     }
   ],
   "tankkaart": [
     {
-      "tanId": 1,
+      "id": 1,
       "tanKaartnummer": "7405 0697 5442 1234",
       "tanGeldigheidsdatum": "31/03/2023",
       "tanPincode": "5248",
@@ -131,7 +131,7 @@
       "tanVerwijderd": 0
     },
     {
-      "tanId": 2,
+      "id": 2,
       "tanKaartnummer": "1234 5678 9876 5432",
       "tanGeldigheidsdatum": "31/04/2023",
       "tanPincode": "7531",
@@ -142,25 +142,25 @@
   ],
   "voertuigType": [
     {
-      "voetId": 1,
+      "id": 1,
       "voetNaam": "Personenwagen",
       "voetOmschrijving": "(M1) Voor vervoer van (maximum 8) personen, met een MTM van 3500kg.",
       "voerRijbewijs" : null
     },
     {
-      "voetId": 2,
+      "id": 2,
       "voetNaam": "Bestelwagen",
       "voetOmschrijving": "(N1) Voor vervoer van goederen, met een MTM van ten hoogste 3500kg.",
       "voerRijbewijsType" : null
     },
     {
-      "voetId": 3,
+      "id": 3,
       "voetNaam": "Lichte vrachtwagen",
       "voetOmschrijving": "(N2) Voor vervoer van goederen, met een MTM van meer dan 3,5 ton maar minder dan 12 ton.",
       "voerRijbewijsType" : null
     },
     {
-      "voetId": 4,
+      "id": 4,
       "voetNaam": "Vrachtwagen",
       "voetOmschrijving": "(N3) Voor vervoer van goederen, met een MTM van meer dan 12 ton.",
       "voerRijbewijsType" : null
@@ -168,179 +168,181 @@
   ],
   "brandstofTankkaart": [
     {
-      "bratId": 1,
+      "id": 1,
       "bratNaam": "E5 (Super 98)",
       "bratOmschrijving": "Benzine (Octaan 98) met maximaal 5% Bio-ethanol."
     },
     {
-      "bratId": 2,
+      "id": 2,
       "bratNaam": "E10 (Super 95)",
       "bratOmschrijving": "Benzine (Octaan 95) met maximaal 10% Bio-ethanol."
     },
     {
-      "bratId": 3,
+      "id": 3,
       "bratNaam": "B7 (Diesel)",
       "bratOmschrijving": "Diesel met maximaal 7% Biobrandstof."
     },
     {
-      "bratId": 4,
+      "id": 4,
       "bratNaam": "Elektriciteit",
       "bratOmschrijving": ""
     },
     {
-      "bratId": 5,
+      "id": 5,
       "bratNaam": "CNG",
       "bratOmschrijving": "Compressed Natural Gas - Aardgas"
     },
     {
-      "bratId": 6,
+      "id": 6,
       "bratNaam": "LPG",
       "bratOmschrijving": "Liquefied Petroleum Gas - Fossiele brandstof / Olie-product"
     },
     {
-      "bratId": 7,
+      "id": 7,
       "bratNaam": "Waterstof",
       "bratOmschrijving": ""
     }
   ],
   "brandstofVoertuig": [
     {
-      "bravId": 1,
+      "id": 1,
       "bravNaam": "Benzine",
       "bravOmschrijving": "E5 (Super 95) en E10 (Super 98)"
     },
     {
-      "bravId": 2,
+      "id": 2,
       "bravNaam": "Diesel",
       "bravOmschrijving": "B7"
     },
     {
-      "bravId": 3,
+      "id": 3,
       "bravNaam": "Hybride - Benzine",
       "bravOmschrijving": "Elektriciteit, E5 (Super 95) en E10 (Super 98)"
     },
     {
-      "bravId": 4,
+      "id": 4,
       "bravNaam": "Hybride - Diesel",
       "bravOmschrijving": "Electriciteit en B7"
     },
     {
-      "bravId": 5,
+      "id": 5,
       "bravNaam": "LPG",
       "bravOmschrijving": "LPG, E5 (Super 95) en E10 (Super 98)"
     },
     {
-      "bravId": 6,
+      "id": 6,
       "bravNaam": "CNG",
       "bravOmschrijving": "CNG, E5 (Super 95) en E10 (Super 98)"
     },
     {
-      "bravId": 7,
+      "id": 7,
       "bravNaam": "Electrisch",
       "bravOmschrijving": "Electriciteit"
     }
   ],
   "rijbewijs": [
     {
-      "rijId": 1,
+      "id": 1,
       "rijNummer": "1234432169",
       "rijAfgifte": "31/01/2017",
       "rijGeldigheid": "31/01/2027",
-      "rijHouder": 2
+      "rijHouder": 2,
+      "rijCategories": "AM B G"
     },
     {
-      "rijId": 2,
+      "id": 2,
       "rijNummer": "2456897531",
       "rijAfgifte": "28/04/2013",
       "rijGeldigheid": "28/04/2023",
-      "rijHouder": 3
+      "rijHouder": 3,
+      "rijCategories": "AM A B C"
     }
   ],
   "rijbewijsType": [
     {
-      "rbtId": 1,
+      "id": 1,
       "rbtNaam": "AM",
       "rbtOmschrijving": "Bromfietsen met een maximumsnelheid tussen 25 en 45 km/u"
     },
     {
-      "rbtId": 2,
+      "id": 2,
       "rbtNaam": "A1",
       "rbtOmschrijving": "Motorfietsen met maximaal 125cc en 11kW. Verhouding vermogen/gewicht: minder dan 0,1 kW/kg"
     },
     {
-      "rbtId": 3,
+      "id": 3,
       "rbtNaam": "A2",
       "rbtOmschrijving": "Motorfietsen met maximaal 35kW. Verhouding vermogen/gewicht: minder dan 0,2 kW/kg"
     },
     {
-      "rbtId": 4,
+      "id": 4,
       "rbtNaam": "A",
       "rbtOmschrijving": "Motorfietsen met minimaal 35kW, ook met zijspan"
     },
     {
-      "rbtId": 5,
+      "id": 5,
       "rbtNaam": "B",
       "rbtOmschrijving": "Vierwielers met motor (auto’s, bestelwagens, sommige quads en mobilhomes) met een MTM van ten hoogste 3500kg"
     },
     {
-      "rbtId": 6,
+      "id": 6,
       "rbtNaam": "C1",
       "rbtOmschrijving": "Voertuigen (andere dan die van de categoriën D of D1) met een MTM van meer dan 3500kg en ten hoogste 7500kg"
     },
     {
-      "rbtId": 7,
+      "id": 7,
       "rbtNaam": "C",
       "rbtOmschrijving": "Voertuigen (andere dan die van de categoriën D of D1) met een MTM van meer dan 7500kg"
     },
     {
-      "rbtId": 8,
+      "id": 8,
       "rbtNaam": "D1",
       "rbtOmschrijving": "Voertuigen die ontworpen zijn voor het vervoer van meer dan 8 en ten hoogste 16 passagiers"
     },
     {
-      "rbtId": 9,
+      "id": 9,
       "rbtNaam": "D",
       "rbtOmschrijving": "Voertuigen die ontworpen zijn voor het vervoer van meer dan 16 passagiers"
     },
     {
-      "rbtId": 10,
+      "id": 10,
       "rbtNaam": "G",
       "rbtOmschrijving": "Land- en bosbouwtrekkers en hun aanhangwagens evenals de voertuigen ingeschreven als landbouwmaterieel,landbouwmotor of maaimachine."
     }
   ],
   "rijbewijstypeRijbewijs": [
     {
-      "rtrId": 1,
+      "id": 1,
       "rtrRijbewijsId": 1,
       "rtrRijbewijsType": 1
     },
     {
-      "rtrId": 2,
+      "id": 2,
       "rtrRijbewijsId": 1,
       "rtrRijbewijsType": 5
     },
     {
-      "rtrId": 3,
+      "id": 3,
       "rtrRijbewijsId": 1,
       "rtrRijbewijsType": 10
     },
     {
-      "rtrId": 4,
+      "id": 4,
       "rtrRijbewijsId": 2,
       "rtrRijbewijsType": 1
     },
     {
-      "rtrId": 5,
+      "id": 5,
       "rtrRijbewijsId": 2,
       "rtrRijbewijsType": 4
     },
     {
-      "rtrId": 4,
+      "id": 6,
       "rtrRijbewijsId": 2,
       "rtrRijbewijsType": 5
     },
     {
-      "rtrId": 4,
+      "id": 7,
       "rtrRijbewijsId": 2,
       "rtrRijbewijsType": 7
     }

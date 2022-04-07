@@ -1,0 +1,86 @@
+<!--- <button (click) = "showGebruiker()">Gebruiker</button> --->
+<!---
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
+--->
+<h1>
+    Bestuurders 
+    <button mat-button>
+        <mat-icon matTooltip="Nieuwe bestuurder toevoegen" (click) = "addBestuurder()">
+            add_circle_outline
+        </mat-icon>
+    </button>
+</h1>
+<table mat-table [dataSource]="bestuurders">
+  <ng-container matColumnDef="besVoornaam">
+    <th mat-header-cell *matHeaderCellDef> Voornaam </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besVoornaam}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="besNaam">
+    <th mat-header-cell *matHeaderCellDef> Naam </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besNaam}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="besStraatNr">
+    <th mat-header-cell *matHeaderCellDef> Adres </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besStraatNr}} </td>
+  </ng-container>
+  <ng-container matColumnDef="besPostcode">
+    <th mat-header-cell *matHeaderCellDef> Postcode </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besPostcode}} </td>
+  </ng-container>
+  <ng-container matColumnDef="besGemeente">
+    <th mat-header-cell *matHeaderCellDef> Gemeente </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besGemeente}} </td>
+  </ng-container>
+  <ng-container matColumnDef="besLand">
+    <th mat-header-cell *matHeaderCellDef> Land </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besLand}} </td>
+  </ng-container>
+  <ng-container matColumnDef="besGeboortedatum">
+    <th mat-header-cell *matHeaderCellDef> Geboortedatum </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besGeboortedatum}} </td>
+  </ng-container>
+  <ng-container matColumnDef="besRijksregisterNr">
+    <th mat-header-cell *matHeaderCellDef> Land </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besRijksregisterNr}} </td>
+  </ng-container>
+  <ng-container matColumnDef="rijbewijs">
+    <th mat-header-cell *matHeaderCellDef> Rijbewijs </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{getRijbewijs(bestuurder.id)}} </td>
+  </ng-container>
+  <ng-container matColumnDef="voertuig">
+    <th mat-header-cell *matHeaderCellDef> Voertuig </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{getVoertuig(bestuurder.id)}} </td>
+  </ng-container>
+  <ng-container matColumnDef="tankkaart">
+    <th mat-header-cell *matHeaderCellDef> Tankkaart </th>
+    <td mat-cell *matCellDef="let bestuurder"> {{getTankkaart(bestuurder.id)}} </td>
+  </ng-container>
+   <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let bestuurder" class="action-link"> 
+          <button mat-button><mat-icon  matTooltip="Gegevens bestuurder wijzigen" (click) = "openDialog('Edit',bestuurder)">edit</mat-icon></button>
+          <button mat-button><mat-icon  matTooltip="Deze bestuurder verwijderen" (click) = "openDialog('Delete',bestuurder)">delete</mat-icon></button>
+      </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr></table>
+
+<!---
+"id": 1,
+    "besRijbewijs": "",
+    "besVoertuig": null,
+    "besTankkaart": null,
+    "besVerwijderd": 0
+<ul>
+  <li *ngFor="let bestuurder of bestuurders">
+    {{ bestuurder.id }} : {{ bestuurder.besVoornaam }} {{ bestuurder.besNaam }}
+  </li>
+</ul>
+--->

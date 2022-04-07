@@ -1,0 +1,26 @@
+.mat-toolbar {
+  background: transparent;
+  color: white;
+}
+.mat-raised-button {
+  background: rgba(255,255,255,0.5);
+  margin-left: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+a:link, a:visited {
+  color: white;
+}
+
+/* mouse over link */
+a:hover {
+  color: lightblue;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}

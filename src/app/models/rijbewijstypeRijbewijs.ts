@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-export class Gebruiker {
+
+export class RijbewijstypeRijbewijs {
     constructor(
         public id : number,
-        public gebNaam : string,
-        public gebVoornaam : string,
-        public gebLogin : string,
-        public gebPassword : string,
-        public gebBestuurder : number,
-        public gebRol : number
+        public rtrRijbewijsId : number,
+        public rtrRijbewijsType : number
     ) {}
 }

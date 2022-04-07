@@ -1,14 +1,3 @@
 {
-  "/voertuig/:id"               : "/voertuig?voeId=:id",
-  "/bestuurder/:id"             : "/bestuurder?besId=:id",
-  "/gebruiker/:id"              : "/gebruiker?gebId=:id",
-  "/rolGebruiker/:id"           : "/rolGebruiker?rolId=:id",
-  "/tankkaart/:id"              : "/tankkaart?tanId=:id",
-  "/voertuigType/:id"           : "/voertuigType?voetId=:id",
-  "/brandstofTankkaart/:id"     : "/brandstofTankkaart?bratId=:id",
-  "/brandstofVoertuig/:id"      : "/brandstofVoertuig?bravId=:id",
-  "/rijbewijs/:id"              : "/rijbewijs?rijId=:id",
-  "/rijbewijsType/:id"          : "/rijbewijsType?rbtId=:id",
-  "/rijbewijstypeRijbewijs/:id" : "/rijbewijstypeRijbewijs?rtrId=:id",
   "/api/*": "/$1"    
 }

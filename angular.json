@@ -72,7 +72,7 @@
               "browserTarget": "allphi:build:production"
             },
             "development": {
-              "browserTarget": "allphi:build:development"
+              "browserTarget": "allphi:build:development"                   
             }
           },
           "defaultConfiguration": "development"
