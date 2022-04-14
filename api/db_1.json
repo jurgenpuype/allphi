@@ -4,74 +4,74 @@
       "id": 1,
       "voeMerk": "Volkswagen",
       "voeModel": "Passat",
-      "voeChassisNummer": "WVWZZZ3CZCE130023",
-      "voeNummerplaat": "1-GFA-235",
-      "voeBrandstoftype": 2,
-      "voeTypeWagen": 1,
-      "voeKleur": "Wit",
-      "voeAantalDeuren": 5,
-      "voeBestuurder": null,
-      "voeVerwijderd": 0
+      "voeChassisNummer" : "WVWZZZ3CZCE130023",
+      "voeNummerplaat" : "1-GFA-235",
+      "voeBrandstoftype" : 2,
+      "voeTypeWagen" : 1,
+      "voeKleur" : "Wit",
+      "voeAantalDeuren" : 5, 
+      "voeBestuurder" : null,
+      "voeVerwijderd" : 0
     },
     {
       "id": 2,
       "voeMerk": "BMW",
       "voeModel": "335i",
-      "voeChassisNummer": "WBAKG7C55BE262507",
-      "voeNummerplaat": "1-VFC-854",
-      "voeBrandstoftype": 1,
-      "voeTypeWagen": 1,
-      "voeKleur": "Blauw",
-      "voeAantalDeuren": 3,
-      "voeBestuurder": 3,
-      "voeVerwijderd": 0
+      "voeChassisNummer" : "WBAKG7C55BE262507",
+      "voeNummerplaat" : "1-VFC-854",
+      "voeBrandstoftype" : 1,
+      "voeTypeWagen" : 1,
+      "voeKleur" : "Blauw",
+      "voeAantalDeuren" : 3, 
+      "voeBestuurder" : 3,
+      "voeVerwijderd" : 0
     }
-  ],
+  ],  
   "bestuurder": [
     {
       "id": 1,
       "besNaam": "Wouters",
       "besVoornaam": "Diane",
-      "besStraatNr": "Veldstraat 12",
-      "besPostcode": "8500",
-      "besGemeente": "Kortrijk",
-      "besLand": "België",
-      "besGeboortedatum": "24/3/1974",
-      "besRijksregisterNr": "74.03.24-208.65",
-      "besRijbewijs": "",
-      "besVoertuig": null,
-      "besTankkaart": null,
-      "besVerwijderd": 0
+      "besStraatNr" : "Veldstraat 12",
+      "besPostcode" : "8500",
+      "besGemeente" : "Kortrijk",
+      "besLand" : "België",
+      "besGeboortedatum" : "24/3/1974",
+      "besRijksregisterNr" : "74.03.24-208.65", 
+      "besRijbewijs" : "",
+      "besVoertuig"  : null,
+      "besTankkaart" : null,
+      "besVerwijderd": 0 
     },
     {
       "id": 2,
       "besNaam": "Lambert",
       "besVoornaam": "Rebecca",
-      "besStraatNr": "Rue Archiméde 14",
-      "besPostcode": "6280",
-      "besGemeente": "Gerpines",
-      "besLand": "Belgique",
-      "besGeboortedatum": "13/9/1989",
-      "besRijksregisterNr": "89.09.13-412.63",
-      "besRijbewijs": "",
-      "besVoertuig": null,
-      "besTankkaart": null,
-      "besVerwijderd": 0
+      "besStraatNr" : "Rue Archiméde 14",
+      "besPostcode" : "6280",
+      "besGemeente" : "Gerpines",
+      "besLand" : "Belgique",
+      "besGeboortedatum" : "13/9/1989",
+      "besRijksregisterNr" : "89.09.13-412.63", 
+      "besRijbewijs" : "",
+      "besVoertuig"  : null,
+      "besTankkaart" : null,
+      "besVerwijderd": 0 
     },
     {
       "id": 3,
       "besNaam": "Clarkson",
       "besVoornaam": "Jeremy",
-      "besStraatNr": "Parkland Court, Addison Road",
-      "besPostcode": "W14 8AN",
-      "besGemeente": "West Kensington",
-      "besLand": "United Kingdom",
-      "besGeboortedatum": "11/04/1960",
-      "besRijksregisterNr": "60.04.11-201.78",
-      "besRijbewijs": "",
-      "besVoertuig": 2,
-      "besTankkaart": 1,
-      "besVerwijderd": 0
+      "besStraatNr" : "Parkland Court, Addison Road",
+      "besPostcode" : "W14 8AN",
+      "besGemeente" : "West Kensington",
+      "besLand" : "United Kingdom",
+      "besGeboortedatum" : "11/04/1960",
+      "besRijksregisterNr" : "60.04.11-201.78", 
+      "besRijbewijs" : "",
+      "besVoertuig"  : 2,
+      "besTankkaart" : 1,
+      "besVerwijderd": 0 
     }
   ],
   "gebruiker": [
@@ -145,25 +145,25 @@
       "id": 1,
       "voetNaam": "Personenwagen",
       "voetOmschrijving": "(M1) Voor vervoer van (maximum 8) personen, met een MTM van 3500kg.",
-      "voerRijbewijs": null
+      "voerRijbewijs" : null
     },
     {
       "id": 2,
       "voetNaam": "Bestelwagen",
       "voetOmschrijving": "(N1) Voor vervoer van goederen, met een MTM van ten hoogste 3500kg.",
-      "voerRijbewijsType": null
+      "voerRijbewijsType" : null
     },
     {
       "id": 3,
       "voetNaam": "Lichte vrachtwagen",
       "voetOmschrijving": "(N2) Voor vervoer van goederen, met een MTM van meer dan 3,5 ton maar minder dan 12 ton.",
-      "voerRijbewijsType": null
+      "voerRijbewijsType" : null
     },
     {
       "id": 4,
       "voetNaam": "Vrachtwagen",
       "voetOmschrijving": "(N3) Voor vervoer van goederen, met een MTM van meer dan 12 ton.",
-      "voerRijbewijsType": null
+      "voerRijbewijsType" : null
     }
   ],
   "brandstofTankkaart": [
@@ -348,3 +348,4 @@
     }
   ]
 }
+

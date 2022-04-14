@@ -4,11 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { CommonModule} from '@angular/common';
@@ -23,6 +26,9 @@ import { BestuurderComponent } from './bestuurder/bestuurder.component';
 import { VoertuigComponent } from './voertuig/voertuig.component';
 import { TankkaartComponent } from './tankkaart/tankkaart.component';
 import { HeaderComponent } from './header/header.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { BestuurderDetailComponent } from './bestuurder-detail/bestuurder-detail.component';
 
 const routes: Routes = [];
 
@@ -33,7 +39,10 @@ const routes: Routes = [];
     BestuurderComponent,
     VoertuigComponent,
     TankkaartComponent,
-    HeaderComponent
+    HeaderComponent,
+    UserDetailComponent,
+    ConfirmDialogComponent,
+    BestuurderDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +50,10 @@ const routes: Routes = [];
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    MatDialogModule,
+    MatDividerModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatInputModule,
     MatButtonModule,
     MatTableModule,

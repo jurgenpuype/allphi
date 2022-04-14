@@ -20,6 +20,12 @@ export class LoginComponent {
   gebruikers : Gebruiker[] = [];
   gebruiker : Gebruiker =  new Gebruiker(0, "", "", "", "", 0, 0);
   
+  getLoggedUser(): void {
+    let loggedUser = (localStorage.getItem("loggedUser") || '') ;
+    if (loggedUser.length > 0) {
+        this.router.navigate(['bestuurder']);
+    }
+  }
   getGebruikers(): void {
     this.gebruikerService.getGebruikers()
         .subscribe(gebruikers => this.gebruikers = gebruikers);
@@ -36,6 +42,7 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
+    this.getLoggedUser();
     this.getGebruikers();
   }
 
@@ -44,7 +51,8 @@ export class LoginComponent {
         .then((data) => {   this.gebruikers = data;  
                             if (this.gebruikers.length) {
                                 this.gebruiker = this.gebruikers[0];
-                                this.router.navigate(['bestuurder'], {state: this.gebruiker });
+                                 localStorage.setItem("loggedUser", JSON.stringify(this.gebruiker));
+                                this.router.navigate(['bestuurder']);
                             }
                          });
   }

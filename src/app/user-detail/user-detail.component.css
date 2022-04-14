@@ -1,0 +1,12 @@
+.mat-raised-button {
+  margin-top: 10px;
+  width: 145px;
+}
+.leftButton {
+  margin-right: 10px;    
+}
+.leftColumn {
+    text-align: right;
+    width: 85px;
+    padding-right: 10px;
+}

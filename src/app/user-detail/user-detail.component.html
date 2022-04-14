@@ -1,0 +1,26 @@
+<mat-dialog-content>
+    <h2 mat-dialog-title>Gebruiker</h2>
+    <mat-divider></mat-divider><br>
+    <table>
+        <tr>
+            <td class="leftColumn">Voornaam:</td><td><b>{{ gebruiker.gebVoornaam }}</b></td>
+        </tr>
+        <tr>
+            <td class="leftColumn">Naam:</td><td><b>{{ gebruiker.gebNaam }}</b></td>
+        </tr>
+        <tr>
+            <td class="leftColumn">Login:</td><td>{{ gebruiker.gebLogin }}</td>
+        </tr>
+        <tr>
+            <td class="leftColumn">Rol:</td><td><b>{{ showRole(gebruiker.gebRol) }}</b></td>
+        </tr>
+    </table>
+    <mat-divider></mat-divider><br>
+    <button mat-raised-button color="warn" class="leftButton" (click)="Afmelden()">
+      Afmelden
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+        Sluiten
+    </button>
+
+</mat-dialog-content>

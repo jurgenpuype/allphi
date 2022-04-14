@@ -20,8 +20,11 @@ export class VoertuigComponent implements OnInit {
   voertuigen : Voertuig[] = [];
   bestuurders : Bestuurder[] = [];
 
-  showVoertuigen(): string {
-    return JSON.stringify(this.voertuigen);
+  checkLogin(): void {
+    let loggedUser = (localStorage.getItem("loggedUser") || '') ;
+    if (loggedUser.length == 0) {
+        this.router.navigate(['']);
+    }
   }
 
   addVoertuig() : void {
@@ -52,6 +55,7 @@ export class VoertuigComponent implements OnInit {
   }
 
   ngOnInit(): void {
+      this.checkLogin();
       this.getVoertuigen();
       this.getBestuurders();
   }

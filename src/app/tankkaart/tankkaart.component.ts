@@ -21,6 +21,13 @@ export class TankkaartComponent implements OnInit {
   bestuurders : Bestuurder[] = [];
   displayedColumns: string[] = ['tanKaartnummer', 'tanGeldigheidsdatum', 'tanBestuurder', 'tanPincode', 'tanGeblokkeerd', 'action'];
 
+  checkLogin(): void {
+    let loggedUser = (localStorage.getItem("loggedUser") || '') ;
+    if (loggedUser.length == 0) {
+        this.router.navigate(['']);
+    }
+  }
+
   openDialog(arg1: string, arg2: Tankkaart){alert('button "' + arg1 + '" clicked')};
 
   addTankkaart() : void {
@@ -47,6 +54,7 @@ export class TankkaartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkLogin();
     this.getTankkaarten();
     this.getBestuurders();
   }

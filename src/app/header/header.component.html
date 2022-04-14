@@ -1,13 +1,18 @@
 <mat-toolbar>
   <span><a href="/"><img src="assets/Images/v8-01-mobile-e1593603759502.png" alt="AllPhi Logo"></a></span>
-  <span class="spacer"></span>
-  <button mat-raised-button>
-    <a href="bestuurder">Bestuurders</a>
-  </button>
-  <button mat-raised-button>
-    <a href="voertuig">Voertuigen</a>
-  </button>
-  <button mat-raised-button>
-    <a href="tankkaart">Tankkaarten</a>
-  </button>
+  <ng-container *ngIf="checkLogin().length">
+    <span class="spacer"></span>
+    <button mat-raised-button class="transparent">
+      <a href="bestuurder">Bestuurders</a>
+    </button>
+    <button mat-raised-button class="transparent">
+      <a href="voertuig">Voertuigen</a>
+    </button>
+    <button mat-raised-button class="transparent">
+      <a href="tankkaart">Tankkaarten</a>
+    </button>
+    <button mat-raised-button color="primary" (click)="showLoggedUser()">
+      <mat-icon>face</mat-icon>
+    </button>
+  </ng-container>
 </mat-toolbar>

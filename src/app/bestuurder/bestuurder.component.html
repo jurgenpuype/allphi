@@ -1,11 +1,3 @@
-<!--- <button (click) = "showGebruiker()">Gebruiker</button> --->
-<!---
-<mat-tab-group>
-  <mat-tab label="First"> Content 1 </mat-tab>
-  <mat-tab label="Second"> Content 2 </mat-tab>
-  <mat-tab label="Third"> Content 3 </mat-tab>
-</mat-tab-group>
---->
 <h1>
     Bestuurders 
     <button mat-button>
@@ -14,7 +6,7 @@
         </mat-icon>
     </button>
 </h1>
-<table mat-table [dataSource]="bestuurders">
+<table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="besVoornaam">
     <th mat-header-cell *matHeaderCellDef> Voornaam </th>
     <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besVoornaam}} </td>
@@ -46,7 +38,7 @@
     <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besGeboortedatum}} </td>
   </ng-container>
   <ng-container matColumnDef="besRijksregisterNr">
-    <th mat-header-cell *matHeaderCellDef> Land </th>
+    <th mat-header-cell *matHeaderCellDef> Rijksregisternummer </th>
     <td mat-cell *matCellDef="let bestuurder"> {{bestuurder.besRijksregisterNr}} </td>
   </ng-container>
   <ng-container matColumnDef="rijbewijs">
@@ -65,7 +57,7 @@
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let bestuurder" class="action-link"> 
           <button mat-button><mat-icon  matTooltip="Gegevens bestuurder wijzigen" (click) = "openDialog('Edit',bestuurder)">edit</mat-icon></button>
-          <button mat-button><mat-icon  matTooltip="Deze bestuurder verwijderen" (click) = "openDialog('Delete',bestuurder)">delete</mat-icon></button>
+          <button mat-button><mat-icon  matTooltip="Deze bestuurder verwijderen" (click) = "confirmDelete(bestuurder)">delete</mat-icon></button>
       </td>
     </ng-container>
 
