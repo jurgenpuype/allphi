@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "AllPhiBackend_Project", "NodejsConsoleApp3\AllPhiBackend_Project.njsproj", "{2725754C-EC64-4127-8FD3-84C0F2F3E421}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2725754C-EC64-4127-8FD3-84C0F2F3E421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2725754C-EC64-4127-8FD3-84C0F2F3E421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2725754C-EC64-4127-8FD3-84C0F2F3E421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2725754C-EC64-4127-8FD3-84C0F2F3E421}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {19F7365B-08C8-4C97-9C6B-DC0EB1755664}
+	EndGlobalSection
+EndGlobal

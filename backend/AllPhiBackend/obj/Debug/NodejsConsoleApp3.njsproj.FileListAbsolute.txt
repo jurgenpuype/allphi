@@ -1,0 +1,3 @@
+C:\Users\Kobe\source\repos\NodejsConsoleApp3\NodejsConsoleApp3\obj\Debug\NodejsConsoleApp3.njsproj.AssemblyReference.cache
+C:\Users\Kobe\source\repos\NodejsConsoleApp3\NodejsConsoleApp3\obj\Debug\NodejsConsoleApp3.njsproj.CoreCompileInputs.cache
+C:\Users\Kobe\source\repos\NodejsConsoleApp3\NodejsConsoleApp3\bin\Microsoft.NodejsTools.WebRole.dll
