@@ -12,13 +12,14 @@
 */
   
 export class Rijbewijs {
-    constructor(
-        public id : number,
-        public rijNummer : string,
-        public rijAfgifte : string,
-        public rijGeldigheid : string,
-        public rijHouder : number,
-        public rijCategories : string
-    ) {}
+
+    public id : number = 0;
+    public rijNummer : string = '';
+    public rijAfgifte : string = '';
+    public rijGeldigheid : string = '';
+    public rijHouder : number = 0;
+    public rijCategories : string = '';
+
+    constructor( ) {}
 }
 

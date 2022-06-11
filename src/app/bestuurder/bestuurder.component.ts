@@ -13,6 +13,7 @@ import { RijbewijsService} from '../services/rijbewijs.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { BestuurderDetailComponent } from '../bestuurder-detail/bestuurder-detail.component';
 import { MatTableDataSource } from '@angular/material/table';
 
 
@@ -36,9 +37,15 @@ export class BestuurderComponent implements OnInit {
   voertuigen : Voertuig[] = [];
   tankkaarten : Tankkaart[] = [];
   rijbewijzen : Rijbewijs[] = [];
+  filBestuurder : Bestuurder = new Bestuurder;
   
   displayedColumns: string[] = ['besVoornaam', 'besNaam', 'besStraatNr', 'besPostcode', 'besGemeente', 'besLand', 'besGeboortedatum', 'besRijksregisterNr', 
                                 'rijbewijs', 'voertuig', 'tankkaart', 'action'];
+  
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
   
   checkLogin(): void {
     let loggedUser = (localStorage.getItem("loggedUser") || '') ;
@@ -46,7 +53,73 @@ export class BestuurderComponent implements OnInit {
         this.router.navigate(['']);
     }
   }
-  openDialog(arg1: string, bestuurder: Bestuurder){alert('button "' + arg1 + '" clicked')};
+
+  editBestuurder(bestuurder: Bestuurder): void {
+      let identityString = "de bestuurder met naam ||" + bestuurder.besVoornaam + " " +  bestuurder.besNaam;
+      let myDialogRef = this.dialog.open(BestuurderDetailComponent, {  width      : '100%',
+                                                                    maxWidth   : '1000px',
+                                                                    data: bestuurder});
+      myDialogRef.afterClosed().subscribe(
+        data => {
+            if (data) {
+                let bestuurder = data.Bestuurder;
+                let rijbewijs = data.Rijbewijs;
+                let index = this.bestuurders.indexOf(bestuurder);
+                this.bestuurderService.updateBestuurder(bestuurder)
+                    .subscribe(newBestuurder => {
+                        if (typeof(newBestuurder) == 'undefined') {
+                            console.log("Update mislukt voor bestuurder #"+bestuurder.id);
+                        } else {
+                            console.log("Update geslaagd voor bestuurder #"+bestuurder.id);
+                            this.bestuurderService.getBestuurders()
+                                .subscribe(bestuurders => {
+                                    this.bestuurders = bestuurders;
+                                    this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
+                                });
+                        }
+                    });
+            }                
+        }
+      );
+  }
+  
+  createBestuurder(bestuurder: Bestuurder): void {
+      let identityString = "de bestuurder met naam ||" + bestuurder.besVoornaam + " " +  bestuurder.besNaam;
+      let myDialogRef = this.dialog.open(BestuurderDetailComponent, {  width      : '100%',
+                                                                    maxWidth   : '1000px',
+                                                                    data: bestuurder});
+      myDialogRef.afterClosed().subscribe(
+        data => {
+            if (data) {
+                let bestuurder = data.Bestuurder;
+                let rijbewijs = data.Rijbewijs;
+                let index = this.bestuurders.indexOf(bestuurder);
+                this.bestuurderService.createBestuurder(bestuurder)
+                    .subscribe(newBestuurder => {
+                        if (typeof(newBestuurder) == 'undefined') {
+                            console.log("Opslaan van nieuwe bestuurder is mislukt!");
+                        } else {
+                            console.log("Gegevens voor bestuurder #"+newBestuurder.id+" werden succesvol opgeslagen!");
+                            rijbewijs.rijHouder = newBestuurder.id;
+                            this.bestuurderService.getBestuurders()
+                                .subscribe(bestuurders => {
+                                    this.bestuurders = bestuurders;
+                                    this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
+                                    // add the RijbewijsTypes to rijbewijs.rijCategories
+                                    this.rijbewijsService.createRijbewijs(rijbewijs)
+                                        .subscribe(newRijbewijs => {
+                                            console.log('createRijbewijs uitgevoerd!');
+                                            // get the rijbewijs.rijId and save the RijbewijsTypes to RijbewijstypeRijbewijs ...
+                                            // set the rijbewijsId in Bestuurder ...
+                                        }) 
+                                });
+                        }
+                    });
+            }                
+        }
+      );
+  }
+  
   confirmDelete(bestuurder: Bestuurder): void {
       let identityString = "de bestuurder met naam ||" + bestuurder.besVoornaam + " " +  bestuurder.besNaam;
       let myDialogRef = this.dialog.open(ConfirmDialogComponent, {  width      : '100%',
@@ -63,8 +136,11 @@ export class BestuurderComponent implements OnInit {
                             console.log("Update mislukt voor bestuurder #"+bestuurder.id);
                         } else {
                             console.log("Update geslaagd voor bestuurder #"+bestuurder.id);
-                            this.bestuurders[index] = newBestuurder;
-                            this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
+                            this.bestuurderService.getBestuurders()
+                                .subscribe(bestuurders => {
+                                    this.bestuurders = bestuurders;
+                                    this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
+                                });
                         }
                     });
             }                
@@ -72,10 +148,10 @@ export class BestuurderComponent implements OnInit {
       );    
   }
 
-  addBestuurder() : void {
-      alert('Bestuurder toevoegen');
+  newBestuurder() : Bestuurder {
+      return new Bestuurder;
   }
-  
+
   getBestuurders(): void {
     this.bestuurderService.getBestuurders()
         .subscribe(bestuurders => {
@@ -119,7 +195,6 @@ export class BestuurderComponent implements OnInit {
       let rijbewijsCategories = "";
       this.rijbewijzen.forEach(function(rijbewijs){  
         if (rijbewijs.rijHouder == bestuurderId) { 
-            console.log("Houder found: "+bestuurderId);
             rijbewijsCategories = rijbewijs.rijCategories; 
         }
       });  

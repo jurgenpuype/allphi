@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Voertuig } from '../models/voertuig';
+import { VoertuigType } from '../models/voertuigType';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,34 +15,25 @@ const httpOptions = {
   providedIn: 'root'
 })
 
-export class VoertuigService {
+export class VoertuigTypeService {
 
   constructor(  private http: HttpClient ) { }
   
-  private voertuigUrl = 'http://localhost:3000/voertuig';  // URL to web api
+  private voertuigTypeUrl = 'http://localhost:3000/voertuigType';  // URL to web api
   
-  getVoertuigen(): Observable<Voertuig[]> {
-      return this.http.get<Voertuig[]>(this.voertuigUrl)
-                    .pipe( catchError(this.handleError<Voertuig[]>('getVoertuigen', [])) );
+  getVoertuigTypes(): Observable<VoertuigType[]> {
+      return this.http.get<VoertuigType[]>(this.voertuigTypeUrl)
+                    .pipe( catchError(this.handleError<VoertuigType[]>('getVoertuigTypes', [])) );
   }
 
-  getVoertuig(id: number): Observable<Voertuig> {
-     const url = `${this.voertuigUrl}/${id}`;
-     return this.http.get<Voertuig>(url).pipe(
+  getVoertuigType(id: number): Observable<VoertuigType> {
+     const url = `${this.voertuigTypeUrl}/${id}`;
+     return this.http.get<VoertuigType>(url).pipe(
        //tap(_ => this.log(`fetched hero id=${id}`)),
-       catchError(this.handleError<Voertuig>(`getVoertuig id=${id}`))
+       catchError(this.handleError<VoertuigType>(`getVoertuigType id=${id}`))
      );
   }
- 
-   updateVoertuig(voertuig: Voertuig): Observable<Voertuig> {
-     const id = voertuig.id;
-     const url = `${this.voertuigUrl}/${id}`;
-     return this.http.put<Voertuig>(url, voertuig, httpOptions)
-       .pipe(
-        catchError(this.handleError<Voertuig>(`updateVoeretuig id=${id}`))
-       );
-  }
-
+  
   private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
 
@@ -56,4 +47,5 @@ export class VoertuigService {
         return of(result as T);
       };
   }
+
 }

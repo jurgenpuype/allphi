@@ -1,0 +1,41 @@
+<mat-dialog-content>
+    <h3>Tankkaart</h3>
+    <mat-divider></mat-divider><br>
+    <mat-form-field class="Width310 leftFormField" appearance="fill">
+        <mat-label>Kaartnummer</mat-label>
+        <input matInput type="text" class="form-control" id="merk" required [(ngModel)]="tankkaart.tanKaartnummer" name="tanKaartnummer">
+    </mat-form-field>
+    <mat-form-field class="Width310 leftFormField" appearance="fill">
+        <mat-label>Geldig tot</mat-label>
+        <input matInput type="text" class="form-control" id="model" required [(ngModel)]="tankkaart.tanGeldigheidsdatum" name="tanGeldigheidsdatum">
+    </mat-form-field>
+    <mat-form-field class="Width310" appearance="fill">
+        <mat-label>Pincode</mat-label>
+        <input matInput type="text" class="form-control" id="model" required [(ngModel)]="tankkaart.tanPincode" name="tanPincode">
+    </mat-form-field>
+    <mat-form-field class="Width600 leftFormField" appearance="fill">
+        <mat-label>Bestuurder</mat-label>
+        <mat-select [(ngModel)]="tankkaart.tanBestuurder" name="tanBestuurder">
+          <mat-option [value]="0"></mat-option>
+          <mat-option *ngFor="let bestuurder of bestuurders" [value]="bestuurder.id">
+            {{bestuurder.besVoornaam}} {{bestuurder.besNaam}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="Width310" appearance="fill">
+        <mat-label>Geblokkeerd</mat-label>
+        <mat-select [(ngModel)]="tankkaart.tanGeblokkeerd" name="tanGeblokkeerd">
+          <mat-option [value]="0">Neen</mat-option>
+          <mat-option [value]="1">Ja</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button mat-raised-button class="leftButton Width250" *ngFor="let brandstofTankkaart of brandstoffenTankkaart; let i = index">
+       <mat-checkbox  matTooltip="{{ brandstofTankkaart.bratOmschrijving }}" value="{{ brandstofTankkaart.id}}" class="example-margin">{{ brandstofTankkaart.bratNaam }}</mat-checkbox>
+    </button>
+    <button mat-raised-button class="leftButton Width250" disabled *ngFor="let noValue of fakeArray; let i = index">
+       &nbsp;
+    </button>
+    <button mat-raised-button color="accent" class="leftButton" (click)="bewaren(tankkaart)">Bewaren</button>
+    <button mat-raised-button color="primary" (click)="sluiten()">Annuleren</button>
+
+</mat-dialog-content>

@@ -11,6 +11,7 @@
       "voeKleur": "Wit",
       "voeAantalDeuren": 5,
       "voeBestuurder": null,
+      "voeRijbewijs": 5,
       "voeVerwijderd": 0
     },
     {
@@ -24,6 +25,7 @@
       "voeKleur": "Blauw",
       "voeAantalDeuren": 3,
       "voeBestuurder": 3,
+      "voeRijbewijs": 5,
       "voeVerwijderd": 0
     }
   ],
@@ -54,7 +56,7 @@
       "besGeboortedatum": "13/9/1989",
       "besRijksregisterNr": "89.09.13-412.63",
       "besRijbewijs": "",
-      "besVoertuig": null,
+      "besVoertuig": 1,
       "besTankkaart": null,
       "besVerwijderd": 0
     },
@@ -135,7 +137,7 @@
       "tanKaartnummer": "1234 5678 9876 5432",
       "tanGeldigheidsdatum": "31/04/2023",
       "tanPincode": "7531",
-      "tanBestuurder": null,
+      "tanBestuurder": 0,
       "tanGeblokkeerd": 0,
       "tanVerwijderd": 0
     }
@@ -144,26 +146,22 @@
     {
       "id": 1,
       "voetNaam": "Personenwagen",
-      "voetOmschrijving": "(M1) Voor vervoer van (maximum 8) personen, met een MTM van 3500kg.",
-      "voerRijbewijs": null
+      "voetOmschrijving": "(M1) Voor vervoer van (maximum 8) personen, met een MTM van 3500kg."
     },
     {
       "id": 2,
       "voetNaam": "Bestelwagen",
-      "voetOmschrijving": "(N1) Voor vervoer van goederen, met een MTM van ten hoogste 3500kg.",
-      "voerRijbewijsType": null
+      "voetOmschrijving": "(N1) Voor vervoer van goederen, met een MTM van ten hoogste 3500kg."
     },
     {
       "id": 3,
       "voetNaam": "Lichte vrachtwagen",
-      "voetOmschrijving": "(N2) Voor vervoer van goederen, met een MTM van meer dan 3,5 ton maar minder dan 12 ton.",
-      "voerRijbewijsType": null
+      "voetOmschrijving": "(N2) Voor vervoer van goederen, met een MTM van meer dan 3,5 ton maar minder dan 12 ton."
     },
     {
       "id": 4,
       "voetNaam": "Vrachtwagen",
-      "voetOmschrijving": "(N3) Voor vervoer van goederen, met een MTM van meer dan 12 ton.",
-      "voerRijbewijsType": null
+      "voetOmschrijving": "(N3) Voor vervoer van goederen, met een MTM van meer dan 12 ton."
     }
   ],
   "brandstofTankkaart": [

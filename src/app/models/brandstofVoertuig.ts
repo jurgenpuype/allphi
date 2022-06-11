@@ -5,20 +5,11 @@
 
 */
   
-export class Bestuurder {
-    constructor(
-        public id : number,
-        public besNaam : string,
-        public besVoornaam : string,
-        public besStraatNr : string,
-        public besPostcode : string,
-        public besGemeente : string,
-        public besLand : string,
-        public besGeboortedatum : string,
-        public besRijksregisterNr : string,
-        public besRijbewijs : number,
-        public besVoertuig : number,
-        public besTankkaart : number,
-        public besVerwijderd : number
-    ) {}
+export class BrandstofVoertuig {
+    
+    public id : number = 0;
+    public bravNaam : string = '';
+    public bravOmschrijving : string = '';
+        
+    constructor() {}
 }

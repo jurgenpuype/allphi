@@ -6,6 +6,13 @@ import { Rijbewijs } from '../models/rijbewijs';
 import { RijbewijsType } from '../models/rijbewijsType';
 import { RijbewijstypeRijbewijs } from '../models/rijbewijstypeRijbewijs';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +25,11 @@ export class RijbewijsService {
   private rijbewijsTypeUrl = 'http://localhost:3000/rijbewijsType';  // URL to web api
   private rijbewijstypeRijbewijsUrl = 'http://localhost:3000/rijbewijstypeRijbewijs';  // URL to web api
   
+  createRijbewijs(rijbewijs: Rijbewijs) : Observable<Rijbewijs> {
+     return this.http.post<Rijbewijs>(this.rijbewijsUrl, rijbewijs, httpOptions)
+       .pipe( catchError(this.handleError<Rijbewijs>(`CreateRijbewijs`)));
+  }
+
   getRijbewijstypeRijbewijzen(): Observable<RijbewijstypeRijbewijs[]> {
       return this.http.get<RijbewijstypeRijbewijs[]>(this.rijbewijstypeRijbewijsUrl)
                     .pipe( catchError(this.handleError<RijbewijstypeRijbewijs[]>('getRijbewijstypeRijbewijzen', [])) );
@@ -33,6 +45,12 @@ export class RijbewijsService {
                     .pipe( catchError(this.handleError<RijbewijsType[]>('getRijbewijsTypes', [])) );
   }
 
+  getRijbewijsCategorieen(rijId : number): Observable<RijbewijsType[]> {
+      const baseUrl = this.rijbewijstypeRijbewijsUrl + '/?rtrRijbewijsId=';
+      const url = `${baseUrl}${rijId}`;
+      return this.http.get<RijbewijsType[]>(url)
+                    .pipe( catchError(this.handleError<RijbewijsType[]>('getRijbewijsTypes', [])) );
+  }
   getRijbewijsType(id: number): Observable<RijbewijsType> {
      const url = `${this.rijbewijsTypeUrl}/${id}`;
      return this.http.get<RijbewijsType>(url).pipe(

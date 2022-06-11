@@ -4,6 +4,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Tankkaart } from '../models/tankkaart';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json',
+    Authorization: 'my-auth-token'
+  })
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,6 +34,15 @@ export class TankkaartService {
      );
   }
  
+   updateTankkaart(tankkaart: Tankkaart): Observable<Tankkaart> {
+     const id = tankkaart.id;
+     const url = `${this.tankkaartUrl}/${id}`;
+     return this.http.put<Tankkaart>(url, tankkaart, httpOptions)
+       .pipe(
+        catchError(this.handleError<Tankkaart>(`updateTankkaart id=${id}`))
+       );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
 

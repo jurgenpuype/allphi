@@ -6,13 +6,14 @@
 */
   
 export class Tankkaart {
-    constructor(
-        public id : number,
-        public tanKaartnummer : string,
-        public tanGeldigheidsdatum : string,
-        public tanPincode : number,
-        public tanBestuurder : number,
-        public tanGeblokkeerd : number,
-        public tanVerwijderd : number
-    ) {}
+    
+    public id : number = 0;
+    public tanKaartnummer : string = '';
+    public tanGeldigheidsdatum : string = '';
+    public tanPincode : number = 0;
+    public tanBestuurder : number = 0;
+    public tanGeblokkeerd : number = 0;
+    public tanVerwijderd : number = 0;
+    
+    constructor( ) {}
 }

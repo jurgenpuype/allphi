@@ -5,26 +5,21 @@
   margin-top: 10px;
   width: 145px;
 }
-.mat-raised-button {
-  margin-top: 10px;
-  width: 145px;
-}
 .leftButton {
   margin-right: 10px;    
-}
-.leftFormField{
-    margin-right:10px;
-}
-.mat-icon {
-  font-size: 50px;
 }
 .Width250 {
     width: 220px;
 }
+.Width310 {
+    width: 296px;
+}
 .Width470 {
     width: 450px;
 }
-.Width40 {
-    width: 82px;
+.Width600 {
+    width: 602px;
 }
-
+.leftFormField{
+    margin-right:10px;
+}

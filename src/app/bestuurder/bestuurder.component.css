@@ -1,3 +1,30 @@
 .mat-cell, .mat-header-cell {
   padding: 8px 25px 8px 0px;
 }
+
+#filVoornaam            {width: 149px;}
+#filNaam                {width: 105px;}
+#filAdres               {width: 225px;}
+#filPostcode            {width: 110px;}
+#filGemeente            {width: 130px;}
+#filLand                {width: 125px;}
+#filGeboortedatum       {width: 110px;}
+#filRijksregisternummer {width: 140px;}
+#filRijbewijs           {width:  90px;}
+#filVoertuig            {width:  90px;}
+#filTankkaart           {width: 319px;}
+
+.whiteInput {
+  background-color: white;
+  color: black;
+  font-size: 12px;
+}
+.mat-column-rijbewijs, .mat-column-voertuig             { width: 65px; }
+.mat-column-besNaam                                     { width: 80px; }
+.mat-column-besPostcode, .mat-column-besGeboortedatum   { width: 85px; }
+.mat-column-besLand, .mat-column-besVoornaam            { width: 100px; }
+.mat-column-besGemeente                                 { width: 105px; }
+.mat-column-besRijksregisterNr                          { width: 115px; }
+.mat-column-action                                      { width: 130px; }
+.mat-column-tankkaart                                   { width: 140px; }
+.mat-column-besStraatNr                                 { width: 200px; }

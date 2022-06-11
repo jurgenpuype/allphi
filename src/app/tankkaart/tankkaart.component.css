@@ -1,3 +1,20 @@
 .mat-cell, .mat-header-cell {
   padding: 8px 25px 8px 0px;
 }
+.whiteInput {
+  background-color: white;
+  color: black;
+  font-size: 12px;
+}
+#filKaartnummer         {width: 189px;}
+#filGeldigheidsdatum    {width: 100px;}
+#filBestuurder          {width: 130px;}
+#filPincode             {width:  70px;}
+#filGeblokkeerd         {width: 254px;}
+
+.mat-column-tanKaartnummer      { width: 140px; }
+.mat-column-tanGeldigheidsdatum { width:  75px; }
+.mat-column-tanBestuurder       { width: 105px; }
+.mat-column-tanPincode          { width:  45px; }
+.mat-column-tanGeblokkeerd      { width:  75px; }
+.mat-column-action              { width: 130px; }

@@ -6,19 +6,20 @@
 */
   
 export class Bestuurder {
-    constructor(
-        public id : number,
-        public besNaam : string,
-        public besVoornaam : string,
-        public besStraatNr : string,
-        public besPostcode : string,
-        public besGemeente : string,
-        public besLand : string,
-        public besGeboortedatum : string,
-        public besRijksregisterNr : string,
-        public besRijbewijs : number,
-        public besVoertuig : number,
-        public besTankkaart : number,
-        public besVerwijderd : number
-    ) {}
+    
+    public id : number = 0;
+    public besNaam : string = '';
+    public besVoornaam : string = '';
+    public besStraatNr : string = '';
+    public besPostcode : string = '';
+    public besGemeente : string = '';
+    public besLand : string = '';  
+    public besGeboortedatum : string = '';
+    public besRijksregisterNr : string = '';
+    public besRijbewijs : number = 0;
+    public besVoertuig : number = 0;
+    public besTankkaart : number = 0;
+    public besVerwijderd : number = 0;
+        
+    constructor() {}
 }

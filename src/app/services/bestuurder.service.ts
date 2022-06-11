@@ -42,6 +42,28 @@ export class BestuurderService {
         catchError(this.handleError<Bestuurder>(`updateBestuurder id=${id}`))
        );
   }
+
+  createBestuurder(bestuurder: Bestuurder): Observable<Bestuurder> {
+     return this.http.post<Bestuurder>(this.bestuurderUrl, bestuurder, httpOptions)
+       .pipe( catchError(this.handleError<Bestuurder>(`CreateBestuurder`)));
+  }
+
+  setVoertuig(bestuurder: number, voertuig: number) {
+     this.getBestuurder(bestuurder)
+        .subscribe(bestuurder => {
+            bestuurder.besVoertuig = voertuig;
+            this.updateBestuurder(bestuurder);
+        });
+  }
+  
+  setTankkaart(bestuurder: number, tankkaart: number) {
+     this.getBestuurder(bestuurder)
+        .subscribe(bestuurder => {
+            bestuurder.besTankkaart = tankkaart;
+            this.updateBestuurder(bestuurder);
+        });
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
 

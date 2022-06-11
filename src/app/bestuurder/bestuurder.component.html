@@ -1,11 +1,56 @@
 <h1>
     Bestuurders 
     <button mat-button>
-        <mat-icon matTooltip="Nieuwe bestuurder toevoegen" (click) = "addBestuurder()">
+        <mat-icon matTooltip="Nieuwe bestuurder toevoegen" (click) = "createBestuurder(newBestuurder())">
             add_circle_outline
         </mat-icon>
     </button>
 </h1>
+<mat-form-field id="filVoornaam" class="whiteInput" appearance="fill">
+    <mat-label>Voornaam</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besVoornaam" name="filVoornaam">
+</mat-form-field>
+<mat-form-field id="filNaam" class="whiteInput" appearance="fill">
+    <mat-label>Naam</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besVoornaam" name="filNaam">
+</mat-form-field>
+<mat-form-field id="filAdres" class="whiteInput" appearance="fill">
+    <mat-label>Adres</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besStraatNr" name="filPostcode">
+</mat-form-field>
+<mat-form-field id="filPostcode" class="whiteInput" appearance="fill">
+    <mat-label>Postcode</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besPostcode" name="login">
+</mat-form-field>
+<mat-form-field id="filGemeente" class="whiteInput" appearance="fill">
+    <mat-label>Gemeente</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besGemeente" name="filGemeente">
+</mat-form-field>
+<mat-form-field id="filLand" class="whiteInput" appearance="fill">
+    <mat-label>Land</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besLand" name="filLand">
+</mat-form-field>
+<mat-form-field id="filGeboortedatum" class="whiteInput" appearance="fill">
+    <mat-label>Geboortedatum</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besGeboortedatum" name="filGeboortedatum">
+</mat-form-field>
+<mat-form-field id="filRijksregisternummer" class="whiteInput" appearance="fill">
+    <mat-label>Rijksregisternummer</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besRijksregisterNr" name="filRijksregisternummer">
+</mat-form-field>
+<mat-form-field id="filRijbewijs" class="whiteInput" appearance="fill">
+    <mat-label>Rijbewijs</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besRijbewijs" name="filRijbewijs">
+</mat-form-field>
+<mat-form-field  id="filVoertuig" class="whiteInput" appearance="fill">
+    <mat-label>Voertuig</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besVoertuig" name="filVoertuig">
+</mat-form-field>
+<mat-form-field id="filTankkaart" class="whiteInput" appearance="fill">
+    <mat-label>Tankkaart</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filBestuurder.besTankkaart" name="filTankkaart">
+</mat-form-field>
+<hr>
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="besVoornaam">
     <th mat-header-cell *matHeaderCellDef> Voornaam </th>
@@ -53,26 +98,12 @@
     <th mat-header-cell *matHeaderCellDef> Tankkaart </th>
     <td mat-cell *matCellDef="let bestuurder"> {{getTankkaart(bestuurder.id)}} </td>
   </ng-container>
-   <ng-container matColumnDef="action">
+  <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let bestuurder" class="action-link"> 
-          <button mat-button><mat-icon  matTooltip="Gegevens bestuurder wijzigen" (click) = "openDialog('Edit',bestuurder)">edit</mat-icon></button>
+          <button mat-button><mat-icon  matTooltip="Gegevens bestuurder wijzigen" (click) = "editBestuurder(bestuurder)">edit</mat-icon></button>
           <button mat-button><mat-icon  matTooltip="Deze bestuurder verwijderen" (click) = "confirmDelete(bestuurder)">delete</mat-icon></button>
       </td>
-    </ng-container>
-
+  </ng-container>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr></table>
-
-<!---
-"id": 1,
-    "besRijbewijs": "",
-    "besVoertuig": null,
-    "besTankkaart": null,
-    "besVerwijderd": 0
-<ul>
-  <li *ngFor="let bestuurder of bestuurders">
-    {{ bestuurder.id }} : {{ bestuurder.besVoornaam }} {{ bestuurder.besNaam }}
-  </li>
-</ul>
---->

@@ -1,3 +1,26 @@
 .mat-cell, .mat-header-cell {
   padding: 8px 25px 8px 0px;
 }
+.whiteInput {
+  background-color: white;
+  color: black;
+  font-size: 12px;
+}
+#filMerk                {width: 129px;}
+#filModel               {width:  75px;}
+#filChassisNummer       {width: 175px;}
+#filNummerplaat         {width:  95px;}
+#filBrandstoftype       {width:  80px;}
+#filTypeWagen           {width: 130px;}
+#filKleur               {width:  65px;}
+#filAantalDeuren        {width: 105px;}
+#filBestuurder          {width: 284px;}
+
+.mat-column-voeTypeWagen, .mat-column-voeBestuurder     { width: 105px; }
+.mat-column-voeModel                                    { width:  50px; }
+.mat-column-voeChassisNummer                            { width: 150px; }
+.mat-column-voeMerk, .mat-column-voeAantalDeuren        { width:  80px; }
+.mat-column-voeNummerplaat                              { width:  70px; }
+.mat-column-voeBrandstoftype                            { width:  55px; }
+.mat-column-action                                      { width: 130px; }
+.mat-column-voeKleur                                    { width:  40px; }

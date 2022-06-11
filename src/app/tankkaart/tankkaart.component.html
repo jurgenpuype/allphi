@@ -1,12 +1,33 @@
 <h1>
     Tankkaarten 
     <button mat-button>
-        <mat-icon matTooltip="Nieuwe tankaart toevoegen" (click) = "addTankkaart()">
+        <mat-icon matTooltip="Nieuwe tankaart toevoegen" (click) = "editTankkaart(newTankkaart())">
             add_circle_outline
         </mat-icon>
     </button>
 </h1>
-<table mat-table [dataSource]="tankkaarten">
+<mat-form-field id="filKaartnummer" class="whiteInput" appearance="fill">
+    <mat-label>Kaartnummer</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filTankkaart.tanKaartnummer" name="filKaartnummer">
+</mat-form-field>
+<mat-form-field id="filGeldigheidsdatum" class="whiteInput" appearance="fill">
+    <mat-label>Geldig tot</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filTankkaart.tanGeldigheidsdatum" name="filGeldigheidsdatum">
+</mat-form-field>
+<mat-form-field id="filBestuurder" class="whiteInput" appearance="fill">
+    <mat-label>Bestuurder</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filTankkaart.tanBestuurder" name="filBestuurder">
+</mat-form-field>
+<mat-form-field id="filPincode" class="whiteInput" appearance="fill">
+    <mat-label>Pincode</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filTankkaart.tanPincode" name="filPincode">
+</mat-form-field>
+<mat-form-field id="filGeblokkeerd" class="whiteInput" appearance="fill">
+    <mat-label>Geblokkeerd?</mat-label>
+    <input matInput type="text" class="form-control" (keyup)="applyFilter($event)" [(ngModel)]="filTankkaart.tanGeblokkeerd" name="filGeblokkeerd">
+</mat-form-field>
+<hr>
+<table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="tanKaartnummer">
     <th mat-header-cell *matHeaderCellDef> Kaartnummer </th>
     <td mat-cell *matCellDef="let tankkaart"> {{tankkaart.tanKaartnummer}} </td>
@@ -32,8 +53,8 @@
    <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let tankkaart" class="action-link"> 
-          <button mat-button><mat-icon  matTooltip="Gegevens tankkaart wijzigen" (click) = "openDialog('Edit',tankkaart)">edit</mat-icon></button>
-          <button mat-button><mat-icon  matTooltip="Deze tankkaart verwijderen" (click) = "openDialog('Delete',tankkaart)">delete</mat-icon></button>
+          <button mat-button><mat-icon  matTooltip="Gegevens tankkaart wijzigen" (click) = "editTankkaart(tankkaart)">edit</mat-icon></button>
+          <button mat-button><mat-icon  matTooltip="Deze tankkaart verwijderen" (click) = "confirmDelete(tankkaart)">delete</mat-icon></button>
       </td>
     </ng-container>
 

@@ -10,17 +10,20 @@
  */
 
 export class Voertuig {
+
+    public id : number = 0;
+    public voeMerk : string = '';
+    public voeModel : string = '';
+    public voeChassisNummer : string = '';
+    public voeNummerplaat : string = '';
+    public voeBrandstoftype : number = 0;
+    public voeTypeWagen : number = 0;
+    public voeKleur : string = '';
+    public voeAantalDeuren : number = 0;
+    public voeBestuurder : number = 0;
+    public voeRijbewijs : number = 0;
+    public voeVerwijderd : number = 0;
+
     constructor(
-        public id : number,
-        public voeMerk : string,
-        public voeModel : string,
-        public voeChassisNummer : string,
-        public voeNummerplaat : string,
-        public voeBrandstoftype : number,
-        public voeTypeWagen : number,
-        public voeKleur : string,
-        public voeAantalDeuren : number,
-        public voeBestuurder : number,
-        public voeVerwijderd : number
     ) {}
 }

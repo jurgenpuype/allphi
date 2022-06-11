@@ -1,1 +1,71 @@
-<p>bestuurder-detail works!</p>
+<mat-dialog-content>
+    <h3>Bestuurder</h3>
+    <mat-divider></mat-divider><br>
+    <mat-form-field class="Width470 leftFormField" appearance="fill">
+        <mat-label>Voornaam</mat-label>
+        <input matInput type="text" class="form-control" id="voornaam" required [(ngModel)]="bestuurder.besVoornaam" name="besVoornaam">
+    </mat-form-field>
+    <mat-form-field class="Width470" appearance="fill">
+        <mat-label>Naam</mat-label>
+        <input matInput type="text" class="form-control" id="naam" required [(ngModel)]="bestuurder.besNaam" name="besNaam">
+    </mat-form-field>
+    <mat-form-field class="Width250 leftFormField" appearance="fill">
+        <mat-label>Adres</mat-label>
+        <input matInput type="text" class="form-control" id="adres" required [(ngModel)]="bestuurder.besStraatNr" name="besStraatNr">
+    </mat-form-field>
+    <mat-form-field class="Width250 leftFormField" appearance="fill">
+        <mat-label>Postcode</mat-label>
+        <input matInput type="text" class="form-control" id="naam" required [(ngModel)]="bestuurder.besPostcode" name="besPostcode">
+    </mat-form-field>
+    <mat-form-field class="Width250 leftFormField" appearance="fill">
+        <mat-label>Gemeente</mat-label>
+        <input matInput type="text" class="form-control" id="adres" required [(ngModel)]="bestuurder.besGemeente" name="besGemeente">
+    </mat-form-field>
+    <mat-form-field class="Width250" appearance="fill">
+        <mat-label>Land</mat-label>
+        <input matInput type="text" class="form-control" id="naam" required [(ngModel)]="bestuurder.besLand" name="besLand">
+    </mat-form-field>
+    <mat-form-field class="Width470 leftFormField" appearance="fill">
+        <mat-label>Geboortedatum</mat-label>
+        <input matInput type="text" class="form-control" id="adres" required [(ngModel)]="bestuurder.besGeboortedatum" name="besGeboortedatum">
+    </mat-form-field>
+    <mat-form-field class="Width470" appearance="fill">
+        <mat-label>Rijksregisternummer</mat-label>
+        <input matInput type="text" class="form-control" id="naam" required [(ngModel)]="bestuurder.besRijksregisterNr" name="besRijksregisterNr">
+    </mat-form-field>
+    <mat-form-field class="Width470 leftFormField" appearance="fill">
+        <mat-label>Voertuig</mat-label>
+        <mat-select [(ngModel)]="bestuurder.besVoertuig" name="besVoertuig">
+          <mat-option *ngFor="let voertuig of voertuigen" [value]="voertuig.id">
+            {{voertuig.voeMerk}} {{voertuig.voeModel}} ({{voertuig.voeNummerplaat}})
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="Width470" appearance="fill">
+        <mat-label>Tankkaart</mat-label>
+        <mat-select [(ngModel)]="bestuurder.besTankkaart" name="besTankkaart">
+          <mat-option *ngFor="let tankkaart of tankkaarten" [value]="tankkaart.id">
+            {{tankkaart.tanKaartnummer}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider><br>
+    <mat-form-field class="Width470 leftFormField" appearance="fill">
+        <mat-label>Nummer Rijbewijs</mat-label>
+        <input matInput type="text" class="form-control" id="naam" required [(ngModel)]="rijbewijs.rijNummer" name="rijNummer">
+    </mat-form-field>
+    <mat-form-field class="Width250 leftFormField" appearance="fill">
+        <mat-label>Datum Afgifte Rijbewijs</mat-label>
+        <input matInput type="text" class="form-control" id="adres" required [(ngModel)]="rijbewijs.rijAfgifte" name="rijAfgifte">
+    </mat-form-field>
+    <mat-form-field class="Width250" appearance="fill">
+        <mat-label>Vervaldatum</mat-label>
+        <input matInput type="text" class="form-control" id="adres" required [(ngModel)]="rijbewijs.rijGeldigheid" name="rijGeldigheid">
+    </mat-form-field>
+    <button mat-raised-button class="leftButton Width40" *ngFor="let rbtype of rijbewijsTypes; let i = index">
+       <mat-checkbox  matTooltip="{{ rbtype.rbtOmschrijving }}" value="{{ rbtype.id }}" [checked]="hasRijbewijsType(rbtype.rbtNaam)" class="example-margin">{{ rbtype.rbtNaam }}</mat-checkbox>
+    </button>
+    <button mat-raised-button color="accent" class="leftButton" (click)="bewaren(bestuurder)">Bewaren</button>
+    <button mat-raised-button color="primary" (click)="sluiten()">Annuleren</button>
+
+</mat-dialog-content>
