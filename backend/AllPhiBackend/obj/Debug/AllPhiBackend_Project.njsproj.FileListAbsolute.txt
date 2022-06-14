@@ -1,3 +1,0 @@
-C:\Users\Kobe\source\repos\NodejsConsoleApp3\NodejsConsoleApp3\obj\Debug\AllPhiBackend_Project.njsproj.AssemblyReference.cache
-C:\Users\Kobe\source\repos\NodejsConsoleApp3\NodejsConsoleApp3\obj\Debug\AllPhiBackend_Project.njsproj.CoreCompileInputs.cache
-C:\Users\Kobe\source\repos\NodejsConsoleApp3\NodejsConsoleApp3\bin\Microsoft.NodejsTools.WebRole.dll

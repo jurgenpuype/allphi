@@ -1,0 +1,91 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>AllPhiBackend_Project</Name>
+    <RootNamespace>NodejsConsoleApp3</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>2725754c-ec64-4127-8fd3-84c0f2f3e421</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>app.js</StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <StartWebBrowser>false</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="app.js" />
+    <Content Include="controllers\bestuurderController.js" />
+    <Content Include="controllers\brandstofvoertuigController.js" />
+    <Content Include="controllers\rijbewijsController.js" />
+    <Content Include="controllers\rijbewijstypeController.js" />
+    <Content Include="controllers\rijbewijstyperijbewijsController.js" />
+    <Content Include="controllers\tankkaartbrandstofController.js" />
+    <Content Include="controllers\tankkaartController.js" />
+    <Content Include="controllers\voertuigController.js" />
+    <Content Include="controllers\voertuigtypeController.js" />
+    <Content Include="database\config\config.js" />
+    <Content Include="database\config\config.json" />
+    <Content Include="database\migrations\01-create-rijbewijs.cjs" />
+    <Content Include="database\migrations\02-create-tankkaart.cjs" />
+    <Content Include="database\migrations\03-create-voertuigtype.cjs" />
+    <Content Include="database\migrations\04-create-rijbewijstype.cjs" />
+    <Content Include="database\migrations\05-create-brandstof.cjs" />
+    <Content Include="database\migrations\06-create-bestuurder.cjs" />
+    <Content Include="database\migrations\07-create-voertuig.cjs" />
+    <Content Include="database\migrations\11-add-FKs-bestuurder.cjs" />
+    <Content Include="database\migrations\12-add-FKs-voertuig.cjs" />
+    <Content Include="database\migrations\13-add-M2M-rijbewijstyperijbewijs.cjs" />
+    <Content Include="database\migrations\14-add-M2M-tankkaartbrandstof.cjs" />
+    <Content Include="database\migrations\15-add-rijbewijsFK-voertuig.cjs" />
+    <Content Include="database\models\bestuurder.js" />
+    <Content Include="database\models\brandstof.js" />
+    <Content Include="database\models\index.js" />
+    <Content Include="database\models\rijbewijs.js" />
+    <Content Include="database\models\rijbewijstype.js" />
+    <Content Include="database\models\rijbewijstyperijbewijs.js" />
+    <Content Include="database\models\tankkaart.js" />
+    <Content Include="database\models\tankkaartbrandstof.js" />
+    <Content Include="database\models\voertuig.js" />
+    <Content Include="database\models\voertuigtype.js" />
+    <Content Include="package.json" />
+    <Content Include="README.md" />
+    <Content Include="routes\bestuurder.js" />
+    <Content Include="routes\brandstofvoertuig.js" />
+    <Content Include="routes\home.js">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="routes\rijbewijs.js" />
+    <Content Include="routes\rijbewijstype.js" />
+    <Content Include="routes\rijbewijstyperijbewijs.js" />
+    <Content Include="routes\tankkaart.js" />
+    <Content Include="routes\tankkaartbrandstof.js" />
+    <Content Include="routes\voertuig.js" />
+    <Content Include="routes\voertuigtype.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="controllers\" />
+    <Folder Include="database\" />
+    <Folder Include="database\config\" />
+    <Folder Include="database\migrations\" />
+    <Folder Include="database\models\" />
+    <Folder Include="database\seeders\" />
+    <Folder Include="routes\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+</Project>
