@@ -4,12 +4,15 @@ import { VoertuigService} from '../services/voertuig.service';
 import { Bestuurder } from '../models/bestuurder';
 import { BestuurderService} from '../services/bestuurder.service';
 import { VoertuigType } from '../models/voertuigType';
+import { BrandstofVoertuig } from '../models/brandstofVoertuig';
 import { VoertuigTypeService} from '../services/voertuig-type.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { VoertuigDetailComponent } from '../voertuig-detail/voertuig-detail.component';
+import { BrandstofVoertuigService} from '../services/brandstof-voertuig.service';
+
 
 @Component({
   selector: 'app-voertuig',
@@ -21,6 +24,7 @@ export class VoertuigComponent implements OnInit {
   constructor(  private voertuigService: VoertuigService,
                 private bestuurderService: BestuurderService,
                 private voertuigTypeService: VoertuigTypeService,
+                private brandstofVoertuigService: BrandstofVoertuigService,
                 private dialog: MatDialog,
                 private route: ActivatedRoute,
                 private router: Router  ) {}
@@ -29,6 +33,7 @@ export class VoertuigComponent implements OnInit {
   voertuigen : Voertuig[] = [];
   voertuigTypes : VoertuigType[] = [];
   bestuurders : Bestuurder[] = [];
+  brandstoffen : BrandstofVoertuig[] = [];
   filVoertuig : Voertuig = new Voertuig;
 
   applyFilter(event: Event) {
@@ -47,8 +52,32 @@ export class VoertuigComponent implements OnInit {
       return new Voertuig;
   }
   
+  createVoertuig(voertuig: Voertuig): void {
+      let myDialogRef = this.dialog.open(VoertuigDetailComponent, {  width      : '100%',
+                                                                    maxWidth   : '1000px',
+                                                                    data: voertuig});
+      myDialogRef.afterClosed().subscribe(
+        data => {
+            if (data) {
+                this.voertuigService.createVoertuig(voertuig)
+                    .subscribe(newVoertuig => {
+                        if (typeof(newVoertuig) == 'undefined') {
+                            console.log("Aanmaken nieuw voertuig mislukt!");
+                        } else {
+                            console.log("Voertuig #"+newVoertuig.id+" werd successvol aangemaakt!");
+                            this.voertuigService.getVoertuigen()
+                                .subscribe(voertuigen => {
+                                    this.voertuigen = voertuigen;
+                                    this.dataSource.data = this.voertuigen.filter(voertuig => voertuig.voeVerwijderd == 0);
+                                });
+                        }
+                    });
+            }                
+        }
+      );
+  }
+
   editVoertuig(voertuig: Voertuig): void {
-      let identityString = "het voertuig met nummerplaat ||" + voertuig.voeNummerplaat;
       let myDialogRef = this.dialog.open(VoertuigDetailComponent, {  width      : '100%',
                                                                     maxWidth   : '1000px',
                                                                     data: voertuig});
@@ -87,6 +116,19 @@ export class VoertuigComponent implements OnInit {
   getBestuurders(): void {
     this.bestuurderService.getBestuurders()
         .subscribe(bestuurders => this.bestuurders = bestuurders);
+  }
+
+  getBrandstoffenVoertuig(): void {
+    this.brandstofVoertuigService.getBrandstoffenVoertuig()
+        .subscribe(brandstoffen => this.brandstoffen = brandstoffen);
+  }
+  
+  getBrandstof(id: number): string {
+      let brandstofNaam = '';
+      this.brandstoffen.forEach(function(brandstof){  
+        if (brandstof.id == id) { brandstofNaam = brandstof.bravNaam; }
+      });  
+      return brandstofNaam;
   }
 
   getBestuurder(id: number): string {
@@ -145,6 +187,6 @@ export class VoertuigComponent implements OnInit {
       this.getVoertuigen();
       this.getBestuurders();
       this.getVoertuigTypes();
+      this.getBrandstoffenVoertuig();
   }
-
 }

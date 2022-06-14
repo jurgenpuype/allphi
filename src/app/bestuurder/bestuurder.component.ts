@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Gebruiker } from '../models/gebruiker';
 import { Bestuurder } from '../models/bestuurder';
+import { Rijksregisternummer } from '../models/rijksregisternummer';
 import { BestuurderService} from '../services/bestuurder.service';
 import { Voertuig} from '../models/voertuig';
 import { VoertuigService} from '../services/voertuig.service';
@@ -15,6 +16,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { BestuurderDetailComponent } from '../bestuurder-detail/bestuurder-detail.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { forkJoin } from 'rxjs';
+import { map } from "rxjs/operators";
 
 
 @Component({
@@ -55,7 +58,6 @@ export class BestuurderComponent implements OnInit {
   }
 
   editBestuurder(bestuurder: Bestuurder): void {
-      let identityString = "de bestuurder met naam ||" + bestuurder.besVoornaam + " " +  bestuurder.besNaam;
       let myDialogRef = this.dialog.open(BestuurderDetailComponent, {  width      : '100%',
                                                                     maxWidth   : '1000px',
                                                                     data: bestuurder});
@@ -64,6 +66,8 @@ export class BestuurderComponent implements OnInit {
             if (data) {
                 let bestuurder = data.Bestuurder;
                 let rijbewijs = data.Rijbewijs;
+                alert(rijbewijs.rijCategories);
+                let rijbewijsTypes = data.RijbewijsTypes;
                 let index = this.bestuurders.indexOf(bestuurder);
                 this.bestuurderService.updateBestuurder(bestuurder)
                     .subscribe(newBestuurder => {
@@ -71,6 +75,18 @@ export class BestuurderComponent implements OnInit {
                             console.log("Update mislukt voor bestuurder #"+bestuurder.id);
                         } else {
                             console.log("Update geslaagd voor bestuurder #"+bestuurder.id);
+                            //update rijbewijs
+                            this.rijbewijsService.updateRijbewijs(rijbewijs)
+                                .subscribe(newRijbewijs => {
+                                    this.rijbewijsService.getRijbewijzen()
+                                        .subscribe(rijbewijzen => this.rijbewijzen = rijbewijzen);
+                                });
+                            //update rijbewijscategorieeen
+                            this.rijbewijsService.getRijbewijsCategorieen(rijbewijs.id)
+                                .subscribe(rijbewijsCategorieen => {
+                                    this.rijbewijsService.deleteRijbewijstypesRijbewijs(rijbewijsCategorieen);
+                                    this.rijbewijsService.saveRijbewijstypesRijbewijs(rijbewijs.id, rijbewijsTypes);
+                            });
                             this.bestuurderService.getBestuurders()
                                 .subscribe(bestuurders => {
                                     this.bestuurders = bestuurders;
@@ -84,36 +100,35 @@ export class BestuurderComponent implements OnInit {
   }
   
   createBestuurder(bestuurder: Bestuurder): void {
-      let identityString = "de bestuurder met naam ||" + bestuurder.besVoornaam + " " +  bestuurder.besNaam;
       let myDialogRef = this.dialog.open(BestuurderDetailComponent, {  width      : '100%',
                                                                     maxWidth   : '1000px',
                                                                     data: bestuurder});
       myDialogRef.afterClosed().subscribe(
         data => {
             if (data) {
+                let that = this;
                 let bestuurder = data.Bestuurder;
                 let rijbewijs = data.Rijbewijs;
-                let index = this.bestuurders.indexOf(bestuurder);
-                this.bestuurderService.createBestuurder(bestuurder)
-                    .subscribe(newBestuurder => {
-                        if (typeof(newBestuurder) == 'undefined') {
-                            console.log("Opslaan van nieuwe bestuurder is mislukt!");
-                        } else {
-                            console.log("Gegevens voor bestuurder #"+newBestuurder.id+" werden succesvol opgeslagen!");
-                            rijbewijs.rijHouder = newBestuurder.id;
-                            this.bestuurderService.getBestuurders()
-                                .subscribe(bestuurders => {
-                                    this.bestuurders = bestuurders;
-                                    this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
-                                    // add the RijbewijsTypes to rijbewijs.rijCategories
-                                    this.rijbewijsService.createRijbewijs(rijbewijs)
-                                        .subscribe(newRijbewijs => {
-                                            console.log('createRijbewijs uitgevoerd!');
-                                            // get the rijbewijs.rijId and save the RijbewijsTypes to RijbewijstypeRijbewijs ...
-                                            // set the rijbewijsId in Bestuurder ...
-                                        }) 
-                                });
-                        }
+                let rijbewijsTypes = data.RijbewijsTypes;
+                this.rijbewijsService.createRijbewijs(rijbewijs)
+                    .subscribe(newRijbewijs => {
+                        console.log('createRijbewijs uitgevoerd!');
+                        bestuurder.besRijbewijs = newRijbewijs.id;
+                        this.rijbewijsService.saveRijbewijstypesRijbewijs(newRijbewijs.id, rijbewijsTypes);
+                        this.bestuurderService.createBestuurder(bestuurder)
+                            .subscribe(newBestuurder => {
+                                if (typeof(newBestuurder) == 'undefined') {
+                                    console.log("Opslaan van nieuwe bestuurder is mislukt!");
+                                } else {
+                                    console.log("Gegevens voor bestuurder #"+newBestuurder.id+" werden succesvol opgeslagen!");
+                                    rijbewijs.rijHouder = newBestuurder.id;
+                                    this.bestuurderService.getBestuurders()
+                                        .subscribe(bestuurders => {
+                                            this.bestuurders = bestuurders;
+                                            this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
+                                        });
+                                }
+                            });
                     });
             }                
         }
@@ -152,7 +167,7 @@ export class BestuurderComponent implements OnInit {
       return new Bestuurder;
   }
 
-  getBestuurders(): void {
+  getBestuurders(): void {         
     this.bestuurderService.getBestuurders()
         .subscribe(bestuurders => {
             this.bestuurders = bestuurders;
@@ -175,26 +190,26 @@ export class BestuurderComponent implements OnInit {
         .subscribe(rijbewijzen => this.rijbewijzen = rijbewijzen);
   }
   
-  getVoertuig(bestuurderId: number) :string {
+  getVoertuig(voertuigId: number) :string {
       let nrPlaat = "-";
       this.voertuigen.forEach(function(voertuig){  
-        if (voertuig.voeBestuurder == bestuurderId) { nrPlaat = voertuig.voeNummerplaat; }
+        if (voertuig.id == voertuigId) { nrPlaat = voertuig.voeNummerplaat; }
       });  
       return nrPlaat;
   }      
 
-  getTankkaart(bestuurderId: number) :string {
+  getTankkaart(tankkaartId: number) :string {
       let nrTankkaart = "-";
       this.tankkaarten.forEach(function(tankkaart){  
-        if (tankkaart.tanBestuurder == bestuurderId) { nrTankkaart = tankkaart.tanKaartnummer; }
+        if (tankkaart.id == tankkaartId) { nrTankkaart = tankkaart.tanKaartnummer; }
       });  
       return nrTankkaart;
   }      
 
-  getRijbewijs(bestuurderId: number): string {
+  getRijbewijs(rijbewijsId: number): string {
       let rijbewijsCategories = "";
       this.rijbewijzen.forEach(function(rijbewijs){  
-        if (rijbewijs.rijHouder == bestuurderId) { 
+        if (rijbewijs.id == rijbewijsId) { 
             rijbewijsCategories = rijbewijs.rijCategories; 
         }
       });  

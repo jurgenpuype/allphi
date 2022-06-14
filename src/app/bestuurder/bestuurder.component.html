@@ -88,15 +88,15 @@
   </ng-container>
   <ng-container matColumnDef="rijbewijs">
     <th mat-header-cell *matHeaderCellDef> Rijbewijs </th>
-    <td mat-cell *matCellDef="let bestuurder"> {{getRijbewijs(bestuurder.id)}} </td>
+    <td mat-cell *matCellDef="let bestuurder"> {{getRijbewijs(bestuurder.besRijbewijs)}} </td>
   </ng-container>
   <ng-container matColumnDef="voertuig">
     <th mat-header-cell *matHeaderCellDef> Voertuig </th>
-    <td mat-cell *matCellDef="let bestuurder"> {{getVoertuig(bestuurder.id)}} </td>
+    <td mat-cell *matCellDef="let bestuurder"> {{getVoertuig(bestuurder.besVoertuig)}} </td>
   </ng-container>
   <ng-container matColumnDef="tankkaart">
     <th mat-header-cell *matHeaderCellDef> Tankkaart </th>
-    <td mat-cell *matCellDef="let bestuurder"> {{getTankkaart(bestuurder.id)}} </td>
+    <td mat-cell *matCellDef="let bestuurder"> {{getTankkaart(bestuurder.besTankkaart)}} </td>
   </ng-container>
   <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef> </th>

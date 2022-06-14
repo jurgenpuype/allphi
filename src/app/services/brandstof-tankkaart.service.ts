@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BrandstofTankkaart } from '../models/brandstofTankkaart';
+import { TankkaartBrandstofTankkaart } from '../models/tankkaartbrandstofTankkaart';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class BrandstofTankkaartService {
   constructor(  private http: HttpClient ) { }
   
   private brandstofTankkaartUrl = 'http://localhost:3000/brandstofTankkaart';  // URL to web api
+  private TankkaartbrandstofTankkaartUrl = "http://localhost:3000/TankkaartbrandstofTankkaart?tbtTankkaartId=";
   
   getBrandstoffenTankkaart(): Observable<BrandstofTankkaart[]> {
       return this.http.get<BrandstofTankkaart[]>(this.brandstofTankkaartUrl)
@@ -25,6 +27,11 @@ export class BrandstofTankkaartService {
        catchError(this.handleError<BrandstofTankkaart>(`getBrandstoffenTankkaart id=${id}`))
      );
   }
+  
+  getTankkaartBrandstoffen(id : number): Observable<TankkaartBrandstofTankkaart[]> {
+      return this.http.get<TankkaartBrandstofTankkaart[]>(this.TankkaartbrandstofTankkaartUrl+id)
+                    .pipe( catchError(this.handleError<TankkaartBrandstofTankkaart[]>('getTankkaartBrandstoffen', [])) );
+  };
   
   private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {

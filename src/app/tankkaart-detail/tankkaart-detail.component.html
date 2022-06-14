@@ -30,7 +30,8 @@
         </mat-select>
     </mat-form-field>
     <button mat-raised-button class="leftButton Width250" *ngFor="let brandstofTankkaart of brandstoffenTankkaart; let i = index">
-       <mat-checkbox  matTooltip="{{ brandstofTankkaart.bratOmschrijving }}" value="{{ brandstofTankkaart.id}}" class="example-margin">{{ brandstofTankkaart.bratNaam }}</mat-checkbox>
+       <mat-checkbox  matTooltip="{{ brandstofTankkaart.bratOmschrijving }}" value="{{brandstofTankkaart.id}}" 
+                      (click)="manageBrandstof(brandstofTankkaart.id)" [checked]="hasBrandstof(brandstofTankkaart.id)">{{ brandstofTankkaart.bratNaam }}</mat-checkbox>
     </button>
     <button mat-raised-button class="leftButton Width250" disabled *ngFor="let noValue of fakeArray; let i = index">
        &nbsp;

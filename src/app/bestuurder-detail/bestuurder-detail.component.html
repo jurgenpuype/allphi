@@ -63,9 +63,8 @@
         <input matInput type="text" class="form-control" id="adres" required [(ngModel)]="rijbewijs.rijGeldigheid" name="rijGeldigheid">
     </mat-form-field>
     <button mat-raised-button class="leftButton Width40" *ngFor="let rbtype of rijbewijsTypes; let i = index">
-       <mat-checkbox  matTooltip="{{ rbtype.rbtOmschrijving }}" value="{{ rbtype.id }}" [checked]="hasRijbewijsType(rbtype.rbtNaam)" class="example-margin">{{ rbtype.rbtNaam }}</mat-checkbox>
+        <mat-checkbox matTooltip="{{ rbtype.rbtOmschrijving }}" (click)="manageCategories(rbtype.id)" value="{{ rbtype.id }}" [checked]="hasRijbewijsType(rbtype.rbtNaam)">{{ rbtype.rbtNaam }}</mat-checkbox>
     </button>
     <button mat-raised-button color="accent" class="leftButton" (click)="bewaren(bestuurder)">Bewaren</button>
     <button mat-raised-button color="primary" (click)="sluiten()">Annuleren</button>
-
 </mat-dialog-content>

@@ -34,6 +34,13 @@ export class VoertuigService {
      );
   }
  
+   createVoertuig(voertuig: Voertuig): Observable<Voertuig> {
+     return this.http.post<Voertuig>(this.voertuigUrl, voertuig, httpOptions)
+       .pipe(
+        catchError(this.handleError<Voertuig>(`createVoeretuig mislukt!!`))
+       );
+  }
+
    updateVoertuig(voertuig: Voertuig): Observable<Voertuig> {
      const id = voertuig.id;
      const url = `${this.voertuigUrl}/${id}`;
@@ -42,7 +49,6 @@ export class VoertuigService {
         catchError(this.handleError<Voertuig>(`updateVoeretuig id=${id}`))
        );
   }
-
   private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
 

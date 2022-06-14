@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Bestuurder } from '../models/bestuurder';
 import { Voertuig} from '../models/voertuig';
 import { VoertuigService} from '../services/voertuig.service';
@@ -16,29 +17,49 @@ import { RijbewijsType } from '../models/rijbewijsType';
 })
 
 export class BestuurderDetailComponent implements OnInit {
-
+  
   constructor(@Inject(MAT_DIALOG_DATA) public bestuurder: Bestuurder,
                private rijbewijsService: RijbewijsService,
                private voertuigService: VoertuigService,
                private tankkaartService: TankkaartService,
-               public dialogRef: MatDialogRef<BestuurderDetailComponent>) { }
+               public dialogRef: MatDialogRef<BestuurderDetailComponent>) { }        
 
   voertuigen : Voertuig[] = [];
   tankkaarten : Tankkaart[] = [];
   rijbewijzen : Rijbewijs[] = [];
   rijbewijsTypes : RijbewijsType[] = [];
   rijbewijs : Rijbewijs = new Rijbewijs;
+  checked : number[] = [];
+  isCheckedSet : boolean = false;
   
   bewaren(bestuurder : Bestuurder): void {
+      let rijCategorieen = '';
+      this.rijbewijsTypes.forEach( myRijbewijsType => {
+                                        if (this.checked.includes(myRijbewijsType.id)) { 
+                                            rijCategorieen += myRijbewijsType.rbtNaam + ' ';
+                                        }
+                                   });
+      this.rijbewijs.rijCategories = rijCategorieen;
       let data = {
-          "Bestuurder" : bestuurder,
-          "Rijbewijs"  : this.rijbewijs
+          "Bestuurder"      : bestuurder,
+          "Rijbewijs"       : this.rijbewijs,
+          "RijbewijsTypes"  : this.checked
       };
       this.dialogRef.close(data);
   }
 
   sluiten(): void {
       this.dialogRef.close(false);
+  }
+  
+  manageCategories(id: number){
+      this.isCheckedSet = true;
+      let _index = this.checked.indexOf(id);
+      if (_index === -1) {
+        this.checked.push(id);
+      } else {
+        this.checked.splice(_index,1);
+      }
   }
   
   getVoertuigen(): void {
@@ -53,12 +74,19 @@ export class BestuurderDetailComponent implements OnInit {
 
   getRijbewijzen(): void {
     this.rijbewijsService.getRijbewijzen()
-        .subscribe(rijbewijzen => this.rijbewijzen = rijbewijzen);
+        .subscribe(rijbewijzen => {
+            this.rijbewijzen = rijbewijzen;
+            this.rijbewijzen.forEach(myRijbewijs => {
+                if (myRijbewijs.id === this.bestuurder.besRijbewijs) {this.rijbewijs = myRijbewijs};
+            })
+        })
   }
 
   getRijbewijsTypes(): void {
     this.rijbewijsService.getRijbewijsTypes()
-        .subscribe(rijbewijsTypes => this.rijbewijsTypes = rijbewijsTypes);
+        .subscribe(rijbewijsTypes => {
+            this.rijbewijsTypes = rijbewijsTypes;
+        });
   }
 
   isLast(myRijbewijsType: RijbewijsType): boolean {
@@ -66,19 +94,37 @@ export class BestuurderDetailComponent implements OnInit {
   }
   
   getRijbewijs(): string {
-      let bestuurderId = this.bestuurder.id;
+      let rijbewijsId = this.bestuurder.besRijbewijs;
       let rijbewijsCategories = "";
       this.rijbewijzen.forEach(function(rijbewijs){  
-        if (rijbewijs.rijHouder == bestuurderId) { 
+        if (rijbewijs.id == rijbewijsId) { 
             rijbewijsCategories = rijbewijs.rijCategories; 
         }
       });  
      return rijbewijsCategories;
   }      
 
+  getRijbewijsType(rbType: string): number {
+      let _id = 0;
+      let that = this;
+      this.rijbewijsTypes.forEach(function(rijbewijsType){  
+        if (rijbewijsType.rbtNaam == rbType) { 
+            _id = rijbewijsType.id; 
+        }
+      });  
+     return _id;
+  }      
+
   hasRijbewijsType(rbType: string): boolean {
-    let rijbewijsCategories = this.getRijbewijs().split(' ');
-    return rijbewijsCategories.includes(rbType);
+    let rijbewijsCategories = this.rijbewijs.rijCategories.split(' ');
+    let id = this.getRijbewijsType(rbType);
+    let _index = this.checked.indexOf(id);
+    if (rijbewijsCategories.includes(rbType)) {
+        if ((_index === -1) && !this.isCheckedSet) { this.checked.push(id); }
+        return true;
+    } else {
+        return false;
+    };
   }
   
   ngOnInit(): void {
@@ -87,5 +133,4 @@ export class BestuurderDetailComponent implements OnInit {
     this.getVoertuigen();
     this.getTankkaarten();
   }
-
 }

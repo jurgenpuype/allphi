@@ -56,6 +56,7 @@ const routes: Routes = [];
     CommonModule,
     AppRoutingModule,
     HttpClientModule,
+    MatCheckboxModule,
     MatDialogModule,
     MatDividerModule,
     MatFormFieldModule,

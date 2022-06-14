@@ -17,7 +17,6 @@ export class Rijbewijs {
     public rijNummer : string = '';
     public rijAfgifte : string = '';
     public rijGeldigheid : string = '';
-    public rijHouder : number = 0;
     public rijCategories : string = '';
 
     constructor( ) {}

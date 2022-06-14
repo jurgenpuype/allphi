@@ -1,7 +1,7 @@
 <h1>
     Voertuigen 
     <button mat-button>
-        <mat-icon matTooltip="Nieuw voertuig toevoegen" (click) = "editVoertuig(newVoertuig())">
+        <mat-icon matTooltip="Nieuw voertuig toevoegen" (click) = "createVoertuig(newVoertuig())">
             add_circle_outline
         </mat-icon>
     </button>
@@ -65,7 +65,7 @@
   </ng-container>
   <ng-container matColumnDef="voeBrandstoftype">
     <th mat-header-cell *matHeaderCellDef> Brandstof </th>
-    <td mat-cell *matCellDef="let voertuig"> {{voertuig.voeBrandstoftype}} </td>
+    <td mat-cell *matCellDef="let voertuig"> {{getBrandstof(voertuig.voeBrandstoftype)}} </td>
   </ng-container>
   <ng-container matColumnDef="voeTypeWagen">
     <th mat-header-cell *matHeaderCellDef> Type wagen </th>
