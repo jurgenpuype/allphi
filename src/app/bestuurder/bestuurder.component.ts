@@ -41,6 +41,7 @@ export class BestuurderComponent implements OnInit {
   tankkaarten : Tankkaart[] = [];
   rijbewijzen : Rijbewijs[] = [];
   filBestuurder : Bestuurder = new Bestuurder;
+  rrnummer : Rijksregisternummer = new Rijksregisternummer('74.03.24-208.65');
   
   displayedColumns: string[] = ['besVoornaam', 'besNaam', 'besStraatNr', 'besPostcode', 'besGemeente', 'besLand', 'besGeboortedatum', 'besRijksregisterNr', 
                                 'rijbewijs', 'voertuig', 'tankkaart', 'action'];
@@ -167,7 +168,11 @@ export class BestuurderComponent implements OnInit {
       return new Bestuurder;
   }
 
-  getBestuurders(): void {         
+  getBestuurders(): void {
+    //alert(this.rrnummer.print('str') + ' : ' +          
+    //      this.rrnummer.isCorrect() + ' : ' +          
+    //      this.rrnummer.cleaned + ' : ' +          
+    //      this.rrnummer.controlegetal(+this.rrnummer.cleaned));          
     this.bestuurderService.getBestuurders()
         .subscribe(bestuurders => {
             this.bestuurders = bestuurders;
