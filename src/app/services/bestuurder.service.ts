@@ -7,6 +7,7 @@ import { Bestuurder } from '../models/bestuurder';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
+    'Access-Control-Allow-Origin': '*',
     Authorization: 'my-auth-token'
   })
 };
@@ -19,7 +20,7 @@ export class BestuurderService {
 
   constructor(  private http: HttpClient ) { }
   
-  private bestuurderUrl = 'http://localhost:3000/bestuurder';  // URL to web api
+  private bestuurderUrl = 'http://galileiit-001-site1.htempurl.com/bestuurder';  // URL to web api
  
   getBestuurders(): Observable<Bestuurder[]> {
       return this.http.get<Bestuurder[]>(this.bestuurderUrl)
@@ -35,7 +36,7 @@ export class BestuurderService {
   }
  
   updateBestuurder(bestuurder: Bestuurder): Observable<Bestuurder> {
-     const id = bestuurder.id;
+     const id = bestuurder.besId;
      const url = `${this.bestuurderUrl}/${id}`;
      return this.http.put<Bestuurder>(url, bestuurder, httpOptions)
        .pipe(

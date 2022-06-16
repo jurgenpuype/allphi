@@ -42,19 +42,20 @@ export class LoginComponent {
   }
 
   ngOnInit(): void {
-    this.getLoggedUser();
-    this.getGebruikers();
+      this.router.navigate(['bestuurder']);
+    //this.getLoggedUser();
+    //this.getGebruikers();
   }
 
   logIn(){
-    this.checkLogin(this.model.gebLogin, this.model.gebPassword)
-        .then((data) => {   this.gebruikers = data;  
-                            if (this.gebruikers.length) {
-                                this.gebruiker = this.gebruikers[0];
-                                 localStorage.setItem("loggedUser", JSON.stringify(this.gebruiker));
-                                this.router.navigate(['bestuurder']);
-                            }
-                         });
+//    this.checkLogin(this.model.gebLogin, this.model.gebPassword)
+//        .then((data) => {   this.gebruikers = data;  
+//                            if (this.gebruikers.length) {
+//                                this.gebruiker = this.gebruikers[0];
+//                                 localStorage.setItem("loggedUser", JSON.stringify(this.gebruiker));
+//                                this.router.navigate(['bestuurder']);
+//                            }
+//                         });
   }
   
   wis(){

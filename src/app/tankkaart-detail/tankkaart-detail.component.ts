@@ -57,11 +57,11 @@ export class TankkaartDetailComponent implements OnInit {
   }
 
   getTankkaartBrandstoffen() : void {
-      this.brandstofTankkaartService.getTankkaartBrandstoffen(this.tankkaart.id)
+      this.brandstofTankkaartService.getTankkaartBrandstoffen(this.tankkaart.tanId)
           .subscribe(tankkaartBrandstofTankkaarten => {
               this.tankkaartBrandstoffen = tankkaartBrandstofTankkaarten;
               this.tankkaartBrandstoffen.map(brandstof => {
-                if (brandstof.tbtTankkaartId === this.tankkaart.id) {
+                if (brandstof.tbtTankkaartId === this.tankkaart.tanId) {
                     this.brandstoffen.push(brandstof.tbtBrandstofTankkaardId);
                 }
             })

@@ -44,7 +44,7 @@
     <mat-form-field class="Width470" appearance="fill">
         <mat-label>Tankkaart</mat-label>
         <mat-select [(ngModel)]="bestuurder.besTankkaart" name="besTankkaart">
-          <mat-option *ngFor="let tankkaart of tankkaarten" [value]="tankkaart.id">
+          <mat-option *ngFor="let tankkaart of tankkaarten" [value]="tankkaart.tanId">
             {{tankkaart.tanKaartnummer}}
           </mat-option>
         </mat-select>

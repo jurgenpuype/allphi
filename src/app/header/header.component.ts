@@ -18,9 +18,10 @@ export class HeaderComponent implements OnInit {
   
   gebruiker : Gebruiker =  new Gebruiker(0, "", "", "", "", 0, 0);
   checkLogin(): string {
-      let userJSON = (localStorage.getItem("loggedUser") || '');
-      if (userJSON.length > 0) {this.gebruiker = JSON.parse(userJSON);}
-      return (localStorage.getItem("loggedUser") || '') ;
+      //let userJSON = (localStorage.getItem("loggedUser") || '');
+      //if (userJSON.length > 0) {this.gebruiker = JSON.parse(userJSON);}
+      //return (localStorage.getItem("loggedUser") || '') ;
+      return "Ok"
   }
 
   showLoggedUser(): void {

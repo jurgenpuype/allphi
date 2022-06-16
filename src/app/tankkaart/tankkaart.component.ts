@@ -40,10 +40,10 @@ export class TankkaartComponent implements OnInit {
   displayedColumns: string[] = ['tanKaartnummer', 'tanGeldigheidsdatum', 'tanBestuurder', 'tanPincode', 'tanGeblokkeerd', 'action'];
 
   checkLogin(): void {
-    let loggedUser = (localStorage.getItem("loggedUser") || '') ;
-    if (loggedUser.length == 0) {
-        this.router.navigate(['']);
-    }
+    //let loggedUser = (localStorage.getItem("loggedUser") || '') ;
+    //if (loggedUser.length == 0) {
+    //    this.router.navigate(['']);
+    //}
   }
 
   editTankkaart(tankkaart: Tankkaart): void {
@@ -58,9 +58,9 @@ export class TankkaartComponent implements OnInit {
                 this.tankkaartService.updateTankkaart(tankkaart)
                     .subscribe(newTankkaart => {
                         if (typeof(newTankkaart) == 'undefined') {
-                            console.log("Update mislukt voor voertuig #"+tankkaart.id);
+                            console.log("Update mislukt voor voertuig #"+tankkaart.tanId);
                         } else {
-                            console.log("Update geslaagd voor voertuig #"+tankkaart.id);
+                            console.log("Update geslaagd voor voertuig #"+tankkaart.tanId);
                             this.tankkaartService.getTankkaarten()
                                 .subscribe(tankkaarten => {
                                     this.tankkaarten = tankkaarten;
@@ -85,9 +85,9 @@ export class TankkaartComponent implements OnInit {
                 this.tankkaartService.updateTankkaart(tankkaart)
                     .subscribe(newTankkaart => {
                         if (typeof(newTankkaart) == 'undefined') {
-                            console.log("Update mislukt voor tankkaart #"+tankkaart.id);
+                            console.log("Update mislukt voor tankkaart #"+tankkaart.tanId);
                         } else {
-                            console.log("Update geslaagd voor tankkaart #"+tankkaart.id);
+                            console.log("Update geslaagd voor tankkaart #"+tankkaart.tanId);
                             this.tankkaartService.getTankkaarten()
                                 .subscribe(tankkaarten => {
                                     this.tankkaarten = tankkaarten;
@@ -103,7 +103,7 @@ export class TankkaartComponent implements OnInit {
   getBestuurder(id: number): string {
       let bestuurderNaam = '';
       this.bestuurders.forEach(function(bestuurder){  
-        if (bestuurder.id == id) { bestuurderNaam = bestuurder.besVoornaam + ' ' + bestuurder.besNaam; }
+        if (bestuurder.besId == id) { bestuurderNaam = bestuurder.besVoornaam + ' ' + bestuurder.besNaam; }
       });  
       return bestuurderNaam;
   }

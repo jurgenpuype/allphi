@@ -54,7 +54,7 @@ export class BestuurderComponent implements OnInit {
   checkLogin(): void {
     let loggedUser = (localStorage.getItem("loggedUser") || '') ;
     if (loggedUser.length == 0) {
-        this.router.navigate(['']);
+    //    this.router.navigate(['']);
     }
   }
 
@@ -73,9 +73,9 @@ export class BestuurderComponent implements OnInit {
                 this.bestuurderService.updateBestuurder(bestuurder)
                     .subscribe(newBestuurder => {
                         if (typeof(newBestuurder) == 'undefined') {
-                            console.log("Update mislukt voor bestuurder #"+bestuurder.id);
+                            console.log("Update mislukt voor bestuurder #"+bestuurder.besId);
                         } else {
-                            console.log("Update geslaagd voor bestuurder #"+bestuurder.id);
+                            console.log("Update geslaagd voor bestuurder #"+bestuurder.besId);
                             //update rijbewijs
                             this.rijbewijsService.updateRijbewijs(rijbewijs)
                                 .subscribe(newRijbewijs => {
@@ -121,8 +121,8 @@ export class BestuurderComponent implements OnInit {
                                 if (typeof(newBestuurder) == 'undefined') {
                                     console.log("Opslaan van nieuwe bestuurder is mislukt!");
                                 } else {
-                                    console.log("Gegevens voor bestuurder #"+newBestuurder.id+" werden succesvol opgeslagen!");
-                                    rijbewijs.rijHouder = newBestuurder.id;
+                                    console.log("Gegevens voor bestuurder #"+newBestuurder.besId+" werden succesvol opgeslagen!");
+                                    rijbewijs.rijHouder = newBestuurder.besId;
                                     this.bestuurderService.getBestuurders()
                                         .subscribe(bestuurders => {
                                             this.bestuurders = bestuurders;
@@ -149,9 +149,9 @@ export class BestuurderComponent implements OnInit {
                 this.bestuurderService.updateBestuurder(bestuurder)
                     .subscribe(newBestuurder => {
                         if (typeof(newBestuurder) == 'undefined') {
-                            console.log("Update mislukt voor bestuurder #"+bestuurder.id);
+                            console.log("Update mislukt voor bestuurder #"+bestuurder.besId);
                         } else {
-                            console.log("Update geslaagd voor bestuurder #"+bestuurder.id);
+                            console.log("Update geslaagd voor bestuurder #"+bestuurder.besId);
                             this.bestuurderService.getBestuurders()
                                 .subscribe(bestuurders => {
                                     this.bestuurders = bestuurders;
@@ -206,7 +206,7 @@ export class BestuurderComponent implements OnInit {
   getTankkaart(tankkaartId: number) :string {
       let nrTankkaart = "-";
       this.tankkaarten.forEach(function(tankkaart){  
-        if (tankkaart.id == tankkaartId) { nrTankkaart = tankkaart.tanKaartnummer; }
+        if (tankkaart.tanId == tankkaartId) { nrTankkaart = tankkaart.tanKaartnummer; }
       });  
       return nrTankkaart;
   }      

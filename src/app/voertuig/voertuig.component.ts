@@ -42,10 +42,10 @@ export class VoertuigComponent implements OnInit {
   }
 
   checkLogin(): void {
-    let loggedUser = (localStorage.getItem("loggedUser") || '') ;
-    if (loggedUser.length == 0) {
-        this.router.navigate(['']);
-    }
+    //let loggedUser = (localStorage.getItem("loggedUser") || '') ;
+    //if (loggedUser.length == 0) {
+    //    this.router.navigate(['']);
+    //}
   }
 
   newVoertuig() : Voertuig {
@@ -134,7 +134,7 @@ export class VoertuigComponent implements OnInit {
   getBestuurder(id: number): string {
       let bestuurderNaam = '';
       this.bestuurders.forEach(function(bestuurder){  
-        if (bestuurder.id == id) { bestuurderNaam = bestuurder.besVoornaam + ' ' + bestuurder.besNaam; }
+        if (bestuurder.besId == id) { bestuurderNaam = bestuurder.besVoornaam + ' ' + bestuurder.besNaam; }
       });  
       return bestuurderNaam;
   }

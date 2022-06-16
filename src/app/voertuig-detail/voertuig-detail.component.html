@@ -45,7 +45,7 @@
         <mat-label>Bestuurder</mat-label>
         <mat-select [(ngModel)]="voertuig.voeBestuurder" name="voeBestuurder">
           <mat-option [value]=""></mat-option>
-          <mat-option *ngFor="let bestuurder of bestuurders" [value]="bestuurder.id">
+          <mat-option *ngFor="let bestuurder of bestuurders" [value]="bestuurder.besId">
             {{bestuurder.besVoornaam}} {{bestuurder.besNaam}}
           </mat-option>
         </mat-select>

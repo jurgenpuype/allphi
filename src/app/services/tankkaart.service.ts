@@ -19,7 +19,7 @@ export class TankkaartService {
 
   constructor(  private http: HttpClient ) { }
   
-  private tankkaartUrl = 'http://localhost:3000/tankkaart';  // URL to web api
+  private tankkaartUrl = 'http://galileiit-001-site1.htempurl.com/tankkaart';  // URL to web api
   
   getTankkaarten(): Observable<Tankkaart[]> {
       return this.http.get<Tankkaart[]>(this.tankkaartUrl)
@@ -35,7 +35,7 @@ export class TankkaartService {
   }
  
    updateTankkaart(tankkaart: Tankkaart): Observable<Tankkaart> {
-     const id = tankkaart.id;
+     const id = tankkaart.tanId;
      const url = `${this.tankkaartUrl}/${id}`;
      return this.http.put<Tankkaart>(url, tankkaart, httpOptions)
        .pipe(

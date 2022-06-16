@@ -7,7 +7,7 @@
   
 export class Bestuurder {
     
-    public id : number = 0;
+    public besId : number = 0;
     public besNaam : string = '';
     public besVoornaam : string = '';
     public besStraatNr : string = '';
