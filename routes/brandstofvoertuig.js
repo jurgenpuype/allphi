@@ -5,11 +5,11 @@ const controller = require('../controllers/brandstofvoertuigController.js');
 const router = express.Router();
 
 router.route('/:id')
-    .get(controller.getBrandstof)
-    .put(controller.updateBrandstof);
+    .get(controller.getBrandstofvoertuig)
+    .put(controller.updateBrandstofvoertuig);
 
 router.route('/')
-    .get(controller.getBrandstoffen)
-    .post(controller.createBrandstof);
+    .get(controller.getBrandstofvoertuigen)
+    .post(controller.createBrandstofvoertuig);
 
 module.exports = router;

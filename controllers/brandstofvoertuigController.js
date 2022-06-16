@@ -9,32 +9,32 @@ const _valideerId = (id) => {
     else return false;
 }
 
-const getBrandstoffen = (req, res) => {
+const getBrandstofvoertuigen = (req, res) => {
     const _connection = mysql.createConnection(config);
-    _connection.query("SELECT * FROM brandstoffen", (err, results, fields) => {
+    _connection.query("SELECT * FROM brandstofvoertuigen", (err, results, fields) => {
         if (err) res.status(200).send({});
         res.status(200).send(results);
     })
 }
 
-const getBrandstof = (req, res) => {
+const getBrandstofvoertuig = (req, res) => {
     //controleer id
     if (!_valideerId(req.params.id))
         res.status(200).send("400: id moet een positieve integer zijn");
 
     //connectie
     const _connection = mysql.createConnection(config);
-    _connection.query(`SELECT * FROM brandstoffen WHERE bravId = ${req.params.id}`, (err, results, fields) => {
+    _connection.query(`SELECT * FROM brandstofvoertuigen WHERE bravId = ${req.params.id}`, (err, results, fields) => {
         if (err) res.status(200).send("500: er is iets misgelopen");
         if (results == "") res.status(200).send(`400: database vond geen resultaat met id ${req.params.id}`);
         res.status(200).send(results);
     })
 };
 
-const createBrandstof = (req, res) => {
+const createBrandstofvoertuig = (req, res) => {
     //insert query
     const _connection = mysql.createConnection(config);
-    _connection.query(`INSERT INTO brandstoffen (bravNaam, bravOmschrijving)
+    _connection.query(`INSERT INTO brandstofvoertuigen (bravNaam, bravOmschrijving)
                     VALUES ("${req.body.bravNaam}", "${req.body.bravOmschrijving}");`,
                     (err, results, fields) => {
                         if (err) res.status(200).send("500: er is iets misgelopen" + err);
@@ -42,7 +42,7 @@ const createBrandstof = (req, res) => {
                     })
 };
 
-const updateBrandstof = (req, res) => {
+const updateBrandstofvoertuig = (req, res) => {
     //valideer id
     if (!_valideerId(req.params.id))
         res.status(200).send("400: id moet een positieve integer zijn");
@@ -50,7 +50,7 @@ const updateBrandstof = (req, res) => {
     //query
     const _connection = mysql.createConnection(config);
     _connection.query(`UPDATE
-                        brandstoffen
+                        brandstofvoertuigen
                     SET
                         bravNaam = "${req.body.besNaam}",
                         bravOmschrijving = "${req.body.bravOmschrijving}"
@@ -62,4 +62,4 @@ const updateBrandstof = (req, res) => {
                     })
 };
 
-module.exports = {getBrandstoffen, getBrandstof, createBrandstof, updateBrandstof}
+module.exports = {getBrandstofvoertuigen, getBrandstofvoertuig, createBrandstofvoertuig, updateBrandstofvoertuig}

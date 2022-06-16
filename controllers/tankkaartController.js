@@ -56,16 +56,18 @@ const createTankkaart = (req, res) => {
                         tanGeldigheidsdatum,
                         tanPincode,
                         tanFuels,
-                        tanGeblokkeerd)
+                        tanGeblokkeerd,
+                        tanVerwijderd)
                     VALUES
                         ("${req.body.tanKaartnummer}",
                         "${_converteerDatum(req.body.tanGeldigheidsdatum)}",
                         "${req.body.tanPincode}",
                         "${req.body.tanFuels}",
-                        ${req.body.tanGeblokkeerd});`,
+                        ${req.body.tanGeblokkeerd}
+                        ${req.body.tanVerwijderd});`,
                     (err, results, fields) => {
                         if (err) res.status(200).send("500 er is iets misgelopen" + err);
-                        res.status(201).send({tanId: results.insertId, tanKaartnummer: req.body.tanKaartnummer, tanGeldigheidsdatum: req.body.tanGeldigheidsdatum, tanPincode: req.body.tanPincode, tanFuels: req.body.tanFuels, tanGeblokkeerd: req.body.tanGeblokkeerd});
+                        res.status(201).send({tanId: results.insertId, tanKaartnummer: req.body.tanKaartnummer, tanGeldigheidsdatum: req.body.tanGeldigheidsdatum, tanPincode: req.body.tanPincode, tanFuels: req.body.tanFuels, tanGeblokkeerd: req.body.tanGeblokkeerd, tanVerwijderd: req.body.tanVerwijderd});
                     })
 };
 
@@ -87,8 +89,8 @@ const updateTankkaart = (req, res) => {
                     WHERE
                         tanId = ${req.params.id};`,
                     (err, results, fields) => {
-                        if (err) res.status(200).send("500 er is iets misgelopen");
-                        res.status(200).send({tanId: req.params.id, tanKaartnummer: req.body.tanKaartnummer, tanGeldigheidsdatum: req.body.tanGeldigheidsdatum, tanPincode: req.body.tanPincode, tanFuels: req.body.tanFuels, tanGeblokkeerd: req.body.tanGeblokkeerd});
+                        if (err) res.status(200).send("500 er is iets misgelopen" + err);
+                        res.status(200).send({tanId: req.params.id, tanKaartnummer: req.body.tanKaartnummer, tanGeldigheidsdatum: req.body.tanGeldigheidsdatum, tanPincode: req.body.tanPincode, tanFuels: req.body.tanFuels, tanGeblokkeerd: req.body.tanGeblokkeerd, tanVerwijderd: req.body.tanVerwijderd});
                     })
 };
 
