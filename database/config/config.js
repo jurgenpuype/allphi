@@ -4,7 +4,7 @@ const config = {
     port: 3306,
     password: "KS4eK2AbYgZVFTqY",
     database: "db_a83681_allphi",
-    dialect: "mysql",
+    //dialect: "mysql",
 
     pool: {
         max: 5,

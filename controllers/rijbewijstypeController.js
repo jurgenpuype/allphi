@@ -12,7 +12,7 @@ const _valideerId = (id) => {
 const getRijbewijstypes = (req, res) => {
     const _connection = mysql.createConnection(config);
     _connection.query("SELECT * FROM rijbewijstypes", (err, results, fields) => {
-        if (err) res.status(500).send({});
+        if (err) res.status(200).send({});
         res.status(200).send(results);
     })
 }
@@ -20,13 +20,13 @@ const getRijbewijstypes = (req, res) => {
 const getRijbewijstype = (req, res) => {
     //controleer id
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400 id moet een positieve integer zijn");
 
     //connectie
     const _connection = mysql.createConnection(config);
     _connection.query(`SELECT * FROM rijbewijstypes WHERE rbtId = ${req.params.id}`, (err, results, fields) => {
-        if (err) res.status(500).send("er is iets misgelopen");
-        if (results == "") res.status(400).send(`database vond geen resultaat met id ${req.params.id}`);
+        if (err) res.status(200).send("500 er is iets misgelopen");
+        if (results == "") res.status(200).send(`400 database vond geen resultaat met id ${req.params.id}`);
         res.status(200).send(results);
     })
 };
@@ -35,45 +35,45 @@ const createRijbewijstype = (req, res) => {
     //insert query
     const _connection = mysql.createConnection(config);
     _connection.query(`INSERT INTO rijbewijstypes (rbtNaam, rbtOmschrijving)
-                    VALUES (${req.body.rbtNaam}, ${req.body.rbtOmschrijving});`,
+                    VALUES ("${req.body.rbtNaam}", "${req.body.rbtOmschrijving}");`,
                     (err, results, fields) => {
-                        if (err) res.status(500).send("er is iets misgelopen");
-                        res.status(201).send(results);
+                        if (err) res.status(200).send("500 er is iets misgelopen" + err);
+                        res.status(201).send({rbtId:results.insertId, rbtNaam: req.body.rbtNaam, rbtOmschrijving: req.body.rbtOmschrijving});
                     })
 };
 
 const updateRijbewijstype = (req, res) => {
     //valideer id
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400 id moet een positieve integer zijn");
 
     //query
     const _connection = mysql.createConnection(config);
     _connection.query(`UPDATE
                         rijbewijstypes
                     SET
-                        rbtNaam = ${req.body.rbtNaam},
-                        rbtOmschrijving = ${req.body.rbtOmschrijving}
+                        rbtNaam = "${req.body.rbtNaam}",
+                        rbtOmschrijving = "${req.body.rbtOmschrijving}"
                     WHERE
                         rbtId = ${req.params.id};`,
                     (err, results, fields) => {
-                        if (err) res.status(500).send("er is iets misgelopen");
-                        res.status(200).send(results);
+                        if (err) res.status(200).send("er is iets misgelopen");
+                        res.status(200).send({rbtId: req.params.id, rbtNaam: req.body.rbtNaam, rbtOmschrijving: req.body.rbtOmschrijving});
                     })
 };
 
 const getRijbewijstypeViaRijbewijs = (req, res) => {
     //controleer id
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400 id moet een positieve integer zijn");
 
     //connectie
     const _connection = mysql.createConnection(config);
     _connection.query(`SELECT rbtNaam, rbtOmschrijving FROM rijbewijstypes WHERE rbtId
                         IN (select rtrRijbewijsType from rijbewijstyperijbewijzen where rtrRijbewijsId = ${req.params.id})`,
         (err, results, fields) => {
-        if (err) res.status(500).send("er is iets misgelopen");
-        if (results == "") res.status(400).send(`database vond geen resultaat met id ${req.params.id}`);
+        if (err) res.status(200).send("er is iets misgelopen" + err);
+        if (results == "") res.status(200).send(`400 database vond geen resultaat met id ${req.params.id}`);
         res.status(200).send(results);
     })
 };

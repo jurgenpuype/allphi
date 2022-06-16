@@ -33,7 +33,7 @@ const _valideerRijksregisterNr = (RRNr, geboortedatum) => {
         //parse naar int, vergelijk
         && (1 <= parseInt(_rrnr[3]) <= 998)
         //RRNR controlegetal: overig RRNr als een geheel cijfer, restdeling door 97. 97 - modulus == controlegetal
-        && (97 - (_controle % 97) == parseInt(_rrnr[4]))
+        && ((97 - (_controle % 97)) == parseInt(_rrnr[4]))
     ) return true;
     else return false;
 }
@@ -44,8 +44,9 @@ const _converteerDatum = (datum) => {
     const _datum = datum.split(/[/]+/);
 
     //probeer te converteren
-    try { return new Date(`${_datum[1]} ${_datum[0]} ${_datum[2]}`) }
+    try { const date = new Date(`${_datum[1]} ${_datum[0]} ${_datum[2]}`) }
     catch { return ""}
+    finally {return `${_datum[2]}/${_datum[1]}/${_datum[0]}` }
 }
 
 //valideer datum
@@ -63,7 +64,7 @@ const _valideerId = (id) => {
 const getBestuurders = (req, res) => {
     const _connection = mysql.createConnection(config);
     _connection.query("SELECT * FROM bestuurders", (err, results, fields) => {
-        if (err) res.status(500).send({});
+        if (err) res.status(200).send({});
         res.status(200).send(results);
     })
 }
@@ -72,13 +73,13 @@ const getBestuurders = (req, res) => {
 const getBestuurder = (req, res) => {
     //controleer id
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400: id moet een positieve integer zijn");
 
     //connectie
     const _connection = mysql.createConnection(config);
     _connection.query(`SELECT * FROM bestuurders WHERE besId = ${req.params.id}`, (err, results, fields) => {
-        if (err) res.status(500).send("er is iets misgelopen");
-        if (results == "") res.status(400).send(`database vond geen resultaat met id ${req.params.id}`);
+        if (err) res.status(200).send("500: er is iets misgelopen");
+        if (results == "") res.status(200).send(`database vond geen resultaat met id ${req.params.id}`);
         res.status(200).send(results);
     })
 };
@@ -86,11 +87,9 @@ const getBestuurder = (req, res) => {
 //nieuwe bestuurder toevoegen aan database
 const createBestuurder = (req, res) => {
     //valideer rijksregister en datum
-    if (!_valideerDatum(req.body.besGeboortedatum))
-        res.status(400).send("geboortedatum kon niet herkend worden");
-    if (!_valideerRijksregisterNr(req.body.besRijksregisterNr))
-        res.status(400).send("controle rijksregisternummer gaf een fout");
-
+    if (_valideerDatum(req.body.besGeboortedatum) === false) res.status(200).send(`400: geboortedatum ${req.body.besGeboortedatum} kon niet herkend worden`);
+    if (!_valideerRijksregisterNr(req.body.besRijksregisterNr, req.body.besGeboortedatum)) res.status(200).send("400: controle rijksregisternummer gaf een fout");
+   
     //insert query
     const _connection = mysql.createConnection(config);
     _connection.query(`INSERT INTO
@@ -108,21 +107,34 @@ const createBestuurder = (req, res) => {
                         besTankkaart,
                         besVerwijderd)
                     VALUES
-                        (${req.body.besNaam},
-                        ${req.body.besVoornaam},
-                        ${req.body.besStraatNr},
-                        ${req.body.besPostcode},
-                        ${req.body.besGemeente},
-                        ${req.body.besLand},
-                        ${_converteerDatum(req.body.besGeboortedatum)},
-                        ${req.body.besRijksregisterNr},
+                        ("${req.body.besNaam}",
+                        "${req.body.besVoornaam}",
+                        "${req.body.besStraatNr}",
+                        "${req.body.besPostcode}",
+                        "${req.body.besGemeente}",
+                        "${req.body.besLand}",
+                        "${_converteerDatum(req.body.besGeboortedatum)}",
+                        "${req.body.besRijksregisterNr}",
                         ${req.body.besRijbewijs},
                         ${req.body.besVoertuig},
                         ${req.body.besTankkaart},
                         ${req.body.besVerwijderd});`,
                     (err, results, fields) => {
-                        if (err) res.status(500).send("er is iets misgelopen");
-                        res.status(201).send(results);
+                        if (err) res.status(200).send("500: er is iets misgelopen bij de query:" + err);
+                        res.status(201).send(
+                   {besId: results.insertId, 
+                   besNaam: req.body.besNaam,
+                   besVoornaam: req.body.besVoornaam,
+                   besStraatNr: req.body.besStraatNr,
+                   besPostcode: req.body.besPostcode,
+                   besGemeente: req.body.besGemeente, 
+                   besLand: req.body.besLand,
+                   besGeboortedatum: req.body.besGeboortedatum,
+                   besRijksregisterNr: req.body.besRijksregisterNr,
+                   besRijbewijs: req.body.besRijbewijs,
+                   besVoertuig: req.body.besVoertuig,
+                   besTankkaart: req.body.besTankkaart,
+                   besVerwijderd: req.body.besVerwijderd});
                     })
 };
 
@@ -130,25 +142,21 @@ const createBestuurder = (req, res) => {
 const updateBestuurder = (req, res) => {
     //valideer id, rijksregisternummer en geboortedatum
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
-    if (!_valideerDatum(req.body.besGeboortedatum))
-        res.status(400).send("geboortedatum kon niet verwerkt worden");
-    if (!_valideerRijksregisterNr(req.body.besRijksregisterNr))
-        res.status(400).send("controle van rijksregisternummer faalde");
+        res.status(200).send("400: id moet een positieve integer zijn");
+    if (!_valideerRijksregisterNr(req.body.besRijksregisterNr, req.body.besGeboortedatum)) res.status(200).send("400: controle rijksregisternummer gaf een fout");
 
-    //valideerRijksregisterNr(req.body.besRijksregisterNr);
     const _connection = mysql.createConnection(config);
     _connection.query(`UPDATE
                         bestuurders
                     SET
-                        besNaam = ${req.body.besNaam},
-                        besNaam = ${req.body.besVoornaam},
-                        besStraatNr = ${req.body.besStraatNr},
-                        besPostcode = ${req.body.besPostcode},
-                        besGemeente = ${_bestuurder.besGemeente}, 
-                        besLand = ${req.body.besLand},
-                        besGeboortedatum = ${_converteerDatum(req.body.besGeboortedatum)},
-                        besRijksregisterNr = ${req.body.besRijksregisterNr},
+                        besNaam = "${req.body.besNaam}",
+                        besVoornaam = "${req.body.besVoornaam}",
+                        besStraatNr = "${req.body.besStraatNr}",
+                        besPostcode = "${req.body.besPostcode}",
+                        besGemeente = "${req.body.besGemeente}", 
+                        besLand = "${req.body.besLand}",
+                        besGeboortedatum = "${_converteerDatum(req.body.besGeboortedatum)}",
+                        besRijksregisterNr = "${req.body.besRijksregisterNr}",
                         besRijbewijs = ${req.body.besRijbewijs},
                         besVoertuig = ${req.body.besVoertuig},
                         besTankkaart = ${req.body.besTankkaart},
@@ -156,8 +164,22 @@ const updateBestuurder = (req, res) => {
                     WHERE
                         besId = ${req.params.id};`,
                     (err, results, fields) => {
-                        if (err) res.status(500).send("er is iets misgelopen");
-                        res.status(200).send(results);
+                        if (err) res.status(200).send("500: er is iets misgelopen");
+                        res.status(200).send(
+                   {besId: req.params.id, 
+                   besNaam: req.body.besNaam,
+                   besVoornaam: req.body.besVoornaam,
+                   besStraatNr: req.body.besStraatNr,
+                   besPostcode: req.body.besPostcode,
+                   besGemeente: req.body.besGemeente, 
+                   besLand: req.body.besLand,
+                   besGeboortedatum: req.body.besGeboortedatum,
+                   besRijksregisterNr: req.body.besRijksregisterNr,
+                   besRijbewijs: req.body.besRijbewijs,
+                   besVoertuig: req.body.besVoertuig,
+                   besTankkaart: req.body.besTankkaart,
+                   besVerwijderd: req.body.besVerwijderd
+                   });
                     })
 };
 

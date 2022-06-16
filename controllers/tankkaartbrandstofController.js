@@ -9,11 +9,10 @@ const _valideerId = (id) => {
     else return false;
 }
 
-//alle Rijbewijzen ophalen uit database. error? 400 + lege json array
 const getTankkaartbrandstoffen = (req, res) => {
     const _connection = mysql.createConnection(config);
     _connection.query("SELECT * FROM tankkaartbrandstoffen", (err, results, fields) => {
-        if (err) res.status(500).send({});
+        if (err) res.status(200).send("500:" + err);
         res.status(200).send(results);
     })
 }
@@ -22,13 +21,13 @@ const getTankkaartbrandstoffen = (req, res) => {
 const getTankkaartbrandstof = (req, res) => {
     //controleer id
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400: id moet een positieve integer zijn");
 
     //connectie
     const _connection = mysql.createConnection(config);
     _connection.query(`SELECT * FROM tankkaartbrandstoffen WHERE tabrId = ${req.params.id}`, (err, results, fields) => {
-        if (err) res.status(500).send("er is iets misgelopen");
-        if (results == "") res.status(400).send(`database vond geen resultaat met id ${req.params.id}`);
+        if (err) res.status(200).send("500 error:" + err);
+        if (results == "") res.status(200).send(`400: database vond geen resultaat met id ${req.params.id}`);
         res.status(200).send(results);
     })
 };
@@ -45,8 +44,8 @@ const createTankkaartbrandstof = (req, res) => {
                         ${req.body.tabrBrandstofType}
                         );`,
         (err, results, fields) => {
-            if (err) res.status(500).send("er is iets misgelopen");
-            res.status(201).send(results);
+            if (err) res.status(200).send("500 error:" + err);
+            res.status(201).send({tabrId: results.insertId, tabrTankkaartId: req.body.tabrTankkaartId, tabrBrandstofType: req.body.tabrBrandstofType });
         })
 };
 
@@ -54,7 +53,7 @@ const createTankkaartbrandstof = (req, res) => {
 const updateTankkaartbrandstof = (req, res) => {
     //valideer id, rijksregisternummer en geboortedatum
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400: id moet een positieve integer zijn");
 
     //valideerRijksregisterNr(req.body.besRijksregisterNr);
     const _connection = mysql.createConnection(config);
@@ -66,8 +65,8 @@ const updateTankkaartbrandstof = (req, res) => {
                     WHERE
                         tabrId = ${req.params.id};`,
         (err, results, fields) => {
-            if (err) res.status(500).send("er is iets misgelopen");
-            res.status(200).send(results);
+            if (err) res.status(200).send("500 error:" + err);
+            res.status(200).send({tabrId: req.params.id, tabrTankkaartId: req.body.tabrTankkaartId, tabrBrandstofType: req.body.tabrBrandstofType });
         })
 };
 

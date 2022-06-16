@@ -9,26 +9,24 @@ const _valideerId = (id) => {
     else return false;
 }
 
-//alle brandstoffen ophalen uit database. error? 500 + lege json array
 const getVoertuigtypes = (req, res) => {
     const _connection = mysql.createConnection(config);
     _connection.query("SELECT * FROM voertuigtypes", (err, results, fields) => {
-        if (err) res.status(500).send({});
+        if (err) res.status(200).send({});
         res.status(200).send(results);
     })
 }
 
-//specifieke brandstof ophalen uit database via id
 const getVoertuigtype = (req, res) => {
     //controleer id
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400 id moet een positieve integer zijn");
 
     //connectie
     const _connection = mysql.createConnection(config);
     _connection.query(`SELECT * FROM voertuigtypes WHERE voetId = ${req.params.id}`, (err, results, fields) => {
-        if (err) res.status(500).send("er is iets misgelopen");
-        if (results == "") res.status(400).send(`database vond geen resultaat met id ${req.params.id}`);
+        if (err) res.status(200).send("500 er is iets misgelopen");
+        if (results == "") res.status(200).send(`400 database vond geen resultaat met id ${req.params.id}`);
         res.status(200).send(results);
     })
 };
@@ -38,9 +36,9 @@ const createVoertuigtype = (req, res) => {
     //insert query
     const _connection = mysql.createConnection(config);
     _connection.query(`INSERT INTO voertuigtypes (voetNaam, voetOmschrijving)
-                    VALUES (${req.body.voetNaam}, ${req.body.voetOmschrijving});`,
+                    VALUES ("${req.body.voetNaam}", "${req.body.voetOmschrijving}");`,
         (err, results, fields) => {
-            if (err) res.status(500).send("er is iets misgelopen");
+            if (err) res.status(200).send("500 er is iets misgelopen");
             res.status(201).send(results);
         })
 };
@@ -49,19 +47,19 @@ const createVoertuigtype = (req, res) => {
 const updateVoertuigtype = (req, res) => {
     //valideer id
     if (!_valideerId(req.params.id))
-        res.status(400).send("id moet een positieve integer zijn");
+        res.status(200).send("400 id moet een positieve integer zijn");
 
     //query
     const _connection = mysql.createConnection(config);
     _connection.query(`UPDATE
                         voertuigtypes
                     SET
-                        voetNaam = ${req.body.voetNaam},
-                        voetOmschrijving = ${req.body.voetOmschrijving}
+                        voetNaam = "${req.body.voetNaam}",
+                        voetOmschrijving = "${req.body.voetOmschrijving}"
                     WHERE
                         voetId = ${req.params.id};`,
         (err, results, fields) => {
-            if (err) res.status(500).send("er is iets misgelopen");
+            if (err) res.status(200).send("500 er is iets misgelopen");
             res.status(200).send(results);
         })
 };
