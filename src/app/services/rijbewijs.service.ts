@@ -21,9 +21,9 @@ export class RijbewijsService {
 
   constructor(  private http: HttpClient ) { }
   
-  private rijbewijsUrl = 'http://localhost:3000/rijbewijs';  // URL to web api
-  private rijbewijsTypeUrl = 'http://localhost:3000/rijbewijsType';  // URL to web api
-  private rijbewijstypeRijbewijsUrl = 'http://localhost:3000/rijbewijstypeRijbewijs';  // URL to web api
+  private rijbewijsUrl = 'https://sheer-circular-duchess.glitch.me/rijbewijs';  // URL to web api
+  private rijbewijsTypeUrl = 'https://sheer-circular-duchess.glitch.me/rijbewijsType';  // URL to web api
+  private rijbewijstypeRijbewijsUrl = 'https://sheer-circular-duchess.glitch.me/rijbewijstypeRijbewijs';  // URL to web api
   
   createRijbewijs(rijbewijs: Rijbewijs) : Observable<Rijbewijs> {
      return this.http.post<Rijbewijs>(this.rijbewijsUrl, rijbewijs, httpOptions)

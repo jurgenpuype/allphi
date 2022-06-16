@@ -67,7 +67,6 @@ export class BestuurderComponent implements OnInit {
             if (data) {
                 let bestuurder = data.Bestuurder;
                 let rijbewijs = data.Rijbewijs;
-                alert(rijbewijs.rijCategories);
                 let rijbewijsTypes = data.RijbewijsTypes;
                 let index = this.bestuurders.indexOf(bestuurder);
                 this.bestuurderService.updateBestuurder(bestuurder)
@@ -95,7 +94,13 @@ export class BestuurderComponent implements OnInit {
                                 });
                         }
                     });
-            }                
+            } else {                
+                this.bestuurderService.getBestuurders()
+                    .subscribe(bestuurders => {
+                            this.bestuurders = bestuurders;
+                                this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
+                            });
+            }
         }
       );
   }
@@ -131,7 +136,13 @@ export class BestuurderComponent implements OnInit {
                                 }
                             });
                     });
-            }                
+            } else {                
+                this.bestuurderService.getBestuurders()
+                    .subscribe(bestuurders => {
+                            this.bestuurders = bestuurders;
+                                this.dataSource.data = this.bestuurders.filter(bestuurder => bestuurder.besVerwijderd == 0);
+                            });
+            }
         }
       );
   }
@@ -169,10 +180,6 @@ export class BestuurderComponent implements OnInit {
   }
 
   getBestuurders(): void {
-    //alert(this.rrnummer.print('str') + ' : ' +          
-    //      this.rrnummer.isCorrect() + ' : ' +          
-    //      this.rrnummer.cleaned + ' : ' +          
-    //      this.rrnummer.controlegetal(+this.rrnummer.cleaned));          
     this.bestuurderService.getBestuurders()
         .subscribe(bestuurders => {
             this.bestuurders = bestuurders;

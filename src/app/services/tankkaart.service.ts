@@ -19,7 +19,7 @@ export class TankkaartService {
 
   constructor(  private http: HttpClient ) { }
   
-  private tankkaartUrl = 'http://localhost:3000/tankkaart';  // URL to web api
+  private tankkaartUrl = 'https://sheer-circular-duchess.glitch.me/tankkaart';  // URL to web api
   
   getTankkaarten(): Observable<Tankkaart[]> {
       return this.http.get<Tankkaart[]>(this.tankkaartUrl)
@@ -43,6 +43,13 @@ export class TankkaartService {
        );
   }
 
+   createTankkaart(tankkaart: Tankkaart): Observable<Tankkaart> {
+     return this.http.post<Tankkaart>(this.tankkaartUrl, tankkaart, httpOptions)
+       .pipe(
+        catchError(this.handleError<Tankkaart>(`Create Tankkaart`))
+       );
+  }
+  
   private handleError<T>(operation = 'operation', result?: T) {
       return (error: any): Observable<T> => {
 
