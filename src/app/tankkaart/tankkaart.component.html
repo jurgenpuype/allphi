@@ -35,7 +35,7 @@
 
   <ng-container matColumnDef="tanGeldigheidsdatum">
     <th mat-header-cell *matHeaderCellDef> Geldig tot </th>
-    <td mat-cell *matCellDef="let tankkaart"> {{tankkaart.tanGeldigheidsdatum}} </td>
+    <td mat-cell *matCellDef="let tankkaart"> {{tankkaart.tanGeldigheidsdatum | date: 'dd/MM/yyyy'}} </td>
   </ng-container>
 
   <ng-container matColumnDef="tanPincode">
