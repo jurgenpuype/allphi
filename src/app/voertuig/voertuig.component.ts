@@ -68,11 +68,18 @@ export class VoertuigComponent implements OnInit {
                             this.voertuigService.getVoertuigen()
                                 .subscribe(voertuigen => {
                                     this.voertuigen = voertuigen;
+                                    this.bestuurderService.setVoertuig(newVoertuig.voeBestuurder, newVoertuig.id);
                                     this.dataSource.data = this.voertuigen.filter(voertuig => voertuig.voeVerwijderd == 0);
                                 });
                         }
                     });
-            }                
+            } else {
+                this.voertuigService.getVoertuigen()
+                    .subscribe(voertuigen => {
+                        this.voertuigen = voertuigen;
+                        this.dataSource.data = this.voertuigen.filter(voertuig => voertuig.voeVerwijderd == 0);
+                    });
+            }                                
         }
       );
   }
@@ -93,11 +100,21 @@ export class VoertuigComponent implements OnInit {
                             this.voertuigService.getVoertuigen()
                                 .subscribe(voertuigen => {
                                     this.voertuigen = voertuigen;
+                                    this.bestuurderService.clearVoertuig(this.bestuurders, newVoertuig.id);
+                                    if (newVoertuig.voeBestuurder !== 0) {
+                                        this.bestuurderService.setVoertuig(newVoertuig.voeBestuurder, newVoertuig.id);
+                                    }
                                     this.dataSource.data = this.voertuigen.filter(voertuig => voertuig.voeVerwijderd == 0);
                                 });
                         }
                     });
-            }                
+            } else {
+                this.voertuigService.getVoertuigen()
+                    .subscribe(voertuigen => {
+                        this.voertuigen = voertuigen;
+                        this.dataSource.data = this.voertuigen.filter(voertuig => voertuig.voeVerwijderd == 0);
+                    });
+            }                                
         }
       );
   }

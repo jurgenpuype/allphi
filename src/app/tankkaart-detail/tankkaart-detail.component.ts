@@ -5,6 +5,7 @@ import { TankkaartBrandstofTankkaart } from '../models/tankkaartbrandstofTankkaa
 import { BrandstofTankkaartService} from '../services/brandstof-tankkaart.service';
 import { Bestuurder } from '../models/bestuurder';
 import { BestuurderService} from '../services/bestuurder.service';
+import { TankkaartService} from '../services/tankkaart.service';
 import { Tankkaart} from '../models/tankkaart';
 
 @Component({
@@ -16,15 +17,18 @@ export class TankkaartDetailComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public tankkaart: Tankkaart,
                private bestuurderService: BestuurderService,
+               private tankkaartService: TankkaartService,
                private brandstofTankkaartService: BrandstofTankkaartService,
                public dialogRef: MatDialogRef<TankkaartDetailComponent>) { }
 
   bestuurders: Bestuurder[] = [];
   brandstoffenTankkaart : BrandstofTankkaart[] = [];
   tankkaartBrandstoffen : TankkaartBrandstofTankkaart[] = [];
+  tankkaarten : Tankkaart[] = [];
   fakeArray = new Array(0);
   isFuelsSet : boolean = false;
   brandstoffen : number[] = [];
+  isKaartnummerUnique : boolean = false;
 
   getBestuurders(): void {
     this.bestuurderService.getBestuurders()
@@ -67,6 +71,30 @@ export class TankkaartDetailComponent implements OnInit {
             })
            });
   }
+  
+  getTankkaarten(): void {
+    this.tankkaartService.getTankkaarten()
+        .subscribe(tankkaarten => {
+            this.tankkaarten = tankkaarten;
+        });
+  }
+
+  checkKaartnummerNonUnique(myId: number, myKaartnummer: string): boolean {
+      let _result: boolean = false;
+      this.tankkaarten.forEach(function(tankkaart){  
+        if ((tankkaart.id != myId) && (tankkaart.tanKaartnummer === myKaartnummer.trim())) {
+            _result = true;
+        }
+      });  
+      this.isKaartnummerUnique = !_result;
+      return _result;
+  }
+
+  isFormValid() : boolean {
+      return this.isKaartnummerUnique;
+  }
+
+
   sluiten(): void {
       this.dialogRef.close(false);
   }
@@ -77,6 +105,7 @@ export class TankkaartDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBestuurders();
+    this.getTankkaarten();
     this.getBrandstoffenTankkaart();
     this.getTankkaartBrandstoffen();
   }

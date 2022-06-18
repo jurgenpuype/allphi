@@ -17,8 +17,8 @@ export class Bestuurder {
     public besGeboortedatum : string = '';
     public besRijksregisterNr : string = '';
     public besRijbewijs : number = 0;
-    public besVoertuig : number = 0;
-    public besTankkaart : number = 0;
+    public besVoertuig : number | null = 0;
+    public besTankkaart : number | null = 0;
     public besVerwijderd : number = 0;
         
     constructor() {}

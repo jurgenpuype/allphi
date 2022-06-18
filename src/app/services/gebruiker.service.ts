@@ -12,7 +12,7 @@ export class GebruikerService {
 
   constructor(  private http: HttpClient ) { }
   
-  private gebruikerUrl = 'http://localhost:3000/gebruiker';  // URL to web api
+  private gebruikerUrl = 'https://sheer-circular-duchess.glitch.me/gebruiker';  // URL to web api
   
   getGebruikers(): Observable<Gebruiker[]> {
       return this.http.get<Gebruiker[]>(this.gebruikerUrl)

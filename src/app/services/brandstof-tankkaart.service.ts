@@ -12,8 +12,8 @@ export class BrandstofTankkaartService {
 
   constructor(  private http: HttpClient ) { }
   
-  private brandstofTankkaartUrl = 'http://localhost:3000/brandstofTankkaart';  // URL to web api
-  private TankkaartbrandstofTankkaartUrl = "http://localhost:3000/TankkaartbrandstofTankkaart?tbtTankkaartId=";
+  private brandstofTankkaartUrl = 'https://sheer-circular-duchess.glitch.me/brandstofTankkaart';  // URL to web api
+  private TankkaartbrandstofTankkaartUrl = "https://sheer-circular-duchess.glitch.me/TankkaartbrandstofTankkaart?tbtTankkaartId=";
   
   getBrandstoffenTankkaart(): Observable<BrandstofTankkaart[]> {
       return this.http.get<BrandstofTankkaart[]>(this.brandstofTankkaartUrl)

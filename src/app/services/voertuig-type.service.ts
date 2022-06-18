@@ -19,7 +19,7 @@ export class VoertuigTypeService {
 
   constructor(  private http: HttpClient ) { }
   
-  private voertuigTypeUrl = 'http://localhost:3000/voertuigType';  // URL to web api
+  private voertuigTypeUrl = 'https://sheer-circular-duchess.glitch.me/voertuigType';  // URL to web api
   
   getVoertuigTypes(): Observable<VoertuigType[]> {
       return this.http.get<VoertuigType[]>(this.voertuigTypeUrl)

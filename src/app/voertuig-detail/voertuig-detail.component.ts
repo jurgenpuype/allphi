@@ -5,6 +5,7 @@ import { Voertuig } from '../models/voertuig';
 import { VoertuigType } from '../models/voertuigType';
 import { RijbewijsType } from '../models/rijbewijsType';
 import { VoertuigTypeService} from '../services/voertuig-type.service';
+import { VoertuigService} from '../services/voertuig.service';
 import { BestuurderService} from '../services/bestuurder.service';
 import { RijbewijsService} from '../services/rijbewijs.service';
 import { BrandstofVoertuig } from '../models/brandstofVoertuig';
@@ -20,6 +21,7 @@ export class VoertuigDetailComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public voertuig: Voertuig,
                private voertuigTypeService: VoertuigTypeService,
+               private voertuigService: VoertuigService,
                private brandstofVoertuigService: BrandstofVoertuigService,
                private bestuurderService: BestuurderService,
                private rijbewijsService: RijbewijsService,
@@ -28,7 +30,10 @@ export class VoertuigDetailComponent implements OnInit {
   voertuigTypes : VoertuigType[] = [];
   brandstoffenVoertuig : BrandstofVoertuig[] = [];
   bestuurders : Bestuurder[] = [];
+  voertuigen : Voertuig[] = [];
   rijbewijsTypes : RijbewijsType[] = [];
+  isNrPlaatUnique : boolean = false;
+  isChassisnummerUnique : boolean = false;
 
   getBestuurders(): void {
     this.bestuurderService.getBestuurders()
@@ -40,6 +45,13 @@ export class VoertuigDetailComponent implements OnInit {
   getRijbewijsTypes(): void {
     this.rijbewijsService.getRijbewijsTypes()
         .subscribe(rijbewijsTypes => this.rijbewijsTypes = rijbewijsTypes);
+  }
+
+  getVoertuigen(): void {
+    this.voertuigService.getVoertuigen()
+        .subscribe(voertuigen => {
+            this.voertuigen = voertuigen;
+        });
   }
 
   getVoertuigTypes(): void {
@@ -71,6 +83,32 @@ export class VoertuigDetailComponent implements OnInit {
      return brandstofVoertuigText;
   }      
 
+  checkNummerplaat(id: number, nrPlaat : string) : boolean {
+      let _result: boolean = false;
+      this.voertuigen.forEach(function(voertuig){  
+        if ((voertuig.id != id) && (voertuig.voeNummerplaat === nrPlaat)) {
+            _result = true;
+        }
+      });  
+      this.isNrPlaatUnique = !_result;
+      return _result;
+  }
+
+  checkChassisnummer(id: number, chassisnr  : string) : boolean {
+      let _result: boolean = false;
+      this.voertuigen.forEach(function(voertuig){  
+        if ((voertuig.id != id) && (voertuig.voeChassisNummer === chassisnr.trim())) {
+            _result = true;
+        }
+      });  
+      this.isChassisnummerUnique = !_result;
+      return _result;
+  }
+
+  isFormValid() : boolean {
+      return (this.isChassisnummerUnique && this.isNrPlaatUnique);
+  }
+
   sluiten(): void {
       this.dialogRef.close(false);
   }
@@ -82,6 +120,7 @@ export class VoertuigDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getBestuurders();
     this.getVoertuigTypes();
+    this.getVoertuigen();
     this.getRijbewijsTypes();
     this.getBrandstoffenVoertuig();
   }

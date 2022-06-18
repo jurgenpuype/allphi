@@ -38,6 +38,8 @@ export class BestuurderService {
   updateBestuurder(bestuurder: Bestuurder): Observable<Bestuurder> {
      const id = bestuurder.besId;
      const url = `${this.bestuurderUrl}/${id}`;
+     console.log("test ...");
+     console.log(bestuurder);
      return this.http.put<Bestuurder>(url, bestuurder, httpOptions)
        .pipe(
         catchError(this.handleError<Bestuurder>(`updateBestuurder id=${id}`))
@@ -49,19 +51,43 @@ export class BestuurderService {
        .pipe( catchError(this.handleError<Bestuurder>(`CreateBestuurder`)));
   }
 
-  setVoertuig(bestuurder: number, voertuig: number) {
-     this.getBestuurder(bestuurder)
+  setVoertuig(bestuurderId: number, voertuig: number) {
+      console.log("set voertuig");
+     this.getBestuurder(bestuurderId)
         .subscribe(bestuurder => {
             bestuurder.besVoertuig = voertuig;
-            this.updateBestuurder(bestuurder);
+            this.updateBestuurder(bestuurder).subscribe(newBestuurder => console.log("Bestuurder updated ..."));
         });
   }
   
-  setTankkaart(bestuurder: number, tankkaart: number) {
-     this.getBestuurder(bestuurder)
+  clearVoertuig(bestuurders: Bestuurder[], voertuigId: number) {
+      let _results : Bestuurder[] = [];
+      bestuurders.forEach(bestuurder => {
+          if (bestuurder.besVoertuig === voertuigId) {
+            bestuurder.besVoertuig = null;
+            this.updateBestuurder(bestuurder).subscribe(newBestuurder => _results.push(newBestuurder));
+          }
+      });
+      return _results;
+  }
+
+  clearTankkaart(bestuurders: Bestuurder[], tankkaartId: number) {
+      let _results : Bestuurder[] = [];
+      bestuurders.forEach(bestuurder => {
+          if (bestuurder.besTankkaart === tankkaartId) {
+            bestuurder.besTankkaart = null;
+            this.updateBestuurder(bestuurder).subscribe(newBestuurder => _results.push(newBestuurder));
+          }
+      });
+      return _results;
+  }
+
+  setTankkaart(bestuurderId: number, tankkaart: number) {
+     this.getBestuurder(bestuurderId)
         .subscribe(bestuurder => {
             bestuurder.besTankkaart = tankkaart;
-            this.updateBestuurder(bestuurder);
+            this.updateBestuurder(bestuurder).subscribe(newBestuurder => console.log("Bestuurder updated ..."));
+            console.log("set Tankkaart");
         });
   }
 

@@ -61,6 +61,10 @@ export class TankkaartComponent implements OnInit {
                             console.log("Update mislukt voor voertuig #"+tankkaart.tanId);
                         } else {
                             console.log("Update geslaagd voor voertuig #"+tankkaart.tanId);
+                            this.bestuurderService.clearTankkaart(this.bestuurders, newTankkaart.tanId);
+                            if (newTankkaart.tanBestuurder !== 0) {
+                                this.bestuurderService.setTankkaart(newTankkaart.tanBestuurder, newTankkaart.tanId);
+                            }
                             this.tankkaartService.getTankkaarten()
                                 .subscribe(tankkaarten => {
                                     this.tankkaarten = tankkaarten;
@@ -68,7 +72,47 @@ export class TankkaartComponent implements OnInit {
                                 });
                         }
                     });
-            }                
+            } else {
+                this.tankkaartService.getTankkaarten()
+                    .subscribe(tankkaarten => {
+                        this.tankkaarten = tankkaarten;
+                        this.dataSource.data = this.tankkaarten.filter(tankkaart => tankkaart.tanVerwijderd == 0);
+                    });
+            }               
+        }
+      );
+  }
+
+  createTankkaart(tankkaart: Tankkaart): void {
+      let identityString = "de tankkaart met nummer ||" + tankkaart.tanKaartnummer;
+      let myDialogRef = this.dialog.open(TankkaartDetailComponent, {  width      : '100%',
+                                                                    maxWidth   : '1000px',
+                                                                    data: tankkaart});
+      myDialogRef.afterClosed().subscribe(
+        data => {
+            if (data) {
+                let index = this.tankkaarten.indexOf(tankkaart);
+                this.tankkaartService.createTankkaart(tankkaart)
+                    .subscribe(newTankkaart => {
+                        if (typeof(newTankkaart) == 'undefined') {
+                            console.log("Opslaan van nieuwe tankkaart is mislukt!");
+                        } else {
+                            console.log("Gegevens voor tankkaart #"+newTankkaart.tanId+" werden succesvol opgeslagen!");
+                            this.bestuurderService.setTankkaart(newTankkaart.tanBestuurder, newTankkaart.tanId);
+                            this.tankkaartService.getTankkaarten()
+                                .subscribe(tankkaarten => {
+                                    this.tankkaarten = tankkaarten;
+                                    this.dataSource.data = this.tankkaarten.filter(tankkaart => tankkaart.tanVerwijderd == 0);
+                                });
+                        }
+                    });
+            } else {
+                this.tankkaartService.getTankkaarten()
+                    .subscribe(tankkaarten => {
+                        this.tankkaarten = tankkaarten;
+                        this.dataSource.data = this.tankkaarten.filter(tankkaart => tankkaart.tanVerwijderd == 0);
+                    });
+            }               
         }
       );
   }
@@ -115,6 +159,7 @@ export class TankkaartComponent implements OnInit {
             this.dataSource.data = this.tankkaarten.filter(tankkaart => tankkaart.tanVerwijderd == 0);
         });
   }
+  
   getBestuurders(): void {
     this.bestuurderService.getBestuurders()
         .subscribe(bestuurders => this.bestuurders = bestuurders);

@@ -4,6 +4,7 @@
     <mat-form-field class="Width310 leftFormField" appearance="fill">
         <mat-label>Kaartnummer</mat-label>
         <input matInput type="text" class="form-control" id="merk" required [(ngModel)]="tankkaart.tanKaartnummer" name="tanKaartnummer">
+        <div *ngIf="checkKaartnummerNonUnique(tankkaart.id, tankkaart.tanKaartnummer)" class="Danger">Rijksregisternummer bestaat reeds!</div>
     </mat-form-field>
     <mat-form-field class="Width310 leftFormField" appearance="fill">
         <mat-label>Geldig tot</mat-label>
@@ -36,7 +37,7 @@
     <button mat-raised-button class="leftButton Width250" disabled *ngFor="let noValue of fakeArray; let i = index">
        &nbsp;
     </button>
-    <button mat-raised-button color="accent" class="leftButton" (click)="bewaren(tankkaart)">Bewaren</button>
+    <button mat-raised-button color="accent" class="leftButton" [disabled]="!isFormValid()" (click)="bewaren(tankkaart)">Bewaren</button>
     <button mat-raised-button color="primary" (click)="sluiten()">Annuleren</button>
 
 </mat-dialog-content>

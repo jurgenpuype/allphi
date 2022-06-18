@@ -11,7 +11,7 @@ export class BrandstofVoertuigService {
 
   constructor(  private http: HttpClient ) { }
   
-  private brandstofVoertuigUrl = 'http://localhost:3000/brandstofVoertuig';  // URL to web api
+  private brandstofVoertuigUrl = 'https://sheer-circular-duchess.glitch.me/brandstofVoertuig';  // URL to web api
   
   getBrandstoffenVoertuig(): Observable<BrandstofVoertuig[]> {
       return this.http.get<BrandstofVoertuig[]>(this.brandstofVoertuigUrl)

@@ -2,8 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { Bestuurder } from '../models/bestuurder';
+import { Rijksregisternummer } from '../models/rijksregisternummer';
 import { Voertuig} from '../models/voertuig';
 import { VoertuigService} from '../services/voertuig.service';
+import { BestuurderService} from '../services/bestuurder.service';
 import { Tankkaart} from '../models/tankkaart';
 import { TankkaartService} from '../services/tankkaart.service';
 import { Rijbewijs} from '../models/rijbewijs';
@@ -21,17 +23,23 @@ export class BestuurderDetailComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public bestuurder: Bestuurder,
                private rijbewijsService: RijbewijsService,
                private voertuigService: VoertuigService,
+               private bestuurderService: BestuurderService,
                private tankkaartService: TankkaartService,
                public dialogRef: MatDialogRef<BestuurderDetailComponent>) { }        
 
   voertuigen : Voertuig[] = [];
+  _bestuurder : Bestuurder = this.bestuurder;
   tankkaarten : Tankkaart[] = [];
+  bestuurders : Bestuurder[] = [];
   rijbewijzen : Rijbewijs[] = [];
   rijbewijsTypes : RijbewijsType[] = [];
   rijbewijs : Rijbewijs = new Rijbewijs;
   checked : number[] = [];
   isCheckedSet : boolean = false;
-  
+  isRrNumValid : boolean = false;
+  isRrNumUnique : boolean = false;
+  doesRrNumMatch : boolean = false;
+
   bewaren(bestuurder : Bestuurder): void {
       let rijCategorieen = '';
       this.rijbewijsTypes.forEach( myRijbewijsType => {
@@ -49,9 +57,49 @@ export class BestuurderDetailComponent implements OnInit {
   }
 
   sluiten(): void {
+      this.bestuurder = this._bestuurder;
       this.dialogRef.close(false);
   }
   
+  checkRijksregister(myRrNum: string):boolean {
+      let rrNum : Rijksregisternummer = new Rijksregisternummer(myRrNum);
+      this.isRrNumValid = rrNum.isCorrect();
+      return rrNum.isCorrect();
+  }
+  
+  checkRijksregisterNonUnique(myId: number, myRrNum: string):boolean {
+      let _result: boolean = false;
+      let rrNum : Rijksregisternummer = new Rijksregisternummer(myRrNum);
+      this.bestuurders.forEach(function(bestuurder){  
+        if ((bestuurder.id != myId) && (bestuurder.besRijksregisterNr === rrNum.print('str'))) {
+            _result = true;
+        }
+      });  
+      this.isRrNumUnique = !_result;
+      return _result;
+  }
+
+  checkRijksregisterGbtd(myGeboorteDatum: string, myRrNum: string):boolean {
+      if (myGeboorteDatum.length === 0) {
+          return false;
+      } else {
+        let rrNum : Rijksregisternummer = new Rijksregisternummer(myRrNum);
+        let _arrDate : string[] = myGeboorteDatum.split('/');
+        let geboorteDatum : string = '';
+        if (_arrDate[0].length == 1) {geboorteDatum += '0'; }
+        geboorteDatum += _arrDate[0] + '/';
+        if (_arrDate[1].length == 1) {geboorteDatum += '0'; }
+        geboorteDatum += _arrDate[1] + '/';
+        geboorteDatum += _arrDate[2];
+        this.doesRrNumMatch = (geboorteDatum === rrNum.geboortedatum());
+        return geboorteDatum === rrNum.geboortedatum();
+      }
+  }
+  
+  isFormValid() : boolean {
+      return (this.isRrNumUnique && this.isRrNumValid  && this.doesRrNumMatch);
+  }
+
   manageCategories(id: number){
       this.isCheckedSet = true;
       let _index = this.checked.indexOf(id);
@@ -70,6 +118,13 @@ export class BestuurderDetailComponent implements OnInit {
   getTankkaarten(): void {
     this.tankkaartService.getTankkaarten()
         .subscribe(tankkaarten => this.tankkaarten = tankkaarten);
+  }
+
+  getBestuurders(): void {
+    this.bestuurderService.getBestuurders()
+        .subscribe(bestuurders => {
+            this.bestuurders = bestuurders;
+        });
   }
 
   getRijbewijzen(): void {
@@ -128,6 +183,7 @@ export class BestuurderDetailComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.getBestuurders();
     this.getRijbewijsTypes();
     this.getRijbewijzen();
     this.getVoertuigen();
