@@ -11,18 +11,18 @@
     </mat-form-field>
     <mat-form-field class="Width470 leftFormField" appearance="fill">
         <mat-label>Chassisnummer</mat-label>
-        <input matInput type="text" class="form-control" id="chassisnummer" required [(ngModel)]="voertuig.voeChassisNummer" name="voeChassisNummer">
-        <div *ngIf="checkChassisnummer(voertuig.id, voertuig.voeChassisNummer)" class="Danger">Chassisnummer bestaat reeds!</div>
+        <input matInput type="text" class="form-control" id="chassisnummer" required [(ngModel)]="voertuig.voeChassisnummer" name="voeChassisnummer">
+        <div *ngIf="checkChassisnummer(voertuig.voeId, voertuig.voeChassisnummer)" class="Danger">Chassisnummer bestaat reeds!</div>
     </mat-form-field>
     <mat-form-field class="Width470" appearance="fill">
         <mat-label>Nummerplaat</mat-label>
         <input matInput type="text" class="form-control" id="nummerplaat" required [(ngModel)]="voertuig.voeNummerplaat" name="voeNummerplaat">
-        <div *ngIf="checkNummerplaat(voertuig.id, voertuig.voeNummerplaat)" class="Danger">Nummerplaat bestaat reeds!</div>
+        <div *ngIf="checkNummerplaat(voertuig.voeId, voertuig.voeNummerplaat)" class="Danger">Nummerplaat bestaat reeds!</div>
     </mat-form-field>
     <mat-form-field class="Width250 leftFormField" appearance="fill">
         <mat-label>Type Voertuig</mat-label>
-        <mat-select [(ngModel)]="voertuig.voeTypeWagen" name="voeTypeWagen">
-          <mat-option *ngFor="let voertuigType of voertuigTypes" [value]="voertuigType.id">
+        <mat-select [(ngModel)]="voertuig.voeVoertuigtype" name="voeVoertuigtype">
+          <mat-option *ngFor="let voertuigType of voertuigTypes" [value]="voertuigType.voetId">
             {{voertuigType.voetNaam}}
           </mat-option>
         </mat-select>
@@ -38,7 +38,7 @@
     <mat-form-field class="Width250" appearance="fill">
         <mat-label>Brandstof Voertuig</mat-label>
         <mat-select [(ngModel)]="voertuig.voeBrandstoftype" name="voeBrandstoftype">
-          <mat-option *ngFor="let brandstofVoertuig of brandstoffenVoertuig" [value]="brandstofVoertuig.id">
+          <mat-option *ngFor="let brandstofVoertuig of brandstoffenVoertuig" [value]="brandstofVoertuig.bravId">
             {{brandstofVoertuig.bravNaam}}
           </mat-option>
         </mat-select>
@@ -56,7 +56,7 @@
         <mat-label>Vereist Rijbewijs</mat-label>
         <mat-select [(ngModel)]="voertuig.voeRijbewijs" name="voeRijbewijs">
           <mat-option [value]=""></mat-option>
-          <mat-option *ngFor="let rijbewijsType of rijbewijsTypes" [value]="rijbewijsType.id">
+          <mat-option *ngFor="let rijbewijsType of rijbewijsTypes" [value]="rijbewijsType.rbtId">
             {{rijbewijsType.rbtNaam}}
           </mat-option>
         </mat-select>

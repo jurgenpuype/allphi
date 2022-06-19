@@ -11,13 +11,13 @@
 
 export class Voertuig {
 
-    public id : number = 0;
+    public voeId : number = 0;
     public voeMerk : string = '';
     public voeModel : string = '';
-    public voeChassisNummer : string = '';
+    public voeChassisnummer : string = '';
     public voeNummerplaat : string = '';
     public voeBrandstoftype : number = 0;
-    public voeTypeWagen : number = 0;
+    public voeVoertuigtype : number = 0;
     public voeKleur : string = '';
     public voeAantalDeuren : number = 0;
     public voeBestuurder : number = 0;

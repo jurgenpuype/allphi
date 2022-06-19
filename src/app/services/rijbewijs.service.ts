@@ -21,9 +21,9 @@ export class RijbewijsService {
 
   constructor(  private http: HttpClient ) { }
   
-  private rijbewijsUrl = 'https://sheer-circular-duchess.glitch.me/rijbewijs';  // URL to web api
-  private rijbewijsTypeUrl = 'https://sheer-circular-duchess.glitch.me/rijbewijsType';  // URL to web api
-  private rijbewijstypeRijbewijsUrl = 'https://sheer-circular-duchess.glitch.me/rijbewijstypeRijbewijs';  // URL to web api
+  private rijbewijsUrl = 'http://galileiit-001-site1.htempurl.com/rijbewijs';  // URL to web api
+  private rijbewijsTypeUrl = 'http://galileiit-001-site1.htempurl.com/rijbewijstype';  // URL to web api
+  private rijbewijstypeRijbewijsUrl = 'http://galileiit-001-site1.htempurl.com/rijbewijstyperijbewijs';  // URL to web api
   
   createRijbewijs(rijbewijs: Rijbewijs) : Observable<Rijbewijs> {
      return this.http.post<Rijbewijs>(this.rijbewijsUrl, rijbewijs, httpOptions)
@@ -31,7 +31,7 @@ export class RijbewijsService {
   }
 
   updateRijbewijs(rijbewijs: Rijbewijs) : Observable<Rijbewijs> {
-     const id = rijbewijs.id;
+     const id = rijbewijs.rijId;
      const url = `${this.rijbewijsUrl}/${id}`;
      return this.http.put<Rijbewijs>(url, rijbewijs, httpOptions)
        .pipe( catchError(this.handleError<Rijbewijs>(`updateRijbewijs id=${id}`)));
@@ -56,7 +56,7 @@ export class RijbewijsService {
   }
   deleteRijbewijstypesRijbewijs(rtr : RijbewijstypeRijbewijs[]): RijbewijstypeRijbewijs[] {
       let _results : RijbewijstypeRijbewijs[] = [];
-      rtr.forEach(val => { this.deleteRijbewijstypeRijbewijs(val.id).subscribe(newRijbewijstypeRijbewijs => _results.push(newRijbewijstypeRijbewijs))});
+      rtr.forEach(val => { this.deleteRijbewijstypeRijbewijs(val.rtrId).subscribe(newRijbewijstypeRijbewijs => _results.push(newRijbewijstypeRijbewijs))});
       return _results;
   }
   
@@ -76,10 +76,8 @@ export class RijbewijsService {
                     .pipe( catchError(this.handleError<RijbewijsType[]>('getRijbewijsTypes', [])) );
   }
 
-  getRijbewijsCategorieen(rijId : number): Observable<RijbewijstypeRijbewijs[]> {
-      const baseUrl = this.rijbewijstypeRijbewijsUrl + '/?rtrRijbewijsId=';
-      const url = `${baseUrl}${rijId}`;
-      return this.http.get<RijbewijstypeRijbewijs[]>(url)
+  getRijbewijsCategorieen(): Observable<RijbewijstypeRijbewijs[]> {
+      return this.http.get<RijbewijstypeRijbewijs[]>(this.rijbewijstypeRijbewijsUrl)
                     .pipe( catchError(this.handleError<RijbewijstypeRijbewijs[]>('getRijbewijsTypes', [])) );
   }
   getRijbewijsType(id: number): Observable<RijbewijsType> {

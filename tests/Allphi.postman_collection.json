@@ -1,0 +1,1456 @@
+{
+	"info": {
+		"_postman_id": "63c6f862-7405-438e-b8a4-6d803de17c05",
+		"name": "Allphi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10425770"
+	},
+	"item": [
+		{
+			"name": "Rijbewijs",
+			"item": [
+				{
+					"name": "Rijbewijs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 2,\r\n      \"rijNummer\": \"2456897531\",\r\n      \"rijAfgifte\": \"28/04/2013\",\r\n      \"rijGeldigheid\": \"28/04/2023\",\r\n      \"rijCategories\": \"AM A B C\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijs",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rijbewijs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 2,\r\n      \"rijNummer\": \"2456897531\",\r\n      \"rijAfgifte\": \"28/04/2013\",\r\n      \"rijGeldigheid\": \"28/04/2023\",\r\n      \"rijCategories\": \"AM A B C\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijs/4",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijs",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rijbewijs",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 2,\r\n      \"rijNummer\": \"2456897531\",\r\n      \"rijAfgifte\": \"28/04/2013\",\r\n      \"rijGeldigheid\": \"28/04/2023\",\r\n      \"rijCategories\": \"AM A B C\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijs/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rijbewijs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 2,\r\n      \"rijNummer\": \"2456897531\",\r\n      \"rijAfgifte\": \"28/04/2013\",\r\n      \"rijGeldigheid\": \"28/04/2023\",\r\n      \"rijCategories\": \"AM A B C\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijs/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rijbewijs (All)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 2,\r\n      \"rijNummer\": \"2456897531\",\r\n      \"rijAfgifte\": \"28/04/2013\",\r\n      \"rijGeldigheid\": \"28/04/2023\",\r\n      \"rijCategories\": \"AM A B C\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijs",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bestuurder",
+			"item": [
+				{
+					"name": "Bestuurder",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"besId\": 1,\r\n      \"besNaam\": \"Wouters\",\r\n      \"besVoornaam\": \"Diane\",\r\n      \"besStraatNr\": \"Veldstraat 12\",\r\n      \"besPostcode\": \"8500\",\r\n      \"besGemeente\": \"Kortrijk\",\r\n      \"besLand\": \"België\",\r\n      \"besGeboortedatum\": \"24/3/1974\",\r\n      \"besRijksregisterNr\": \"74.03.24-208.65\",\r\n      \"besRijbewijs\": 0,\r\n      \"besVoertuig\": 0,\r\n      \"besTankkaart\": 0,\r\n      \"besVerwijderd\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/bestuurder",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"bestuurder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bestuurder",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"besId\": 1,\r\n      \"besNaam\": \"Wouters\",\r\n      \"besVoornaam\": \"Diane\",\r\n      \"besStraatNr\": \"Kerkstraat 12\",\r\n      \"besPostcode\": \"8500\",\r\n      \"besGemeente\": \"Kortrijk\",\r\n      \"besLand\": \"België\",\r\n      \"besGeboortedatum\": \"24/3/1974\",\r\n      \"besRijksregisterNr\": \"74.03.24-208.65\",\r\n      \"besRijbewijs\": 1,\r\n      \"besVoertuig\": null,\r\n      \"besTankkaart\": null,\r\n      \"besVerwijderd\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/bestuurder/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"bestuurder",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bestuurder",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/bestuurder/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"bestuurder",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bestuurder (All)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/bestuurder",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"bestuurder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Bestuurder",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/bestuurder/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"bestuurder",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tankkaart",
+			"item": [
+				{
+					"name": "Tankkaart (All)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaart",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tankkaart",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaart/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaart",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tankkaart",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaart/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tankkaart (Error)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"tanKaartnummer\": \"1234 5678 9876 32\",\r\n      \"tanGeldigheidsdatum\": \"30/04/2023\",\r\n      \"tanPincode\": \"1234\",\r\n      \"tanFuels\": \"1 5 7 8\",\r\n      \"tanGeblokkeerd\": 0,\r\n      \"tanVerwijderd\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaart",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tankkaart",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"tanId\": 1,\r\n        \"tanKaartnummer\": \"7405 0697 5442 1234\",\r\n        \"tanGeldigheidsdatum\": \"31/03/2023\",\r\n        \"tanPincode\": \"5247\",\r\n        \"tanGeblokkeerd\": 0,\r\n        \"tanFuels\": null,\r\n        \"tanVerwijderd\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaart/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaart",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Voertuig",
+			"item": [
+				{
+					"name": "Voertuig",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n      \"voeId\": 2,\r\n      \"voeMerk\": \"BMW\",\r\n      \"voeModel\": \"335i\",\r\n      \"voeChassisNummer\": \"WBAKG7C55BE262507\",\r\n      \"voeNummerplaat\": \"1-VFC-854\",\r\n      \"voeBrandstoftype\": 1,\r\n      \"voeTypeWagen\": 1,\r\n      \"voeKleur\": \"Blauw\",\r\n      \"voeAantalDeuren\": 3,\r\n      \"voeRijbewijs\": 4,\r\n      \"voeVerwijderd\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuig",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Voertuig",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n      \"voeId\": 2,\r\n      \"voeMerk\": \"BMW\",\r\n      \"voeModel\": \"335i\",\r\n      \"voeChassisNummer\": \"WBAKG7C55BE262507\",\r\n      \"voeNummerplaat\": \"1-VFC-854\",\r\n      \"voeBrandstoftype\": 1,\r\n      \"voeTypeWagen\": 1,\r\n      \"voeKleur\": \"Wit\",\r\n      \"voeAantalDeuren\": 3,\r\n      \"voeRijbewijs\": 4,\r\n      \"voeVerwijderd\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuig/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuig",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Voertuig",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuig/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuig",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Voertuig (All)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuig",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Voertuig",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuig/7",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuig",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TankkaartBrandstof",
+			"item": [
+				{
+					"name": "TankkaartBrandstof (All)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaartbrandstof",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaartbrandstof"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TankkaartBrandstof (All)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/dev/tankkaartbrandstoffen",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"dev",
+								"tankkaartbrandstoffen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TankkaartBrandstof",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n      \"tabrTankkaartId\": 2,\r\n      \"tabrBrandstofType\": 1\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaartbrandstof",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaartbrandstof"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TankkaartBrandstof",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n      \"tabrTankkaartId\": 2,\r\n      \"tabrBrandstofType\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaartbrandstof/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaartbrandstof",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TankkaartBrandstof",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/tankkaartbrandstof/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"tankkaartbrandstof",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RijbewijsType",
+			"item": [
+				{
+					"name": "RijbewijsType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"rbtNaam\": \"B\",\r\n      \"rbtOmschrijving\": \"Vierwielers met motor (auto’s, bestelwagens, sommige quads en mobilhomes) met een MTM van ten hoogste 3500kg\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstype",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijsType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"rbtNaam\": \"B\",\r\n      \"rbtOmschrijving\": \"Vierwielers met motor (auto’s, bestelwagens, sommige quads en mobilhomes) met een MTM van ten hoogste 3500kg)\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstype/4",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstype",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijsType (All)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstype",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijsType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstype/4",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstype",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijsType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstype/5",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstype",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BrandstofVoertuig",
+			"item": [
+				{
+					"name": "BrandstofVoertuig",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"bravNaam\": \"Benzine\",\r\n      \"bravOmschrijving\": \"E5 (Super 95) en E10 (Super 98)\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstofvoertuig",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstofvoertuig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofVoertuig (Error)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"bravNaam\": \"Hybride - Diesel\",\r\n        \"bravOmschrijving\": \"Elektriciteit en B7 (Diesel)\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstofvoertuig/6",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstofvoertuig",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofVoertuig (All)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstofvoertuig",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstofvoertuig"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofVoertuig",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstofvoertuig/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstofvoertuig",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofVoertuig",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstofvoertuig/6",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstofvoertuig",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "BrandstofTankkaart",
+			"item": [
+				{
+					"name": "BrandstofTankkaart",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"bratId\": 1, \"bratNaam\": \"E5 (Super 98)\",\"bratOmschrijving\": \"Benzine (Octaan 98) met maximaal 5% Bio-ethanol.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstoftankkaart",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstoftankkaart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofTankkaart",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"bratId\": 1, \"bratNaam\": \"E5 (Super 98)\",\"bratOmschrijving\": \"Benzine (Octaan 98) met maximaal 5% Bio-ethanol.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstoftankkaart/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstoftankkaart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofTankkaart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"bratId\": 1, \"bratNaam\": \"E5 (Super 98)\",\"bratOmschrijving\": \"Benzine (Octaan 98) met maximaal 5% Bio-ethanol.\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstoftankkaart/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstoftankkaart",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofTankkaart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstoftankkaart/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstoftankkaart",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BrandstofTankkaart (All)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/brandstoftankkaart",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"brandstoftankkaart"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "VoertuigType",
+			"item": [
+				{
+					"name": "VoertuigType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"voetNaam\": \"Bestelwagen\",\r\n        \"voetOmschrijving\": \"(N1) Voor vervoer van goederen, met een MTM van ten hoogste 3500kg.\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuigtype",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuigtype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VoertuigType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n      \"voetNaam\": \"Bestelwagen\",\r\n      \"voetOmschrijving\": \"(N1) Voor vervoer van goederen, met een MTM van ten hoogste 3500kg.\"\r\n    }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuigtype/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuigtype",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VoertuigType (All)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n      \"id\": 1,\r\n      \"voetNaam\": \"Personenwagen\",\r\n      \"voetOmschrijving\": \"(M1) Voor vervoer van (maximum 8) personen, met een MTM van 3500kg.\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuigtype",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuigtype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VoertuigType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuigtype/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuigtype",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "VoertuigType",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/voertuigtype/1",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"voertuigtype",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RijbewijstypeRijbewijs",
+			"item": [
+				{
+					"name": "RijbewijstypeRijbewijs (All)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstyperijbewijs",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstyperijbewijs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijstypeRijbewijs",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n        \"rtrRijbewijsId\": 2,\r\n        \"rtrRijbewijsType\": 6\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstyperijbewijs/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstyperijbewijs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijstypeRijbewijs",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstyperijbewijs/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstyperijbewijs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijstypeRijbewijs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstyperijbewijs/2",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstyperijbewijs",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RijbewijstypeRijbewijs",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n      \"rtrRijbewijsId\": 2,\r\n      \"rtrRijbewijsType\": 4\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://galileiit-001-site1.htempurl.com/rijbewijstyperijbewijs",
+							"protocol": "http",
+							"host": [
+								"galileiit-001-site1",
+								"htempurl",
+								"com"
+							],
+							"path": [
+								"rijbewijstyperijbewijs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

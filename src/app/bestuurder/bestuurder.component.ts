@@ -69,6 +69,7 @@ export class BestuurderComponent implements OnInit {
                 let rijbewijs = data.Rijbewijs;
                 let rijbewijsTypes = data.RijbewijsTypes;
                 let index = this.bestuurders.indexOf(bestuurder);
+                console.log(rijbewijs.rijCategories);
                 this.bestuurderService.updateBestuurder(bestuurder)
                     .subscribe(newBestuurder => {
                         if (typeof(newBestuurder) == 'undefined') {
@@ -82,10 +83,11 @@ export class BestuurderComponent implements OnInit {
                                         .subscribe(rijbewijzen => this.rijbewijzen = rijbewijzen);
                                 });
                             //update rijbewijscategorieeen
-                            this.rijbewijsService.getRijbewijsCategorieen(rijbewijs.id)
+                            this.rijbewijsService.getRijbewijsCategorieen()
                                 .subscribe(rijbewijsCategorieen => {
-                                    this.rijbewijsService.deleteRijbewijstypesRijbewijs(rijbewijsCategorieen);
-                                    this.rijbewijsService.saveRijbewijstypesRijbewijs(rijbewijs.id, rijbewijsTypes);
+                                    let Cats = rijbewijsCategorieen.filter(rijbewijsCategorie => rijbewijsCategorie.rtrRijbewijsId == rijbewijs.rijId);
+                                    this.rijbewijsService.deleteRijbewijstypesRijbewijs(Cats);
+                                    this.rijbewijsService.saveRijbewijstypesRijbewijs(rijbewijs.rijId, rijbewijsTypes);
                             });
                             this.bestuurderService.getBestuurders()
                                 .subscribe(bestuurders => {
@@ -119,8 +121,8 @@ export class BestuurderComponent implements OnInit {
                 this.rijbewijsService.createRijbewijs(rijbewijs)
                     .subscribe(newRijbewijs => {
                         console.log('createRijbewijs uitgevoerd!');
-                        bestuurder.besRijbewijs = newRijbewijs.id;
-                        this.rijbewijsService.saveRijbewijstypesRijbewijs(newRijbewijs.id, rijbewijsTypes);
+                        bestuurder.besRijbewijs = newRijbewijs.rijId;
+                        this.rijbewijsService.saveRijbewijstypesRijbewijs(newRijbewijs.rijId, rijbewijsTypes);
                         this.bestuurderService.createBestuurder(bestuurder)
                             .subscribe(newBestuurder => {
                                 if (typeof(newBestuurder) == 'undefined') {
@@ -205,7 +207,7 @@ export class BestuurderComponent implements OnInit {
   getVoertuig(voertuigId: number) :string {
       let nrPlaat = "-";
       this.voertuigen.forEach(function(voertuig){  
-        if (voertuig.id == voertuigId) { nrPlaat = voertuig.voeNummerplaat; }
+        if (voertuig.voeId == voertuigId) { nrPlaat = voertuig.voeNummerplaat; }
       });  
       return nrPlaat;
   }      
@@ -221,7 +223,7 @@ export class BestuurderComponent implements OnInit {
   getRijbewijs(rijbewijsId: number): string {
       let rijbewijsCategories = "";
       this.rijbewijzen.forEach(function(rijbewijs){  
-        if (rijbewijs.id == rijbewijsId) { 
+        if (rijbewijs.rijId == rijbewijsId) { 
             rijbewijsCategories = rijbewijs.rijCategories; 
         }
       });  

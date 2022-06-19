@@ -64,11 +64,11 @@ export class VoertuigComponent implements OnInit {
                         if (typeof(newVoertuig) == 'undefined') {
                             console.log("Aanmaken nieuw voertuig mislukt!");
                         } else {
-                            console.log("Voertuig #"+newVoertuig.id+" werd successvol aangemaakt!");
+                            console.log("Voertuig #"+newVoertuig.voeId+" werd successvol aangemaakt!");
                             this.voertuigService.getVoertuigen()
                                 .subscribe(voertuigen => {
                                     this.voertuigen = voertuigen;
-                                    this.bestuurderService.setVoertuig(newVoertuig.voeBestuurder, newVoertuig.id);
+                                    this.bestuurderService.setVoertuig(newVoertuig.voeBestuurder, newVoertuig.voeId);
                                     this.dataSource.data = this.voertuigen.filter(voertuig => voertuig.voeVerwijderd == 0);
                                 });
                         }
@@ -94,15 +94,15 @@ export class VoertuigComponent implements OnInit {
                 this.voertuigService.updateVoertuig(voertuig)
                     .subscribe(newVoertuig => {
                         if (typeof(newVoertuig) == 'undefined') {
-                            console.log("Update mislukt voor voertuig #"+voertuig.id);
+                            console.log("Update mislukt voor voertuig #"+voertuig.voeId);
                         } else {
-                            console.log("Update geslaagd voor voertuig #"+voertuig.id);
+                            console.log("Update geslaagd voor voertuig #"+voertuig.voeId);
                             this.voertuigService.getVoertuigen()
                                 .subscribe(voertuigen => {
                                     this.voertuigen = voertuigen;
-                                    this.bestuurderService.clearVoertuig(this.bestuurders, newVoertuig.id);
+                                    this.bestuurderService.clearVoertuig(this.bestuurders, newVoertuig.voeId);
                                     if (newVoertuig.voeBestuurder !== 0) {
-                                        this.bestuurderService.setVoertuig(newVoertuig.voeBestuurder, newVoertuig.id);
+                                        this.bestuurderService.setVoertuig(voertuig.voeBestuurder, newVoertuig.voeId);
                                     }
                                     this.dataSource.data = this.voertuigen.filter(voertuig => voertuig.voeVerwijderd == 0);
                                 });
@@ -143,7 +143,7 @@ export class VoertuigComponent implements OnInit {
   getBrandstof(id: number): string {
       let brandstofNaam = '';
       this.brandstoffen.forEach(function(brandstof){  
-        if (brandstof.id == id) { brandstofNaam = brandstof.bravNaam; }
+        if (brandstof.bravId == id) { brandstofNaam = brandstof.bravNaam; }
       });  
       return brandstofNaam;
   }
@@ -164,7 +164,7 @@ export class VoertuigComponent implements OnInit {
   getVoertuigType(voertuigTypeId: number): string {
       let voertuigTypeText = "";
       this.voertuigTypes.forEach(function(voertuigType){  
-        if (voertuigType.id == voertuigTypeId) { 
+        if (voertuigType.voetId == voertuigTypeId) { 
             voertuigTypeText = voertuigType.voetNaam; 
         }
       });  
@@ -183,9 +183,9 @@ export class VoertuigComponent implements OnInit {
                 this.voertuigService.updateVoertuig(voertuig)
                     .subscribe(newVoertuig => {
                         if (typeof(newVoertuig) == 'undefined') {
-                            console.log("Update mislukt voor voertuig #"+voertuig.id);
+                            console.log("Update mislukt voor voertuig #"+voertuig.voeId);
                         } else {
-                            console.log("Update geslaagd voor voertuig #"+voertuig.id);
+                            console.log("Update geslaagd voor voertuig #"+voertuig.voeId);
                             this.voertuigService.getVoertuigen()
                                 .subscribe(voertuigen => {
                                     this.voertuigen = voertuigen;

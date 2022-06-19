@@ -4,7 +4,7 @@
     <mat-form-field class="Width310 leftFormField" appearance="fill">
         <mat-label>Kaartnummer</mat-label>
         <input matInput type="text" class="form-control" id="merk" required [(ngModel)]="tankkaart.tanKaartnummer" name="tanKaartnummer">
-        <div *ngIf="checkKaartnummerNonUnique(tankkaart.id, tankkaart.tanKaartnummer)" class="Danger">Rijksregisternummer bestaat reeds!</div>
+        <div *ngIf="checkKaartnummerNonUnique(tankkaart.tanId, tankkaart.tanKaartnummer)" class="Danger">Rijksregisternummer bestaat reeds!</div>
     </mat-form-field>
     <mat-form-field class="Width310 leftFormField" appearance="fill">
         <mat-label>Geldig tot</mat-label>

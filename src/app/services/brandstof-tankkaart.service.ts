@@ -12,8 +12,8 @@ export class BrandstofTankkaartService {
 
   constructor(  private http: HttpClient ) { }
   
-  private brandstofTankkaartUrl = 'https://sheer-circular-duchess.glitch.me/brandstofTankkaart';  // URL to web api
-  private TankkaartbrandstofTankkaartUrl = "https://sheer-circular-duchess.glitch.me/TankkaartbrandstofTankkaart?tbtTankkaartId=";
+  private brandstofTankkaartUrl = 'http://galileiit-001-site1.htempurl.com/brandstoftankkaart';  // URL to web api
+  private TankkaartbrandstofTankkaartUrl = 'http://galileiit-001-site1.htempurl.com/TankkaartbrandstofTankkaart';
   
   getBrandstoffenTankkaart(): Observable<BrandstofTankkaart[]> {
       return this.http.get<BrandstofTankkaart[]>(this.brandstofTankkaartUrl)
@@ -29,7 +29,8 @@ export class BrandstofTankkaartService {
   }
   
   getTankkaartBrandstoffen(id : number): Observable<TankkaartBrandstofTankkaart[]> {
-      return this.http.get<TankkaartBrandstofTankkaart[]>(this.TankkaartbrandstofTankkaartUrl+id)
+     const url = `${this.TankkaartbrandstofTankkaartUrl}/${id}`;
+      return this.http.get<TankkaartBrandstofTankkaart[]>(url)
                     .pipe( catchError(this.handleError<TankkaartBrandstofTankkaart[]>('getTankkaartBrandstoffen', [])) );
   };
   

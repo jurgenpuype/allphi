@@ -43,11 +43,12 @@ export class BestuurderDetailComponent implements OnInit {
   bewaren(bestuurder : Bestuurder): void {
       let rijCategorieen = '';
       this.rijbewijsTypes.forEach( myRijbewijsType => {
-                                        if (this.checked.includes(myRijbewijsType.id)) { 
+                                        if (this.checked.includes(myRijbewijsType.rbtId)) { 
                                             rijCategorieen += myRijbewijsType.rbtNaam + ' ';
                                         }
                                    });
-      this.rijbewijs.rijCategories = rijCategorieen;
+      this.rijbewijs.rijCategories = rijCategorieen.trim();
+      console.log(this.rijbewijs.rijCategories);
       let data = {
           "Bestuurder"      : bestuurder,
           "Rijbewijs"       : this.rijbewijs,
@@ -71,7 +72,7 @@ export class BestuurderDetailComponent implements OnInit {
       let _result: boolean = false;
       let rrNum : Rijksregisternummer = new Rijksregisternummer(myRrNum);
       this.bestuurders.forEach(function(bestuurder){  
-        if ((bestuurder.id != myId) && (bestuurder.besRijksregisterNr === rrNum.print('str'))) {
+        if ((bestuurder.besId != myId) && (bestuurder.besRijksregisterNr === rrNum.print('str'))) {
             _result = true;
         }
       });  
@@ -103,6 +104,7 @@ export class BestuurderDetailComponent implements OnInit {
   manageCategories(id: number){
       this.isCheckedSet = true;
       let _index = this.checked.indexOf(id);
+      console.log(this.checked);
       if (_index === -1) {
         this.checked.push(id);
       } else {
@@ -132,7 +134,7 @@ export class BestuurderDetailComponent implements OnInit {
         .subscribe(rijbewijzen => {
             this.rijbewijzen = rijbewijzen;
             this.rijbewijzen.forEach(myRijbewijs => {
-                if (myRijbewijs.id === this.bestuurder.besRijbewijs) {this.rijbewijs = myRijbewijs};
+                if (myRijbewijs.rijId === this.bestuurder.besRijbewijs) {this.rijbewijs = myRijbewijs};
             })
         })
   }
@@ -152,7 +154,7 @@ export class BestuurderDetailComponent implements OnInit {
       let rijbewijsId = this.bestuurder.besRijbewijs;
       let rijbewijsCategories = "";
       this.rijbewijzen.forEach(function(rijbewijs){  
-        if (rijbewijs.id == rijbewijsId) { 
+        if (rijbewijs.rijId == rijbewijsId) { 
             rijbewijsCategories = rijbewijs.rijCategories; 
         }
       });  
@@ -164,7 +166,7 @@ export class BestuurderDetailComponent implements OnInit {
       let that = this;
       this.rijbewijsTypes.forEach(function(rijbewijsType){  
         if (rijbewijsType.rbtNaam == rbType) { 
-            _id = rijbewijsType.id; 
+            _id = rijbewijsType.rbtId; 
         }
       });  
      return _id;
@@ -172,6 +174,7 @@ export class BestuurderDetailComponent implements OnInit {
 
   hasRijbewijsType(rbType: string): boolean {
     let rijbewijsCategories = this.rijbewijs.rijCategories.split(' ');
+    console.log(rijbewijsCategories);
     let id = this.getRijbewijsType(rbType);
     let _index = this.checked.indexOf(id);
     if (rijbewijsCategories.includes(rbType)) {

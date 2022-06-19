@@ -61,7 +61,7 @@ export class VoertuigDetailComponent implements OnInit {
   getVoertuigType(voertuigTypeId: number): string {
       let voertuigTypeText = "";
       this.voertuigTypes.forEach(function(voertuigType){  
-        if (voertuigType.id == voertuigTypeId) { 
+        if (voertuigType.voetId == voertuigTypeId) { 
             voertuigTypeText = voertuigType.voetOmschrijving; 
         }
       });  
@@ -76,7 +76,7 @@ export class VoertuigDetailComponent implements OnInit {
   getBrandstofVoertuig(brandstofVoertuigId: number): string {
       let brandstofVoertuigText = "";
       this.brandstoffenVoertuig.forEach(function(brandstofVoertuig){  
-        if (brandstofVoertuig.id == brandstofVoertuigId) { 
+        if (brandstofVoertuig.bravId == brandstofVoertuigId) { 
             brandstofVoertuigText = brandstofVoertuig.bravNaam; 
         }
       });  
@@ -86,7 +86,7 @@ export class VoertuigDetailComponent implements OnInit {
   checkNummerplaat(id: number, nrPlaat : string) : boolean {
       let _result: boolean = false;
       this.voertuigen.forEach(function(voertuig){  
-        if ((voertuig.id != id) && (voertuig.voeNummerplaat === nrPlaat)) {
+        if ((voertuig.voeId != id) && (voertuig.voeNummerplaat === nrPlaat)) {
             _result = true;
         }
       });  
@@ -97,7 +97,7 @@ export class VoertuigDetailComponent implements OnInit {
   checkChassisnummer(id: number, chassisnr  : string) : boolean {
       let _result: boolean = false;
       this.voertuigen.forEach(function(voertuig){  
-        if ((voertuig.id != id) && (voertuig.voeChassisNummer === chassisnr.trim())) {
+        if ((voertuig.voeId != id) && (voertuig.voeChassisnummer === chassisnr.trim())) {
             _result = true;
         }
       });  

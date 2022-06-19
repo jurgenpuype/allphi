@@ -82,7 +82,7 @@ export class TankkaartDetailComponent implements OnInit {
   checkKaartnummerNonUnique(myId: number, myKaartnummer: string): boolean {
       let _result: boolean = false;
       this.tankkaarten.forEach(function(tankkaart){  
-        if ((tankkaart.id != myId) && (tankkaart.tanKaartnummer === myKaartnummer.trim())) {
+        if ((tankkaart.tanId != myId) && (tankkaart.tanKaartnummer === myKaartnummer.trim())) {
             _result = true;
         }
       });  

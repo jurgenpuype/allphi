@@ -7,7 +7,7 @@
   
 export class BrandstofVoertuig {
     
-    public id : number = 0;
+    public bravId : number = 0;
     public bravNaam : string = '';
     public bravOmschrijving : string = '';
         

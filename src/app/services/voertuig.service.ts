@@ -19,7 +19,7 @@ export class VoertuigService {
 
   constructor(  private http: HttpClient ) { }
   
-  private voertuigUrl = 'https://sheer-circular-duchess.glitch.me/voertuig';  // URL to web api
+  private voertuigUrl = 'http://galileiit-001-site1.htempurl.com/voertuig';  // URL to web api
   
   getVoertuigen(): Observable<Voertuig[]> {
       return this.http.get<Voertuig[]>(this.voertuigUrl)
@@ -42,7 +42,7 @@ export class VoertuigService {
   }
 
    updateVoertuig(voertuig: Voertuig): Observable<Voertuig> {
-     const id = voertuig.id;
+     const id = voertuig.voeId;
      const url = `${this.voertuigUrl}/${id}`;
      return this.http.put<Voertuig>(url, voertuig, httpOptions)
        .pipe(

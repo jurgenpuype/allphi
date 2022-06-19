@@ -13,7 +13,7 @@
   
 export class Rijbewijs {
 
-    public id : number = 0;
+    public rijId : number = 0;
     public rijNummer : string = '';
     public rijAfgifte : string = '';
     public rijGeldigheid : string = '';

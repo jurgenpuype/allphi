@@ -6,7 +6,7 @@
 
 export class RijbewijsType {
     constructor(
-        public id : number,
+        public rbtId : number,
         public rbtNaam : string,
         public rbtOmschrijving : string
     ) {}

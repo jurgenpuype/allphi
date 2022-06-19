@@ -7,7 +7,7 @@
   
 export class VoertuigType {
     
-    public id : number = 0;
+    public voetId : number = 0;
     public voetNaam : string = '';
     public voetOmschrijving : string = '';
         

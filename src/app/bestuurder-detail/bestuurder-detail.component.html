@@ -33,13 +33,13 @@
         <mat-label>Rijksregisternummer</mat-label>
         <input matInput type="text" class="form-control" id="naam" required [(ngModel)]="bestuurder.besRijksregisterNr" name="besRijksregisterNr">
         <div *ngIf="!checkRijksregister(bestuurder.besRijksregisterNr)" class="Danger">Rijksregisternummer is niet Geldig!</div>
-        <div *ngIf="checkRijksregisterNonUnique(bestuurder.id, bestuurder.besRijksregisterNr)" class="Danger">Rijksregisternummer bestaat reeds!</div>
+        <div *ngIf="checkRijksregisterNonUnique(bestuurder.besId, bestuurder.besRijksregisterNr)" class="Danger">Rijksregisternummer bestaat reeds!</div>
         <div *ngIf="!checkRijksregisterGbtd(bestuurder.besGeboortedatum, bestuurder.besRijksregisterNr)" class="Danger">Rijksregisternummer komt niet overeen met geboortedatum!</div>
     </mat-form-field>
     <mat-form-field class="Width470 leftFormField" appearance="fill">
         <mat-label>Voertuig</mat-label>
         <mat-select [(ngModel)]="bestuurder.besVoertuig" name="besVoertuig">
-          <mat-option *ngFor="let voertuig of voertuigen" [value]="voertuig.id">
+          <mat-option *ngFor="let voertuig of voertuigen" [value]="voertuig.voeId">
             {{voertuig.voeMerk}} {{voertuig.voeModel}} ({{voertuig.voeNummerplaat}})
           </mat-option>
         </mat-select>
@@ -66,7 +66,7 @@
         <input matInput type="text" class="form-control" id="adres" required [(ngModel)]="rijbewijs.rijGeldigheid" name="rijGeldigheid">
     </mat-form-field>
     <button mat-raised-button class="leftButton Width40" *ngFor="let rbtype of rijbewijsTypes; let i = index">
-        <mat-checkbox matTooltip="{{ rbtype.rbtOmschrijving }}" (click)="manageCategories(rbtype.id)" value="{{ rbtype.id }}" [checked]="hasRijbewijsType(rbtype.rbtNaam)">{{ rbtype.rbtNaam }}</mat-checkbox>
+        <mat-checkbox matTooltip="{{ rbtype.rbtOmschrijving }}" (click)="manageCategories(rbtype.rbtId)" value="{{ rbtype.rbtId }}" [checked]="hasRijbewijsType(rbtype.rbtNaam)">{{ rbtype.rbtNaam }}</mat-checkbox>
     </button>
     <button mat-raised-button color="accent" class="leftButton" [disabled]="!isFormValid()" (click)="bewaren(bestuurder)">Bewaren</button>
     <button mat-raised-button color="primary" (click)="sluiten()">Annuleren</button>

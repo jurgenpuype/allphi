@@ -19,7 +19,7 @@ export class VoertuigTypeService {
 
   constructor(  private http: HttpClient ) { }
   
-  private voertuigTypeUrl = 'https://sheer-circular-duchess.glitch.me/voertuigType';  // URL to web api
+  private voertuigTypeUrl = 'http://galileiit-001-site1.htempurl.com/voertuigtype';  // URL to web api
   
   getVoertuigTypes(): Observable<VoertuigType[]> {
       return this.http.get<VoertuigType[]>(this.voertuigTypeUrl)
