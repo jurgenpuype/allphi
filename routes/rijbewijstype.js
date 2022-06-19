@@ -9,7 +9,8 @@ const router = express.Router();
 //via rijbewijstype id, get of update data
 router.route('/:id')
     .get(controller.getRijbewijstype)
-    .put(controller.updateRijbewijstype);
+    .put(controller.updateRijbewijstype)
+    .delete(controller.deleteRijbewijstype);
 
 //alle rijbewijzen ophalen, nieuw rijbewijs aanmaken
 router.route('/')

@@ -78,4 +78,17 @@ const getRijbewijstypeViaRijbewijs = (req, res) => {
     })
 };
 
-module.exports = {getRijbewijstypes, getRijbewijstype, createRijbewijstype, updateRijbewijstype, getRijbewijstypeViaRijbewijs}
+const deleteRijbewijstype = (req, res) => {
+    //controleer id
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400 id moet een positieve integer zijn");
+
+    //connectie
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM rijbewijstypes WHERE rbtId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500 er is iets misgelopen");
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {getRijbewijstypes, getRijbewijstype, createRijbewijstype, updateRijbewijstype, getRijbewijstypeViaRijbewijs, deleteRijbewijstype }

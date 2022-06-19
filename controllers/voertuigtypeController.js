@@ -39,7 +39,7 @@ const createVoertuigtype = (req, res) => {
                     VALUES ("${req.body.voetNaam}", "${req.body.voetOmschrijving}");`,
         (err, results, fields) => {
             if (err) res.status(200).send("500 er is iets misgelopen");
-            res.status(201).send(results);
+            res.status(201).send({voetId: results.insertId, voetNaam: req.body.voetNaam, voetOmschrijving: req.body.voetOmschrijving});
         })
 };
 
@@ -60,8 +60,21 @@ const updateVoertuigtype = (req, res) => {
                         voetId = ${req.params.id};`,
         (err, results, fields) => {
             if (err) res.status(200).send("500 er is iets misgelopen");
-            res.status(200).send(results);
+            res.status(200).send({voetId: req.params.id, voetNaam: req.body.voetNaam, voetOmschrijving: req.body.voetOmschrijving});
         })
 };
 
-module.exports = {updateVoertuigtype, createVoertuigtype,getVoertuigtype, getVoertuigtypes}
+const deleteVoertuigtype = (req, res) => {
+    //controleer id
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400 id moet een positieve integer zijn");
+
+    //connectie
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM voertuigtypes WHERE voetId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500 er is iets misgelopen");
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {updateVoertuigtype, createVoertuigtype,getVoertuigtype, getVoertuigtypes, deleteVoertuigtype }

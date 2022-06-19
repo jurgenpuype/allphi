@@ -3,6 +3,23 @@
 const mysql = require('mysql2');
 const config = require('../database/config/config.js');
 
+//converteer Date naar string in DD/MM/YYYY
+const arrayConvertDate = (array) => {
+    for (var arrayIndex in array) {
+       for (var jsonProperty in array[arrayIndex]) {
+           if (array[arrayIndex][jsonProperty] instanceof Date) {
+		if (array[arrayIndex][jsonProperty] === null) return null;
+		var dd = array[arrayIndex][jsonProperty].getDate(); 
+		var mm = array[arrayIndex][jsonProperty].getMonth()+1;
+		var yyyy = array[arrayIndex][jsonProperty].getFullYear(); 
+		if (dd < 10) {dd='0'+dd};
+		if (mm < 10) {mm='0'+mm};
+		array[arrayIndex][jsonProperty] = dd+'/'+mm+'/'+yyyy;
+			}
+		}
+	}
+}
+
 //Rijkregisternummer validatie
 const _valideerRijksregisterNr = (RRNr, geboortedatum) => {
     //split rijksregisternummer in een array met . en - als separators
@@ -65,6 +82,7 @@ const getBestuurders = (req, res) => {
     const _connection = mysql.createConnection(config);
     _connection.query("SELECT * FROM bestuurders", (err, results, fields) => {
         if (err) res.status(200).send({});
+        arrayConvertDate(results);
         res.status(200).send(results);
     })
 }
@@ -80,6 +98,7 @@ const getBestuurder = (req, res) => {
     _connection.query(`SELECT * FROM bestuurders WHERE besId = ${req.params.id}`, (err, results, fields) => {
         if (err) res.status(200).send("500: er is iets misgelopen");
         if (results == "") res.status(200).send(`database vond geen resultaat met id ${req.params.id}`);
+        arrayConvertDate(results);
         res.status(200).send(results);
     })
 };
@@ -183,4 +202,18 @@ const updateBestuurder = (req, res) => {
                     })
 };
 
-module.exports = {getBestuurders, getBestuurder, createBestuurder, updateBestuurder}
+//specifieke bestuurder verwijderen uit database via id
+const deleteBestuurder = (req, res) => {
+    //controleer id
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400: id moet een positieve integer zijn");
+
+    //connectie
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM bestuurders WHERE besId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500: er is iets misgelopen");
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {getBestuurders, getBestuurder, createBestuurder, updateBestuurder, deleteBestuurder}

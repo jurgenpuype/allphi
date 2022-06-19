@@ -106,4 +106,15 @@ const updateVoertuig = (req, res) => {
                     })
 };
 
-module.exports = {getVoertuigen, getVoertuig, createVoertuig, updateVoertuig}
+const deleteVoertuig = (req, res) => {
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400 id moet een positieve integer zijn");
+
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM voertuigen WHERE voeId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500 er is iets misgelopen");
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {getVoertuigen, getVoertuig, createVoertuig, updateVoertuig, deleteVoertuig }

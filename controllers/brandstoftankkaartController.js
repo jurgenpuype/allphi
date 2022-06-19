@@ -52,7 +52,7 @@ const updateBrandstoftankkaart = (req, res) => {
     _connection.query(`UPDATE
                         brandstoftankkaarten 
                     SET
-                        bratNaam = "${req.body.besNaam}",
+                        bratNaam = "${req.body.bratNaam}",
                         bratOmschrijving = "${req.body.bratOmschrijving}"
                     WHERE
                         bratId = ${req.params.id};`,
@@ -62,4 +62,17 @@ const updateBrandstoftankkaart = (req, res) => {
                     })
 };
 
-module.exports = {getBrandstoftankkaarten, getBrandstoftankkaart, createBrandstoftankkaart, updateBrandstoftankkaart}
+const deleteBrandstoftankkaart = (req, res) => {
+    //controleer id
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400: id moet een positieve integer zijn");
+
+    //connectie
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM brandstoftankkaarten WHERE bratId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500: er is iets misgelopen");
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {getBrandstoftankkaarten, getBrandstoftankkaart, createBrandstoftankkaart, updateBrandstoftankkaart, deleteBrandstoftankkaart }

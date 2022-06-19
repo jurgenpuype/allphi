@@ -13,7 +13,8 @@ router.route('/categories/:id')
 //select/update via id
 router.route('/:id')
     .get(controller.getRijbewijs)
-    .put(controller.updateRijbewijs);
+    .put(controller.updateRijbewijs)
+    .delete(controller.deleteRijbewijs);
 
 //select * en update
 router.route('/')

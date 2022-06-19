@@ -52,7 +52,7 @@ const updateBrandstofvoertuig = (req, res) => {
     _connection.query(`UPDATE
                         brandstofvoertuigen
                     SET
-                        bravNaam = "${req.body.besNaam}",
+                        bravNaam = "${req.body.bravNaam}",
                         bravOmschrijving = "${req.body.bravOmschrijving}"
                     WHERE
                         bravId = ${req.params.id};`,
@@ -62,4 +62,17 @@ const updateBrandstofvoertuig = (req, res) => {
                     })
 };
 
-module.exports = {getBrandstofvoertuigen, getBrandstofvoertuig, createBrandstofvoertuig, updateBrandstofvoertuig}
+const deleteBrandstofvoertuig = (req, res) => {
+    //controleer id
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400: id moet een positieve integer zijn");
+
+    //connectie
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM brandstofvoertuigen WHERE bravId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500: er is iets misgelopen");
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {getBrandstofvoertuigen, getBrandstofvoertuig, createBrandstofvoertuig, updateBrandstofvoertuig, deleteBrandstofvoertuig}

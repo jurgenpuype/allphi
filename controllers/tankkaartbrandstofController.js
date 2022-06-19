@@ -70,4 +70,17 @@ const updateTankkaartbrandstof = (req, res) => {
         })
 };
 
-module.exports = {getTankkaartbrandstoffen, getTankkaartbrandstof, createTankkaartbrandstof, updateTankkaartbrandstof}
+const deleteTankkaartbrandstof = (req, res) => {
+    //controleer id
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400: id moet een positieve integer zijn");
+
+    //connectie
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM tankkaartbrandstoffen WHERE tabrId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500 error:" + err);
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {getTankkaartbrandstoffen, getTankkaartbrandstof, createTankkaartbrandstof, updateTankkaartbrandstof, deleteTankkaartbrandstof }

@@ -3,6 +3,22 @@
 const mysql = require('mysql2');
 const config = require('../database/config/config.js');
 
+const arrayConvertDate = (array) => {
+    for (var arrayIndex in array) {
+       for (var jsonProperty in array[arrayIndex]) {
+           if (array[arrayIndex][jsonProperty] instanceof Date) {
+		if (array[arrayIndex][jsonProperty] === null) return null;
+		var dd = array[arrayIndex][jsonProperty].getDate(); 
+		var mm = array[arrayIndex][jsonProperty].getMonth()+1;
+		var yyyy = array[arrayIndex][jsonProperty].getFullYear(); 
+		if (dd < 10) {dd='0'+dd};
+		if (mm < 10) {mm='0'+mm};
+		array[arrayIndex][jsonProperty] = dd+'/'+mm+'/'+yyyy;
+			}
+		}
+	}
+}
+
 //converteer datumstring naar date object
 const _converteerDatum = (datum) => {
     if (datum == null || datum == "") return null;
@@ -46,6 +62,7 @@ const getRijbewijzen = (req, res) => {
     const _connection = mysql.createConnection(config);
     _connection.query("SELECT * FROM rijbewijzen", (err, results, fields) => {
         if (err) res.status(200).send({});
+        arrayConvertDate(results);
         res.status(200).send(results);
     })
 }
@@ -61,6 +78,7 @@ const getRijbewijs = (req, res) => {
     _connection.query(`SELECT * FROM rijbewijzen WHERE rijId = ${req.params.id}`, (err, results, fields) => {
         if (err) res.status(200).send("500: er is iets misgelopen");
         if (results == "") res.status(200).send(`400: database vond geen resultaat met id ${req.params.id}`);
+        arrayConvertDate(results);
         res.status(200).send(results);
     })
 };
@@ -128,4 +146,17 @@ const updateRijbewijs = (req, res) => {
                     })
 };
 
-module.exports = {getRijbewijzen, getRijbewijs, createRijbewijs, updateRijbewijs}
+const deleteRijbewijs = (req, res) => {
+    //controleer id
+    if (!_valideerId(req.params.id))
+        res.status(200).send("400: id moet een positieve integer zijn");
+
+    //connectie
+    const _connection = mysql.createConnection(config);
+    _connection.query(`DELETE FROM rijbewijzen WHERE rijId = ${req.params.id}`, (err, results, fields) => {
+        if (err) res.status(200).send("500: er is iets misgelopen" + err);
+        res.status(200).send(results);
+    })
+};
+
+module.exports = {getRijbewijzen, getRijbewijs, createRijbewijs, updateRijbewijs, deleteRijbewijs }

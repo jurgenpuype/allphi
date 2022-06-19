@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.route('/:id')
     .get(controller.getBrandstoftankkaart)
-    .put(controller.updateBrandstoftankkaart);
+    .put(controller.updateBrandstoftankkaart)
+    .delete(controller.deleteBrandstoftankkaart);
 
 router.route('/')
     .get(controller.getBrandstoftankkaarten)

@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.route('/:id')
     .get(controller.getVoertuigtype)
-    .put(controller.updateVoertuigtype);
+    .put(controller.updateVoertuigtype)
+    .delete(controller.deleteVoertuigtype);
 
 router.route('/')
     .get(controller.getVoertuigtypes)

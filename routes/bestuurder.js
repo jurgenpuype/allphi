@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.route('/:id')
     .get(controller.getBestuurder)
-    .put(controller.updateBestuurder);
+    .put(controller.updateBestuurder)
+    .delete(controller.deleteBestuurder);
 
 router.route('/')
     .get(controller.getBestuurders)
